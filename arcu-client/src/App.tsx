@@ -1,11 +1,14 @@
-import { DarkThemeToggle, Flowbite } from "flowbite-react";
 import NavBar from "./components/navbar";
+import MainSection from "./sections/main";
 
 function App() {
   return (
-    <main className="flex min-h-screen items-center justify-center gap-2 dark:bg-gray-800">
-      <NavBar/>
-    </main>
+    <div className="flex flex-col min-h-screen dark:bg-gray-800">
+      <NavBar />
+      <main className="flex-grow">
+        <MainSection />
+      </main>
+    </div>
   );
 }
 

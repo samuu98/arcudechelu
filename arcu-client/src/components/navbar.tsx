@@ -5,7 +5,7 @@ import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "f
 
 const NavBar = () => {
   return (
-    <Navbar fluid rounded className="fixed w-full  top-0 left-0 shadow-md">
+    <Navbar fluid rounded className="w-full shadow-md">
     <NavbarBrand href="https://flowbite-react.com">
       <img src="/logo.png" className="m-3 mr-5 h-6 sm:h-9" alt="Flowbite React Logo" />
       <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Arcu de Chelu B&B</span>
