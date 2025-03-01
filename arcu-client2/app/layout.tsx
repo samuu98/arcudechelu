@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
+import { LanguageProvider } from '@/locales'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -35,7 +36,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/images/B2_reduction_edited.png" />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   )
