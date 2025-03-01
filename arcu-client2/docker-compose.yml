@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: arcu-client
+    container_name: arcu_client
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -12,6 +12,9 @@ services:
     volumes:
       # Volume per le immagini principali e tutte le sottodirectory
       - ./public:/app/public
+
+    networks:
+      - system
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
       interval: 30s
@@ -27,3 +30,7 @@ services:
         reservations:
           cpus: '0.5'
           memory: 512M 
+networks:
+  system:
+    name: cloud  # usa la rete cloud di CasaOS
+    external: true
