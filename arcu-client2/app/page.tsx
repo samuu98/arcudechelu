@@ -27,7 +27,7 @@ export default function Home() {
     "/images/arcu_de_chelu/DSC_1474.jpeg",
     "/images/arcu_de_chelu/DSC_1469.jpeg",
     "/images/arcu_de_chelu/DSC_1475.jpeg",
-    "/images/arcu_de_chelu/photo_5778594136029511850_w (1).jpg",
+    "/images/arcu_de_chelu/photo_5778594136029511850_w_1.jpg",
     "/images/arcu_de_chelu/msg417320986-1047.jpg",
     "/images/arcu_de_chelu/msg417320986-1054.jpg",
   ];
