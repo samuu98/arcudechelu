@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Installa le dipendenze
-RUN npm ci
+RUN npm install
 
 # Copia i file del progetto
 COPY . .
@@ -23,6 +23,9 @@ WORKDIR /app
 
 # Variabili d'ambiente
 ENV NODE_ENV=production
+
+# Installa wget per il healthcheck
+RUN apk add --no-cache wget
 
 # Copia i file necessari dall'immagine precedente
 COPY --from=builder /app/next.config.js ./

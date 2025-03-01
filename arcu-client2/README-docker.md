@@ -90,4 +90,22 @@ Se riscontri problemi di permessi con il volume delle immagini:
 ```bash
 # Questo comando può risolvere problemi di permessi
 chmod -R 777 ./public/images
+```
+
+### Errore durante il build con npm ci
+
+Il Dockerfile è stato modificato per usare `npm install` invece di `npm ci` poiché il progetto potrebbe non avere un `package-lock.json`. Se preferisci usare `npm ci` per installazioni più consistenti, assicurati di generare prima un package-lock.json:
+
+```bash
+# Genera package-lock.json
+npm install --package-lock-only
+```
+
+### Errore con healthcheck wget
+
+Se riscontri errori relativi a wget nel healthcheck, potrebbe essere necessario installare wget nell'immagine Docker. In questo caso, modifica il Dockerfile aggiungendo:
+
+```dockerfile
+# Nel secondo stage (runner)
+RUN apk add --no-cache wget
 ``` 
