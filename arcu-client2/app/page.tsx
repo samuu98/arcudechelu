@@ -2,10 +2,78 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Bed, Coffee, Wifi, Utensils, MapPin, Phone, Mail, Star, ChevronRight, Instagram, Facebook } from 'lucide-react'
+import { Bed, Coffee, Wifi, Utensils, MapPin, Phone, Mail, Star, ChevronRight, Instagram, Facebook, Umbrella, ChevronLeft, HardHat, Calendar, Construction } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useState, useEffect } from 'react'
 
 export default function Home() {
+  // State per il carosello delle immagini di Canne Al Vento
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const canneAlVentoImages = [
+    "/images/canne_al_vento/DSC_1515_edited.jpg",
+    "/images/canne_al_vento/DSC_1495.jpeg",
+    "/images/canne_al_vento/DSC_1500.jpeg",
+    "/images/canne_al_vento/DSC_1505.jpeg",
+    "/images/canne_al_vento/DSC_1511.jpeg",
+  ];
+
+  // State per il carosello delle immagini di Arcu de Chelu
+  const [arcuImageIndex, setArcuImageIndex] = useState(0);
+  const arcuDeChechuImages = [
+    "/images/arcu_de_chelu/DSC_1474.jpeg",
+    "/images/arcu_de_chelu/DSC_1469.jpeg",
+    "/images/arcu_de_chelu/DSC_1475.jpeg",
+    "/images/arcu_de_chelu/photo_5778594136029511850_w (1).jpg",
+    "/images/arcu_de_chelu/msg417320986-1047.jpg",
+    "/images/arcu_de_chelu/msg417320986-1054.jpg",
+  ];
+
+  // Funzione per passare all'immagine successiva - Canne Al Vento
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === canneAlVentoImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  // Funzione per passare all'immagine precedente - Canne Al Vento
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === 0 ? canneAlVentoImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  // Funzione per passare all'immagine successiva - Arcu de Chelu
+  const nextArcuImage = () => {
+    setArcuImageIndex((prevIndex) => 
+      prevIndex === arcuDeChechuImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  // Funzione per passare all'immagine precedente - Arcu de Chelu
+  const prevArcuImage = () => {
+    setArcuImageIndex((prevIndex) => 
+      prevIndex === 0 ? arcuDeChechuImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  // Cambia automaticamente l'immagine ogni 5 secondi - Canne Al Vento
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextImage();
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  // Cambia automaticamente l'immagine ogni 5 secondi - Arcu de Chelu
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextArcuImage();
+    }, 5500); // Intervallo leggermente diverso per evitare sincronizzazione con l'altro carousel
+    
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <main className="min-h-screen">
       {/* Header/Navbar */}
@@ -13,6 +81,15 @@ export default function Home() {
         <div className="container mx-auto flex items-center justify-between py-4">
           <div className="text-2xl font-semibold text-bnb-700">
             <Link href="/" className="flex items-center">
+              <div className="relative h-10 w-10 mr-2">
+                <Image 
+                  src="/images/B2_reduction.png" 
+                  alt="Arcu de Chelu Logo" 
+                  fill
+                  style={{objectFit: "contain"}}
+                  priority
+                />
+              </div>
               <span className="font-serif italic">Arcu de Chelu</span>
               <span className="text-sm ml-2 text-natural-600 font-normal">B&B</span>
             </Link>
@@ -30,12 +107,35 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="hero-section h-screen flex items-center justify-center text-white pt-16">
-        <div className="container mx-auto text-center">
-          <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-serif mb-4 font-light tracking-wide">Arcu de Chelu</h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Un'oasi di pace nel cuore della Sardegna</p>
-            <Button variant="bnb" size="xl" className="mt-4 animate-slide-in">
+      <section className="hero-section h-screen flex items-center justify-center text-white pt-16 relative">
+        <div className="container mx-auto text-center px-4 flex flex-col h-full justify-center">
+          <div className="animate-fade-in flex flex-col items-center mb-auto mt-auto">
+            <div className="relative h-96 w-96 mx-auto mb-0" style={{animation: 'scaleIn 1.5s ease forwards'}}>
+              <Image 
+                src="/images/B2_reduction_edited.png" 
+                alt="Arcu de Chelu Symbol" 
+                fill
+                style={{objectFit: "contain"}}
+                priority
+                className="opacity-75 drop-shadow-xl"
+              />
+            </div>
+            <div className="space-y-2 mt-[-55px]">
+              <h1 className="text-5xl md:text-7xl font-serif font-extralight tracking-widest leading-tight text-white/95 drop-shadow-md">
+                Arcu de Chelu
+              </h1>
+              <p className="text-lg md:text-xl font-light tracking-wider italic text-white/90 drop-shadow-sm">
+                — Bed &amp; Breakfast —
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-auto mb-12">
+            <Button 
+              variant="bnb" 
+              size="xl" 
+              className="animate-slide-in backdrop-blur-sm bg-white/20 hover:bg-white/30 border border-white/30 transition-all duration-300 shadow-lg"
+            >
               Scopri le Nostre Camere
               <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
@@ -48,16 +148,16 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-0">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2 space-y-6">
-              <h2 className="text-3xl md:text-4xl font-serif text-natural-800">Benvenuti ad <span className="text-bnb-600 italic">Arcu de Chelu</span></h2>
+              <h2 className="text-3xl md:text-4xl font-serif text-natural-800">Benvenuti a <span className="text-bnb-600 italic">Modolo</span></h2>
               <p className="text-natural-700 leading-relaxed">
-                Il nostro B&B prende il nome dall'arcobaleno in lingua sarda, "S'Arcu de Chelu", 
-                proprio come questo fenomeno naturale incanta con i suoi colori, il nostro B&B 
-                vi stupirà con la sua bellezza e ospitalità.
+                Modolo è un affascinante villaggio immerso nella splendida campagna sarda. 
+                Situato a pochi chilometri da Bosa, offre una fuga tranquilla e autentica. 
+                Uliveti, vigneti e agrumeti adornano la campagna, creando un paesaggio che dona serenità.
               </p>
               <p className="text-natural-700 leading-relaxed">
-                Immerso tra le colline della Sardegna, Arcu de Chelu offre un'esperienza autentica 
-                in un ambiente tranquillo e accogliente. Le nostre camere, arredate con cura, combinano 
-                lo stile tradizionale sardo con comfort moderni.
+                La vicinanza alla costa occidentale permette di godere di un mare unico nel suo genere, 
+                dove puoi trovare spiagge immacolate e calette mozzafiato. 
+                Questo piccolo borgo è il luogo ideale per scoprire l'autentica bellezza naturale della Sardegna.
               </p>
               <Button variant="outline" className="border-bnb-500 text-bnb-700 hover:bg-bnb-50">
                 Scopri di più su di noi
@@ -65,7 +165,7 @@ export default function Home() {
             </div>
             <div className="md:w-1/2 relative h-80 md:h-[500px] w-full rounded-lg overflow-hidden shadow-xl">
               <Image 
-                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
+                src="/images/DSC_1446.jpeg" 
                 alt="Arcu de Chelu B&B" 
                 fill
                 style={{objectFit: "cover"}}
@@ -82,101 +182,175 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-serif text-natural-800 mb-4">Le Nostre Camere</h2>
             <p className="text-natural-600 max-w-2xl mx-auto">
-              Rilassatevi nelle nostre splendide camere, ognuna con un carattere unico, 
-              che offrono il perfetto equilibrio tra tradizione e comfort.
+              Le nostre camere sono pensate per offrire il massimo comfort durante il vostro soggiorno.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Room Card 1 */}
+            {/* Room Feature 1 - Canne Al Vento */}
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 room-card">
               <div className="relative h-64 overflow-hidden">
-                <Image 
-                  src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
-                  alt="Camera Ginestra" 
-                  fill
-                  style={{objectFit: "cover"}}
-                  className="room-image"
-                />
+                {/* Carosello delle immagini */}
+                <div className="relative h-full w-full">
+                  <Image 
+                    src={canneAlVentoImages[currentImageIndex]}
+                    alt="Camera Canne Al Vento" 
+                    fill
+                    style={{objectFit: "cover"}}
+                    className="transition-opacity duration-500"
+                  />
+                  
+                  {/* Controlli del carosello */}
+                  <div className="absolute inset-0 flex items-center justify-between p-2">
+                    <button 
+                      onClick={prevImage} 
+                      className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
+                      aria-label="Immagine precedente"
+                    >
+                      <ChevronLeft className="h-5 w-5" />
+                    </button>
+                    <button 
+                      onClick={nextImage} 
+                      className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
+                      aria-label="Immagine successiva"
+                    >
+                      <ChevronRight className="h-5 w-5" />
+                    </button>
+                  </div>
+                  
+                  {/* Indicatori */}
+                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1.5">
+                    {canneAlVentoImages.map((_, index) => (
+                      <button 
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`h-1.5 rounded-full transition-all ${
+                          currentImageIndex === index 
+                            ? "w-4 bg-white" 
+                            : "w-1.5 bg-white/60"
+                        }`}
+                        aria-label={`Vai all'immagine ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-serif text-natural-800 mb-2">Camera Ginestra</h3>
-                <div className="flex items-center text-bnb-500 mb-4">
-                  <Star className="h-4 w-4 fill-current" />
-                  <Star className="h-4 w-4 fill-current" />
-                  <Star className="h-4 w-4 fill-current" />
-                  <Star className="h-4 w-4 fill-current" />
-                  <Star className="h-4 w-4 fill-current" />
-                </div>
+                <h3 className="text-xl font-serif text-natural-800 mb-2">Canne Al Vento</h3>
                 <p className="text-natural-600 mb-4">
-                  Una spaziosa camera matrimoniale con vista sui monti e un bagno privato con doccia.
+                  Un'incantevole camera matrimoniale indipendente con bagno privato, angolo cottura e magnifico terrazzo panoramico. 
+                  Questo rifugio di tranquillità offre letto matrimoniale confortevole, climatizzazione, TV smart e tutti i comfort necessari per un soggiorno romantico e indimenticabile, cullati dalla brezza marina e dai profumi del Mediterraneo.
                 </p>
-                <div className="flex justify-between items-center mt-4">
-                  <span className="text-xl font-semibold text-bnb-700">€90 <span className="text-sm text-natural-500 font-normal">/ notte</span></span>
-                  <Button variant="bnb" size="sm">Visualizza Dettagli</Button>
-                </div>
               </div>
             </div>
 
-            {/* Room Card 2 */}
+            {/* Room Feature 2 - Arcu de Chelu */}
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 room-card">
               <div className="relative h-64 overflow-hidden">
-                <Image 
-                  src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
-                  alt="Camera Olivastro" 
-                  fill
-                  style={{objectFit: "cover"}}
-                  className="room-image"
-                />
+                {/* Carosello delle immagini */}
+                <div className="relative h-full w-full">
+                  <Image 
+                    src={arcuDeChechuImages[arcuImageIndex]}
+                    alt="Appartamento Arcu de Chelu" 
+                    fill
+                    style={{objectFit: "cover"}}
+                    className="transition-opacity duration-500"
+                  />
+                  
+                  {/* Controlli del carosello */}
+                  <div className="absolute inset-0 flex items-center justify-between p-2">
+                    <button 
+                      onClick={prevArcuImage} 
+                      className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
+                      aria-label="Immagine precedente"
+                    >
+                      <ChevronLeft className="h-5 w-5" />
+                    </button>
+                    <button 
+                      onClick={nextArcuImage} 
+                      className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
+                      aria-label="Immagine successiva"
+                    >
+                      <ChevronRight className="h-5 w-5" />
+                    </button>
+                  </div>
+                  
+                  {/* Indicatori */}
+                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1.5">
+                    {arcuDeChechuImages.map((_, index) => (
+                      <button 
+                        key={index}
+                        onClick={() => setArcuImageIndex(index)}
+                        className={`h-1.5 rounded-full transition-all ${
+                          arcuImageIndex === index 
+                            ? "w-4 bg-white" 
+                            : "w-1.5 bg-white/60"
+                        }`}
+                        aria-label={`Vai all'immagine ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-serif text-natural-800 mb-2">Camera Olivastro</h3>
-                <div className="flex items-center text-bnb-500 mb-4">
-                  <Star className="h-4 w-4 fill-current" />
-                  <Star className="h-4 w-4 fill-current" />
-                  <Star className="h-4 w-4 fill-current" />
-                  <Star className="h-4 w-4 fill-current" />
-                  <Star className="h-4 w-4" />
-                </div>
+                <h3 className="text-xl font-serif text-natural-800 mb-2">Arcu de Chelu</h3>
                 <p className="text-natural-600 mb-4">
-                  Una confortevole camera matrimoniale con balcone e bagno privato con vasca.
+                  Un elegante appartamento con due camere: "Romeo & Giulietta" in stile classico con pavimento in cementine liberty e "L'infinito" in stile moderno con parquet. 
+                  Entrambe le camere hanno balconi con vista sulla pittoresca piazzetta e sulla vallata che conduce al mare di Bosa. L'appartamento offre bagno condiviso, angolo cottura attrezzato, TV, climatizzazione e tutti i comfort per un soggiorno autentico nel cuore di Modolo.
                 </p>
-                <div className="flex justify-between items-center mt-4">
-                  <span className="text-xl font-semibold text-bnb-700">€85 <span className="text-sm text-natural-500 font-normal">/ notte</span></span>
-                  <Button variant="bnb" size="sm">Visualizza Dettagli</Button>
-                </div>
               </div>
             </div>
 
-            {/* Room Card 3 */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 room-card">
-              <div className="relative h-64 overflow-hidden">
-                <Image 
-                  src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
-                  alt="Camera Mirto" 
-                  fill
-                  style={{objectFit: "cover"}}
-                  className="room-image"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-serif text-natural-800 mb-2">Camera Mirto</h3>
-                <div className="flex items-center text-bnb-500 mb-4">
-                  <Star className="h-4 w-4 fill-current" />
-                  <Star className="h-4 w-4 fill-current" />
-                  <Star className="h-4 w-4 fill-current" />
-                  <Star className="h-4 w-4 fill-current" />
-                  <Star className="h-4 w-4 fill-current" />
+            {/* Room Feature 3 - Via Roma (In Costruzione) */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 room-card relative">
+              {/* Indicatore elegante "Coming Soon" */}
+              <div className="absolute top-3 right-3 z-20">
+                <div className="bg-natural-800/80 backdrop-blur-sm text-white text-xs uppercase tracking-wider py-1.5 px-3 rounded-full shadow-sm border border-natural-200/20">
+                  Disponibile Giugno 2025
                 </div>
+              </div>
+              
+              <div className="relative h-64 overflow-hidden bg-natural-50">
+                <div className="absolute inset-0 flex items-center justify-center flex-col p-6 text-center">
+                  <div className="relative w-24 h-24 mb-4">
+                    <div className="absolute inset-0 rounded-full bg-natural-200 bg-opacity-30 backdrop-blur-sm flex items-center justify-center">
+                      <Calendar className="h-10 w-10 text-natural-800/50" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-serif text-natural-800 mb-2 italic">Coming Soon</h3>
+                  <div className="w-12 h-0.5 bg-natural-300 my-2"></div>
+                </div>
+                
+                {/* Sfondo elegante */}
+                <div className="absolute inset-0">
+                  <svg className="w-full h-full text-natural-200 opacity-10" fill="currentColor" viewBox="0 0 100 100">
+                    <path d="M50,0 L100,100 L0,100 Z" />
+                  </svg>
+                </div>
+              </div>
+              
+              <div className="p-6 border-t border-natural-100">
+                <h3 className="text-xl font-serif text-natural-800 mb-2">Via Roma</h3>
                 <p className="text-natural-600 mb-4">
-                  La nostra suite premium con zona soggiorno, vista panoramica e bagno con jacuzzi.
+                  La nostra prossima novità a Modolo sarà una confortevole camera matrimoniale con bagno privato, 
+                  pensata per i viaggiatori che cercano un'opzione più economica senza rinunciare al comfort. 
+                  La camera "Via Roma" offrirà tutti i servizi essenziali in uno spazio raccolto e accogliente, 
+                  ideale per brevi soggiorni e per chi desidera scoprire la Sardegna senza spendere una fortuna.
                 </p>
-                <div className="flex justify-between items-center mt-4">
-                  <span className="text-xl font-semibold text-bnb-700">€120 <span className="text-sm text-natural-500 font-normal">/ notte</span></span>
-                  <Button variant="bnb" size="sm">Visualizza Dettagli</Button>
+                <div className="flex items-center text-natural-500 text-sm mt-4">
+                  <Calendar className="h-4 w-4 mr-1.5" />
+                  <span>Prenotazioni disponibili da marzo 2025</span>
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="mt-12 bg-natural-50 p-8 rounded-lg shadow-sm max-w-3xl mx-auto">
+            <p className="text-natural-700 leading-relaxed text-center italic">
+              Le camere degli ospiti sono situate in un piano dedicato, garantendo una maggiore privacy e tranquillità. 
+              Gli host non vivono nello stesso piano, ma saranno sempre a vostra disposizione per assicurarsi che il 
+              vostro soggiorno sia perfetto in ogni dettaglio.
+            </p>
           </div>
         </div>
       </section>
@@ -192,48 +366,46 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Service 1 */}
             <div className="bg-white p-8 rounded-lg shadow-md group hover:shadow-lg transition-shadow">
               <div className="mb-4 text-bnb-600 rounded-full bg-bnb-50 p-3 inline-block">
                 <Coffee className="h-8 w-8 amenities-icon" />
               </div>
-              <h3 className="text-xl font-serif text-natural-800 mb-2">Colazione Gourmet</h3>
+              <h3 className="text-xl font-serif text-natural-800 mb-2">Breakfast</h3>
               <p className="text-natural-600">
-                Ogni mattina serviamo una colazione abbondante con prodotti locali e fatti in casa.
+                Inizia la tua giornata al nostro accogliente B&B con una colazione irresistibile. 
+                Deliziosi dolci fatti in casa, latte fresco, una selezione di cereali e yogurt cremoso ti attendono. 
+                Gusta i succhi di frutta rinfrescanti e le marmellate genuine. Una colazione completa e deliziosa 
+                per iniziare la giornata nel migliore dei modi!
               </p>
             </div>
             
             {/* Service 2 */}
             <div className="bg-white p-8 rounded-lg shadow-md group hover:shadow-lg transition-shadow">
               <div className="mb-4 text-bnb-600 rounded-full bg-bnb-50 p-3 inline-block">
-                <Wifi className="h-8 w-8 amenities-icon" />
+                <Umbrella className="h-8 w-8 amenities-icon" />
               </div>
-              <h3 className="text-xl font-serif text-natural-800 mb-2">Wi-Fi Gratuito</h3>
+              <h3 className="text-xl font-serif text-natural-800 mb-2">Summer Bag</h3>
               <p className="text-natural-600">
-                Connessione Wi-Fi ad alta velocità disponibile gratuitamente in tutte le aree.
+                Teli da spiaggia soffici e colorati per sdraiarti comodamente sulla sabbia. 
+                E non dimenticare l'ombrellone leggero e facile da montare, per ripararti dal sole quando ne hai bisogno. 
+                Una borsa frigo per tenere al fresco panini e bevande. Con questa pratica borsa, avrai il minimo 
+                indispensabile per goderti una giornata perfetta al mare.
               </p>
             </div>
             
             {/* Service 3 */}
             <div className="bg-white p-8 rounded-lg shadow-md group hover:shadow-lg transition-shadow">
               <div className="mb-4 text-bnb-600 rounded-full bg-bnb-50 p-3 inline-block">
-                <Bed className="h-8 w-8 amenities-icon" />
+                <Wifi className="h-8 w-8 amenities-icon" />
               </div>
-              <h3 className="text-xl font-serif text-natural-800 mb-2">Pulizia Giornaliera</h3>
+              <h3 className="text-xl font-serif text-natural-800 mb-2">Free WiFi</h3>
               <p className="text-natural-600">
-                Servizio di pulizia giornaliero per garantire il massimo comfort durante il soggiorno.
-              </p>
-            </div>
-            
-            {/* Service 4 */}
-            <div className="bg-white p-8 rounded-lg shadow-md group hover:shadow-lg transition-shadow">
-              <div className="mb-4 text-bnb-600 rounded-full bg-bnb-50 p-3 inline-block">
-                <Utensils className="h-8 w-8 amenities-icon" />
-              </div>
-              <h3 className="text-xl font-serif text-natural-800 mb-2">Cucina Tipica</h3>
-              <p className="text-natural-600">
-                Su richiesta, cene con menu tipico sardo preparato con ingredienti locali.
+                Ti offriamo un servizio di WiFi gratuito per rendere il tuo soggiorno ancora più confortevole e connesso. 
+                Con il nostro veloce accesso a Internet, potrai rimanere in contatto con amici e familiari, condividere i momenti 
+                speciali del tuo viaggio sui social media o lavorare comodamente, se necessario. Siamo felici di offrirti questo 
+                servizio aggiuntivo per assicurarti un soggiorno piacevole e senza interruzioni.
               </p>
             </div>
           </div>
@@ -253,7 +425,7 @@ export default function Home() {
           <div className="gallery-grid">
             <div className="relative h-64 rounded-lg overflow-hidden">
               <Image 
-                src="https://images.unsplash.com/photo-1561501900-3701fa6a0864?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
+                src="/images/DSC_1467.jpeg" 
                 alt="Vista esterna" 
                 fill
                 style={{objectFit: "cover"}}
@@ -262,7 +434,7 @@ export default function Home() {
             </div>
             <div className="relative h-64 rounded-lg overflow-hidden">
               <Image 
-                src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
+                src="/images/DSC_1513.jpeg" 
                 alt="Colazione" 
                 fill
                 style={{objectFit: "cover"}}
@@ -271,7 +443,7 @@ export default function Home() {
             </div>
             <div className="relative h-64 rounded-lg overflow-hidden">
               <Image 
-                src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
+                src="/images/IMG_20220805_115752.jpg" 
                 alt="Spiaggia vicina" 
                 fill
                 style={{objectFit: "cover"}}
@@ -280,7 +452,7 @@ export default function Home() {
             </div>
             <div className="relative h-64 rounded-lg overflow-hidden">
               <Image 
-                src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
+                src="/images/IMG_20220811_113556.jpg" 
                 alt="Camera da letto" 
                 fill
                 style={{objectFit: "cover"}}
@@ -289,7 +461,7 @@ export default function Home() {
             </div>
             <div className="relative h-64 rounded-lg overflow-hidden">
               <Image 
-                src="https://images.unsplash.com/photo-1623718649591-311775a30c43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
+                src="/images/photo_5778594136029511850_w (1).jpg" 
                 alt="Prodotti tipici" 
                 fill
                 style={{objectFit: "cover"}}
@@ -298,7 +470,7 @@ export default function Home() {
             </div>
             <div className="relative h-64 rounded-lg overflow-hidden">
               <Image 
-                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
+                src="/images/1665427737133 (1).jpeg" 
                 alt="Giardino" 
                 fill
                 style={{objectFit: "cover"}}
@@ -341,10 +513,10 @@ export default function Home() {
               <div className="flex items-center">
                 <div className="relative h-12 w-12 rounded-full overflow-hidden mr-4">
                   <Image 
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
+                    src="/images/B2_reduction.png" 
                     alt="Cliente" 
                     fill
-                    style={{objectFit: "cover"}}
+                    style={{objectFit: "contain"}}
                   />
                 </div>
                 <div>
@@ -369,10 +541,10 @@ export default function Home() {
               <div className="flex items-center">
                 <div className="relative h-12 w-12 rounded-full overflow-hidden mr-4">
                   <Image 
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
+                    src="/images/B2_reduction.png" 
                     alt="Cliente" 
                     fill
-                    style={{objectFit: "cover"}}
+                    style={{objectFit: "contain"}}
                   />
                 </div>
                 <div>
@@ -397,10 +569,10 @@ export default function Home() {
               <div className="flex items-center">
                 <div className="relative h-12 w-12 rounded-full overflow-hidden mr-4">
                   <Image 
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
+                    src="/images/B2_reduction.png" 
                     alt="Cliente" 
                     fill
-                    style={{objectFit: "cover"}}
+                    style={{objectFit: "contain"}}
                   />
                 </div>
                 <div>
@@ -429,7 +601,7 @@ export default function Home() {
                   <MapPin className="h-6 w-6 text-bnb-600 mr-4 mt-1" />
                   <div>
                     <h3 className="font-semibold text-natural-800 mb-1">Indirizzo</h3>
-                    <p className="text-natural-600">Via dei Ginepri, 23, 08048<br />Tortolì, Sardegna, Italia</p>
+                    <p className="text-natural-600">Via Roma 42, 09090<br />Modolo, Oristano, Sardegna, Italia</p>
                   </div>
                 </div>
                 
@@ -437,7 +609,7 @@ export default function Home() {
                   <Phone className="h-6 w-6 text-bnb-600 mr-4 mt-1" />
                   <div>
                     <h3 className="font-semibold text-natural-800 mb-1">Telefono</h3>
-                    <p className="text-natural-600">+39 123 4567890</p>
+                    <p className="text-natural-600">+39 3408951010 / +39 3472405580</p>
                   </div>
                 </div>
                 
@@ -445,7 +617,7 @@ export default function Home() {
                   <Mail className="h-6 w-6 text-bnb-600 mr-4 mt-1" />
                   <div>
                     <h3 className="font-semibold text-natural-800 mb-1">Email</h3>
-                    <p className="text-natural-600">info@arcudechelu.it</p>
+                    <p className="text-natural-600">info@arcudechelubnb.com</p>
                   </div>
                 </div>
                 
@@ -514,6 +686,16 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <h4 className="text-xl font-serif text-white mb-4">Arcu de Chelu</h4>
+              <div className="flex items-center mb-4">
+                <div className="relative h-10 w-10 mr-2">
+                  <Image 
+                    src="/images/B2_reduction_edited.png" 
+                    alt="Arcu de Chelu Logo" 
+                    fill
+                    style={{objectFit: "contain"}}
+                  />
+                </div>
+              </div>
               <p className="text-natural-400 mb-6">
                 Un B&B esclusivo nel cuore della Sardegna, dove tradizione e comfort si incontrano.
               </p>
@@ -543,15 +725,15 @@ export default function Home() {
               <ul className="space-y-2">
                 <li className="flex items-start">
                   <MapPin className="h-5 w-5 text-bnb-500 mr-2" />
-                  <span className="text-natural-400">Via dei Ginepri, 23, Tortolì</span>
+                  <span className="text-natural-400">Via Roma 42, Modolo, Oristano</span>
                 </li>
                 <li className="flex items-start">
                   <Phone className="h-5 w-5 text-bnb-500 mr-2" />
-                  <span className="text-natural-400">+39 123 4567890</span>
+                  <span className="text-natural-400">+39 3408951010</span>
                 </li>
                 <li className="flex items-start">
                   <Mail className="h-5 w-5 text-bnb-500 mr-2" />
-                  <span className="text-natural-400">info@arcudechelu.it</span>
+                  <span className="text-natural-400">info@arcudechelubnb.com</span>
                 </li>
               </ul>
             </div>
