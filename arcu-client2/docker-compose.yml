@@ -10,8 +10,8 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      # Volume per la persistenza delle immagini caricate
-      - ./public/images:/app/public/images
+      # Volume per le immagini principali e tutte le sottodirectory
+      - ./public:/app/public
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
       interval: 30s

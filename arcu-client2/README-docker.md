@@ -83,14 +83,60 @@ Verifica i log per eventuali errori:
 docker-compose logs
 ```
 
+### Immagini mancanti nel sito
+
+Se le immagini non sono visibili dopo il deploy Docker, segui questi passaggi:
+
+1. **Verifica la struttura delle directory**:
+   Assicurati che le immagini siano nella directory corretta sul sistema host:
+   ```
+   public/
+   └── images/
+       ├── gallery/
+       ├── canne_al_vento/
+       ├── arcu_de_chelu/
+       └── modolo/
+   ```
+
+2. **Copia manualmente le immagini** (per Windows):
+   ```
+   # Crea le directory necessarie
+   mkdir -p public\images\gallery
+   mkdir -p public\images\canne_al_vento
+   mkdir -p public\images\arcu_de_chelu
+   mkdir -p public\images\modolo
+
+   # Copia le immagini (modifica i percorsi in base alla tua configurazione)
+   copy /Y original_images\gallery\* public\images\gallery\
+   copy /Y original_images\canne_al_vento\* public\images\canne_al_vento\
+   copy /Y original_images\arcu_de_chelu\* public\images\arcu_de_chelu\
+   copy /Y original_images\modolo\* public\images\modolo\
+   ```
+
+3. **Ricostruisci il container**:
+   ```bash
+   docker-compose down
+   docker-compose build --no-cache
+   docker-compose up -d
+   ```
+
+4. **Modifica direttamente nel container**:
+   Se necessario, puoi copiare le immagini direttamente nel container in esecuzione:
+   ```bash
+   # Per copiare una directory di immagini nel container
+   docker cp ./public/images/gallery/. arcu-client:/app/public/images/gallery/
+   ```
+
 ### Problemi di permessi
 
 Se riscontri problemi di permessi con il volume delle immagini:
 
 ```bash
-# Questo comando può risolvere problemi di permessi
-chmod -R 777 ./public/images
+# Questo comando può risolvere problemi di permessi (per Linux/macOS)
+chmod -R 755 ./public/images
 ```
+
+In Windows, assicurati che le directory siano accessibili a tutti gli utenti o usa PowerShell per impostare i permessi corretti.
 
 ### Errore durante il build con npm ci
 
