@@ -1,0 +1,45 @@
+# File di sviluppo
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# File di ambiente
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Directory di cache
+.next/cache
+
+# File di sistema
+.DS_Store
+Thumbs.db
+
+# File di versione
+.git
+.gitignore
+
+# File di configurazione dell'editor
+.vscode
+.idea
+*.swp
+*.swo
+
+# File Dockerfile e docker-compose
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# File README e documentazione
+README.md
+*.md
+
+# File di test
+__tests__
+*test.js
+*spec.js
+
+# Altri file non necessari
+.github 
