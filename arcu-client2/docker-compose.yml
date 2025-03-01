@@ -1,36 +1,40 @@
+version: '3'
+
 services:
   arcu-client:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: arcu_client
+    container_name: arcu-client2
     restart: unless-stopped
     ports:
       - "3000:3000"
-    environment:
-      - NODE_ENV=production
     volumes:
-      # Volume per le immagini principali e tutte le sottodirectory
       - ./public:/app/public
-
+      - nextjs_cache:/app/.next/cache
     networks:
       - system
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
+      test: ["CMD", "wget", "--spider", "http://localhost:3000"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 20s
+      start_period: 15s
     # Limiti di risorse opzionali
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: 1G
-        reservations:
           cpus: '0.5'
-          memory: 512M 
+          memory: 512M
+    environment:
+      - NODE_ENV=production
+
 networks:
   system:
     name: cloud  # usa la rete cloud di CasaOS
     external: true
+
+# Volumi per la persistenza dei dati
+volumes:
+  nextjs_cache:
+    name: nextjs_cache

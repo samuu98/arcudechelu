@@ -197,9 +197,9 @@ export default function Home() {
   const galleryCarouselImages = [
     "/images/gallery/DSC_1446.jpeg",
     "/images/gallery/DSC_1467.jpeg",
-    "/images/gallery/1665427737133 (1).jpeg",
+    "/images/gallery/1665427737133_1.jpeg",
     "/images/gallery/DSC_1241_edited.jpg",
-    "/images/gallery/DSC_1513.jpeg"
+    "/images/gallery/DSC_1513.jpeg",
   ];
 
   // Funzione per passare all'immagine successiva nella galleria
