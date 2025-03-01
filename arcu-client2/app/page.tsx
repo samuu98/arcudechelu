@@ -44,7 +44,7 @@ export default function Home() {
     "/images/modolo/DSC_1241_edited.jpg",
     "/images/modolo/DSC_1513.jpeg",
     "/images/modolo/IMG_20220721_204145.jpg",
-    "/images/modolo/1665427737133 (1).jpeg",
+    "/images/modolo/1665427737133_1.jpeg",
     "/images/modolo/IMG_20220811_113556.jpg"
   ];
 

@@ -54,7 +54,12 @@ Questa guida contiene tutte le istruzioni per la configurazione e l'utilizzo del
    .\rename-images.ps1
    ```
 
-3. **Problemi di permessi**:
+3. **Aggiornare i riferimenti nel codice**:
+   - Se dopo aver rinominato le immagini ancora non sono visibili, potrebbe essere necessario aggiornare i riferimenti nel codice.
+   - I file principali da controllare sono `app/page.tsx` e altri componenti che potrebbero referenziare le immagini.
+   - Ad esempio, se un'immagine era chiamata `1665427737133 (1).jpeg` e ora è `1665427737133_1.jpeg`, occorre aggiornare tutti i riferimenti.
+
+4. **Problemi di permessi**:
    - In caso di errori relativi alla cache delle immagini, ricostruire il container:
      ```bash
      docker-compose down
@@ -62,15 +67,42 @@ Questa guida contiene tutte le istruzioni per la configurazione e l'utilizzo del
      docker-compose up -d
      ```
 
-4. **Verificare i file direttamente nel container**:
+5. **Verificare i file direttamente nel container**:
    ```bash
    docker exec -it arcu-client2 ls -la /app/public/images
    ```
 
-5. **Copiare manualmente i file nel container** (se necessario):
+6. **Copiare manualmente i file nel container** (se necessario):
    ```bash
    docker cp public/images/. arcu-client2:/app/public/images/
    ```
+
+### Problema: Errori di risposta per le immagini
+
+Se vedi errori come `upstream image response failed` o `The requested resource isn't a valid image`:
+
+1. **Controlla i log del container**:
+   ```bash
+   docker logs arcu-client2
+   ```
+
+2. **Verifica la configurazione Next.js**:
+   - Assicurati che `next.config.js` utilizzi `remotePatterns` invece di `domains`:
+     ```js
+     images: {
+       remotePatterns: [
+         {
+           protocol: 'https',
+           hostname: 'images.unsplash.com',
+           pathname: '**',
+         },
+       ],
+     },
+     ```
+
+3. **Assicurati che il pacchetto sharp sia installato**:
+   Il pacchetto `sharp` è necessario per l'ottimizzazione delle immagini in produzione.
+   È già incluso nel Dockerfile, ma se hai personalizzato l'immagine, assicurati che sia presente.
 
 ## Comandi Utili
 
