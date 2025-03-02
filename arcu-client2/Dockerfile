@@ -11,7 +11,7 @@ ENV NODE_ENV=production
 COPY package*.json ./
 
 # Installa solo le dipendenze necessarie per il build
-RUN npm ci --only=production
+RUN npm install --omit=dev
 
 # Copia i file del progetto
 COPY . .
