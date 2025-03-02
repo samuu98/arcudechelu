@@ -4,54 +4,40 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
+# Impostazione per ridurre dimensione dei node_modules
+ENV NODE_ENV=production
+
 # Copia package.json e package-lock.json
 COPY package*.json ./
 
-# Installa le dipendenze (senza sharp perché l'ottimizzazione delle immagini è disabilitata)
-RUN npm install
+# Installa solo le dipendenze necessarie per il build
+RUN npm ci --only=production
 
 # Copia i file del progetto
 COPY . .
 
-# Assicurati che le directory delle immagini esistano e abbiano i permessi corretti
-RUN mkdir -p public/images/gallery \
-    public/images/canne_al_vento \
-    public/images/arcu_de_chelu \
-    public/images/modolo \
-    && chmod -R 755 public
-
-# Compila l'applicazione
+# Compila l'applicazione (output standalone)
 RUN npm run build
 
-# Stage 2: Runtime (immagine più piccola)
-FROM node:18-alpine AS runner
+# Stage 2: Runtime (immagine minimale)
+FROM alpine:3.18 AS runner
+
+# Installa Node.js minimale
+RUN apk add --no-cache nodejs ca-certificates
 
 WORKDIR /app
 
-# Variabili d'ambiente
-ENV NODE_ENV=production
-
-# Installa solo wget per il healthcheck
-RUN apk add --no-cache wget
-
-# Crea directory per le immagini con permessi corretti
-RUN mkdir -p public/images && chmod -R 755 public
-
-# Copia i file necessari dall'immagine precedente
-COPY --from=builder /app/next.config.js ./
+# Copia solo la build ottimizzata standalone e le risorse necessarie
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
 
-# Assicurati che i permessi siano corretti
-RUN chmod -R 755 public/images
+# Imposta variabili di ambiente
+ENV NODE_ENV=production
+ENV PORT=3000
 
-# Esponi la porta su cui funzionerà l'applicazione
+# Esponi la porta
 EXPOSE 3000
 
-# Imposta l'utente non-root per maggiore sicurezza
-USER node
-
-# Comando di avvio
-CMD ["npm", "start"] 
+# Comando di avvio (il server.js è generato dall'output standalone)
+CMD ["node", "server.js"] 

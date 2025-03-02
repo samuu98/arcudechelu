@@ -38,7 +38,6 @@ export default function Home() {
   const modoloImages = [
     "/images/modolo/DSC_1193_optimized_.jpeg",
     "/images/modolo/DSC_1409_optimized_.jpeg",
-    "/images/modolo/DSC_1446_optimized_.jpeg",
     "/images/modolo/DSC_1467_optimized_.jpeg",
     "/images/modolo/DSC_1241_edited_optimized_.jpg",
     "/images/modolo/DSC_1513_optimized_.jpeg",
@@ -1675,15 +1674,15 @@ export default function Home() {
               <ul className="space-y-2">
                 <li className="flex items-start">
                   <MapPin className="h-5 w-5 text-bnb-500 mr-2" />
-                  <span className="text-natural-400">{t('footer.contact.address', 'Via Roma 10, 09084 Modolo (OR)')}</span>
+                  <span className="text-natural-400">{t('footer.contact.address', 'Via Roma 42, 09090 Modolo (OR)')}</span>
                 </li>
                 <li className="flex items-start">
                   <Phone className="h-5 w-5 text-bnb-500 mr-2" />
-                  <span className="text-natural-400">{t('footer.contact.phone', '+39 347 586 4956')}</span>
+                  <span className="text-natural-400">{t('footer.contact.phone', '+39 347 586 4956 / +39 340 895 1010')}</span  >
                 </li>
                 <li className="flex items-start">
                   <Mail className="h-5 w-5 text-bnb-500 mr-2" />
-                  <span className="text-natural-400">{t('footer.contact.email', 'info@arcudechelu.it')}</span>
+                  <span className="text-natural-400">{t('footer.contact.email', 'arcudechelubnb@gmail.com')}</span>
                 </li>
               </ul>
             </div>
