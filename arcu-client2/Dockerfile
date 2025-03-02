@@ -7,8 +7,8 @@ WORKDIR /app
 # Copia package.json e package-lock.json
 COPY package*.json ./
 
-# Installa le dipendenze e sharp per l'ottimizzazione delle immagini
-RUN npm install && npm install sharp
+# Installa le dipendenze (senza sharp perché l'ottimizzazione delle immagini è disabilitata)
+RUN npm install
 
 # Copia i file del progetto
 COPY . .
@@ -31,15 +31,11 @@ WORKDIR /app
 # Variabili d'ambiente
 ENV NODE_ENV=production
 
-# Installa wget per il healthcheck e sharp per l'ottimizzazione delle immagini
+# Installa solo wget per il healthcheck
 RUN apk add --no-cache wget
 
 # Crea directory per le immagini con permessi corretti
 RUN mkdir -p public/images && chmod -R 755 public
-
-# Crea la directory per la cache delle immagini e assegna i permessi corretti
-RUN mkdir -p .next/cache/images && \
-    chmod -R 777 .next
 
 # Copia i file necessari dall'immagine precedente
 COPY --from=builder /app/next.config.js ./
@@ -48,9 +44,8 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
-# Assicurati che i permessi siano corretti dopo la copia
-RUN chmod -R 777 public/images && \
-    chmod -R 777 .next/cache
+# Assicurati che i permessi siano corretti
+RUN chmod -R 755 public/images
 
 # Esponi la porta su cui funzionerà l'applicazione
 EXPOSE 3000

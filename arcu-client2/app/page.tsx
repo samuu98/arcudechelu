@@ -14,22 +14,21 @@ export default function Home() {
   // State per il carosello delle immagini di Canne Al Vento
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const canneAlVentoImages = [
-    "/images/canne_al_vento/DSC_1515_edited.jpg",
-    "/images/canne_al_vento/DSC_1495.jpeg",
-    "/images/canne_al_vento/DSC_1500.jpeg",
-    "/images/canne_al_vento/DSC_1505.jpeg",
-    "/images/canne_al_vento/DSC_1511.jpeg",
+    "/images/canne_al_vento/DSC_1515_edited_optimized_.jpg",
+    "/images/canne_al_vento/DSC_1495_optimized_.jpeg",
+    "/images/canne_al_vento/DSC_1500_optimized_.jpeg",
+    "/images/canne_al_vento/DSC_1505_optimized_.jpeg",
+    "/images/canne_al_vento/DSC_1511_optimized_.jpeg",
   ];
 
   // State per il carosello delle immagini di Arcu de Chelu
   const [arcuImageIndex, setArcuImageIndex] = useState(0);
   const arcuDeChechuImages = [
-    "/images/arcu_de_chelu/DSC_1474.jpeg",
-    "/images/arcu_de_chelu/DSC_1469.jpeg",
-    "/images/arcu_de_chelu/DSC_1475.jpeg",
-    "/images/arcu_de_chelu/photo_5778594136029511850_w_1.jpg",
-    "/images/arcu_de_chelu/msg417320986-1047.jpg",
-    "/images/arcu_de_chelu/msg417320986-1054.jpg",
+    "/images/arcu_de_chelu/DSC_1469_optimized_.jpeg",
+    "/images/arcu_de_chelu/DSC_1475_optimized_.jpeg",
+    "/images/arcu_de_chelu/photo_5778594136029511850_w_1_optimized_.jpg",
+    "/images/arcu_de_chelu/msg417320986-1047_optimized_.jpg",
+    "/images/arcu_de_chelu/msg417320986-1054_optimized_.jpg",
   ];
 
   // State per il carosello delle immagini di Modolo
@@ -37,15 +36,15 @@ export default function Home() {
   
   // Array delle immagini di Modolo (tutte in un'unica coda)
   const modoloImages = [
-    "/images/modolo/DSC_1193.jpeg",
-    "/images/modolo/DSC_1409.jpeg",
-    "/images/modolo/DSC_1446.jpeg",
-    "/images/modolo/DSC_1467.jpeg",
-    "/images/modolo/DSC_1241_edited.jpg",
-    "/images/modolo/DSC_1513.jpeg",
-    "/images/modolo/IMG_20220721_204145.jpg",
-    "/images/modolo/1665427737133_1.jpeg",
-    "/images/modolo/IMG_20220811_113556.jpg"
+    "/images/modolo/DSC_1193_optimized_.jpeg",
+    "/images/modolo/DSC_1409_optimized_.jpeg",
+    "/images/modolo/DSC_1446_optimized_.jpeg",
+    "/images/modolo/DSC_1467_optimized_.jpeg",
+    "/images/modolo/DSC_1241_edited_optimized_.jpg",
+    "/images/modolo/DSC_1513_optimized_.jpeg",
+    "/images/modolo/IMG_20220721_204145_optimized_.jpg",
+    "/images/modolo/1665427737133_1_optimized_.jpeg",
+    "/images/modolo/IMG_20220811_113556_optimized_.jpg"
   ];
 
   // State per il carosello delle recensioni
@@ -73,11 +72,43 @@ export default function Home() {
 
   // Cambia automaticamente le recensioni ogni 8 secondi
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextReviewGroup();
-    }, 8000);
+    // Usa requestAnimationFrame per assicurarsi che il browser sia pronto
+    let animationFrameId: number;
+    let intervalId: NodeJS.Timeout;
     
-    return () => clearInterval(interval);
+    // Funzione che avvia l'intervallo solo quando la pagina è visibile
+    const startInterval = () => {
+      intervalId = setInterval(() => {
+        animationFrameId = requestAnimationFrame(() => {
+          nextReviewGroup();
+        });
+      }, 8000);
+    };
+    
+    // Avvia l'intervallo inizialmente
+    startInterval();
+    
+    // Gestisce la visibilità della pagina
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Se la pagina è nascosta, pulisci gli intervalli
+        clearInterval(intervalId);
+        cancelAnimationFrame(animationFrameId);
+      } else {
+        // Se la pagina torna visibile, riavvia gli intervalli
+        startInterval();
+      }
+    };
+    
+    // Aggiungi event listener per quando l'utente cambia tab
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    // Pulizia
+    return () => {
+      clearInterval(intervalId);
+      cancelAnimationFrame(animationFrameId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
   
   // Aggiorna il carosello delle recensioni e gli indicatori quando cambia il gruppo di recensioni
@@ -167,39 +198,119 @@ export default function Home() {
 
   // Cambia automaticamente l'immagine ogni 5 secondi - Canne Al Vento
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextImage();
-    }, 5000);
+    // Usa requestAnimationFrame per assicurarsi che il browser sia pronto
+    let animationFrameId: number;
+    let intervalId: NodeJS.Timeout;
     
-    return () => clearInterval(interval);
+    // Funzione che avvia l'intervallo solo quando la pagina è visibile
+    const startInterval = () => {
+      intervalId = setInterval(() => {
+        animationFrameId = requestAnimationFrame(() => {
+          nextImage();
+        });
+      }, 5000);
+    };
+    
+    // Avvia l'intervallo inizialmente
+    startInterval();
+    
+    // Gestisce la visibilità della pagina
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Se la pagina è nascosta, pulisci gli intervalli
+        clearInterval(intervalId);
+        cancelAnimationFrame(animationFrameId);
+      } else {
+        // Se la pagina torna visibile, riavvia gli intervalli
+        startInterval();
+      }
+    };
+    
+    // Aggiungi event listener per quando l'utente cambia tab
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    // Pulizia
+    return () => {
+      clearInterval(intervalId);
+      cancelAnimationFrame(animationFrameId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   // Cambia automaticamente l'immagine ogni 5 secondi - Arcu de Chelu
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextArcuImage();
-    }, 5500); // Intervallo leggermente diverso per evitare sincronizzazione con l'altro carousel
+    let animationFrameId: number;
+    let intervalId: NodeJS.Timeout;
     
-    return () => clearInterval(interval);
+    const startInterval = () => {
+      intervalId = setInterval(() => {
+        animationFrameId = requestAnimationFrame(() => {
+          nextArcuImage();
+        });
+      }, 5500);
+    };
+    
+    startInterval();
+    
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        clearInterval(intervalId);
+        cancelAnimationFrame(animationFrameId);
+      } else {
+        startInterval();
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      clearInterval(intervalId);
+      cancelAnimationFrame(animationFrameId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   // Cambia automaticamente l'immagine ogni 6 secondi - Modolo
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextModoloImage();
-    }, 6000); // Intervallo leggermente più lungo per dare tempo di vedere le immagini di Modolo
+    let animationFrameId: number;
+    let intervalId: NodeJS.Timeout;
     
-    return () => clearInterval(interval);
+    const startInterval = () => {
+      intervalId = setInterval(() => {
+        animationFrameId = requestAnimationFrame(() => {
+          nextModoloImage();
+        });
+      }, 6000);
+    };
+    
+    startInterval();
+    
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        clearInterval(intervalId);
+        cancelAnimationFrame(animationFrameId);
+      } else {
+        startInterval();
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      clearInterval(intervalId);
+      cancelAnimationFrame(animationFrameId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   // State per il carosello della galleria
   const [galleryImageIndex, setGalleryImageIndex] = useState(0);
   const galleryCarouselImages = [
-    "/images/gallery/DSC_1446.jpeg",
-    "/images/gallery/DSC_1467.jpeg",
-    "/images/gallery/1665427737133_1.jpeg",
-    "/images/gallery/DSC_1241_edited.jpg",
-    "/images/gallery/DSC_1513.jpeg",
+    "/images/gallery/DSC_1446_optimized_.jpeg",
+    "/images/gallery/DSC_1467_optimized_.jpeg",
+    "/images/gallery/1665427737133_1_optimized_.jpeg",
+    "/images/gallery/DSC_1241_edited_optimized_.jpg",
+    "/images/gallery/DSC_1513_optimized_.jpeg",
   ];
 
   // Funzione per passare all'immagine successiva nella galleria
@@ -225,6 +336,26 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  // Funzione per determinare se un'immagine deve essere precaricata
+  const shouldPreloadImage = (currentIndex: number, imageIndex: number, totalImages: number) => {
+    // Precarica solo l'immagine corrente, la precedente e la successiva
+    const prevIndex = currentIndex === 0 ? totalImages - 1 : currentIndex - 1;
+    const nextIndex = currentIndex === totalImages - 1 ? 0 : currentIndex + 1;
+    return imageIndex === currentIndex || imageIndex === prevIndex || imageIndex === nextIndex;
+  };
+
+  // State per tracciare le immagini che non si caricano correttamente
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+
+  // Funzione per gestire gli errori di caricamento delle immagini
+  const handleImageError = (src: string) => {
+    console.warn(`Failed to load image: ${src}`);
+    setFailedImages(prev => ({
+      ...prev,
+      [src]: true
+    }));
+  };
+
   return (
     <main className="min-h-screen">
       {/* Header/Navbar */}
@@ -234,11 +365,13 @@ export default function Home() {
             <Link href="/" className="flex items-center">
               <div className="relative h-10 w-10 mr-2">
                 <Image 
-                  src="/images/B2_reduction.png" 
+                  src="/images/B2_reduction_optimized_.png" 
                   alt="Arcu de Chelu Logo" 
                   fill
+                  sizes="40px"
                   style={{objectFit: "contain"}}
                   priority
+                  quality={90}
                 />
               </div>
               <span className="font-serif italic">Arcu de Chelu</span>
@@ -270,13 +403,14 @@ export default function Home() {
         {/* Immagine statica invece del carosello */}
         <div className="absolute inset-0">
           <Image 
-            src="/images/IMG_20230511_224007.jpg"
+            src="/images/IMG_20230511_224007_optimized_.jpg"
             alt={t('hero.imageAlt', 'Arcu de Chelu B&B')}
             fill
             priority
             sizes="100vw"
             style={{objectFit: "cover"}}
             className="opacity-80"
+            quality={85}
           />
         </div>
         
@@ -284,12 +418,14 @@ export default function Home() {
           <div className="animate-fade-in flex flex-col items-center mb-auto mt-auto">
             <div className="relative h-96 w-96 mx-auto mb-0" style={{animation: 'scaleIn 1.5s ease forwards'}}>
               <Image 
-                src="/images/B2_reduction_edited.png" 
+                src="/images/B2_reduction_edited_optimized_.png" 
                 alt="Arcu de Chelu Symbol" 
                 fill
+                sizes="(max-width: 768px) 90vw, 384px"
                 style={{objectFit: "contain"}}
                 priority
                 className="opacity-75 drop-shadow-xl"
+                quality={90}
               />
             </div>
             <div className="space-y-2 mt-[-55px]">
@@ -345,17 +481,17 @@ export default function Home() {
                     {modoloImages.map((img, index) => (
                       <div 
                         key={index} 
-                        className={`absolute inset-0 transition-all duration-1000 ${
+                        className={`absolute inset-0 w-full h-full transition-all duration-1000 transform ${
                           index === currentModoloImageIndex ? 'opacity-100 z-10 scale-100' : 'opacity-0 z-0 scale-105'
-                        }`}
+                        } optimize-gpu`}
                       >
                         <Image 
                           src={img}
                           alt={t('about.imageAlt', 'Immagini di Modolo')}
                           fill
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          className="object-cover rounded"
+                          className="object-cover"
                           priority={index === 0}
+                          quality={90}
                         />
                       </div>
                     ))}
@@ -402,23 +538,31 @@ export default function Home() {
               </div>
               
               {/* Mini-gallery sotto al carosello */}
-              <div className="grid grid-cols-3 gap-2 mt-4">
+              <div className="grid grid-cols-3 gap-3 mt-4">
                 {Array.from({ length: 3 }).map((_, i) => {
-                  // Calcola gli indici per mostrare 3 immagini consecutive, una delle quali è quella corrente
-                  let startIdx = currentModoloImageIndex;
-                  // Se siamo all'inizio o alla fine dell'array, gestiamo il wrapping
-                  if (startIdx === 0) startIdx = modoloImages.length - 1;
-                  else startIdx = startIdx - 1;
+                  // Mostriamo l'immagine corrente, la successiva e la precedente
+                  const totalImages = modoloImages.length;
                   
-                  const idx = (startIdx + i) % modoloImages.length;
+                  // Calcolo corretto degli indici per mostrare immagine precedente, corrente e successiva
+                  let idx;
+                  if (i === 0) {
+                    // Immagine precedente
+                    idx = (currentModoloImageIndex - 1 + totalImages) % totalImages;
+                  } else if (i === 1) {
+                    // Immagine corrente
+                    idx = currentModoloImageIndex;
+                  } else {
+                    // Immagine successiva
+                    idx = (currentModoloImageIndex + 1) % totalImages;
+                  }
                   
                   return (
                     <div 
                       key={i} 
-                      className={`relative rounded overflow-hidden shadow-md h-24 transition-all duration-300 cursor-pointer ${
+                      className={`relative rounded overflow-hidden shadow-md h-28 transition-all duration-300 cursor-pointer ${
                         idx === currentModoloImageIndex 
-                          ? 'ring-2 ring-bnb-500 ring-offset-2' 
-                          : 'hover:opacity-90 hover:shadow-lg'
+                          ? 'ring-2 ring-bnb-500 ring-offset-2 transform scale-105' 
+                          : 'hover:opacity-90 hover:shadow-lg hover:transform hover:scale-105'
                       }`} 
                       onClick={() => setCurrentModoloImageIndex(idx)}
                     >
@@ -426,8 +570,8 @@ export default function Home() {
                         src={modoloImages[idx]}
                         alt={t('about.thumbAlt', 'Miniatura di Modolo')}
                         fill
-                        sizes="20vw"
                         className="object-cover"
+                        quality={90}
                       />
                     </div>
                   );
@@ -510,8 +654,12 @@ export default function Home() {
                     src={canneAlVentoImages[currentImageIndex]}
                     alt={t('rooms.canneAlVento.title', 'Camera Canne Al Vento')} 
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     style={{objectFit: "cover"}}
-                    className="transition-opacity duration-500"
+                    className="transition-opacity duration-500 optimize-gpu"
+                    priority={currentImageIndex === 0}
+                    loading={currentImageIndex === 0 ? undefined : "lazy"}
+                    quality={80}
                   />
                   
                   {/* Controlli del carosello */}
@@ -566,8 +714,12 @@ export default function Home() {
                     src={arcuDeChechuImages[arcuImageIndex]}
                     alt={t('rooms.arcuDeChelu.title', 'Appartamento Arcu de Chelu')} 
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     style={{objectFit: "cover"}}
-                    className="transition-opacity duration-500"
+                    className="transition-opacity duration-500 optimize-gpu"
+                    priority={arcuImageIndex === 0}
+                    loading={arcuImageIndex === 0 ? undefined : "lazy"}
+                    quality={80}
                   />
                   
                   {/* Controlli del carosello */}
@@ -757,7 +909,7 @@ export default function Home() {
               
               {/* Contenitore immagini carosello */}
               <div 
-                className="absolute inset-0 transition-transform duration-500 ease-in-out"
+                className="absolute inset-0 transition-transform duration-500 ease-in-out carousel-container optimize-gpu"
                 style={{ transform: `translateX(-${galleryImageIndex * 100}%)` }}
               >
                 {galleryCarouselImages.map((imgSrc, idx) => (
@@ -773,6 +925,8 @@ export default function Home() {
                       priority={idx === galleryImageIndex}
                       sizes="100vw"
                       style={{objectFit: "cover"}}
+                      loading={idx === galleryImageIndex ? undefined : "lazy"}
+                      quality={80}
                     />
                   </div>
                 ))}
@@ -818,9 +972,11 @@ export default function Home() {
                   src={img}
                   alt={t('gallery.thumbnailAlt', 'Miniatura')}
                   fill
-                  sizes="(max-width: 768px) 32vw, 40vw"
+                  sizes="(max-width: 768px) 32vw, 160px"
                   style={{objectFit: "cover"}}
                   className="hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  quality={60}
                 />
               </div>
             ))}
@@ -1481,10 +1637,12 @@ export default function Home() {
               <div className="flex items-center mb-4">
                 <div className="relative h-10 w-10 mr-2">
                   <Image 
-                    src="/images/B2_reduction_edited.png" 
+                    src="/images/B2_reduction_edited_optimized_.png" 
                     alt={t('footer.logoAlt', 'Arcu de Chelu Logo')} 
                     fill
                     style={{objectFit: "contain"}}
+                    sizes="40px"
+                    quality={90}
                   />
                 </div>
               </div>

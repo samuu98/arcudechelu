@@ -17,12 +17,16 @@ Questa guida contiene tutte le istruzioni per la configurazione e l'utilizzo del
    ```
 
 2. Preparare le immagini:
-   - Assicurarsi che tutte le immagini siano presenti nella cartella `public/images` e relative sottocartelle.
-   - Eseguire lo script di rinominazione immagini per evitare problemi con spazi e caratteri speciali:
+   - Assicurarsi che tutte le immagini originali siano presenti nella cartella `original_images` e relative sottocartelle.
+   - Utilizzare lo script di preparazione immagini per copiare e rinominare automaticamente le immagini:
      ```
      # In Windows PowerShell:
-     .\rename-images.ps1
+     powershell -ExecutionPolicy Bypass -File .\fix-images.ps1
      ```
+   - Questo script:
+     - Copierà tutte le immagini originali nella directory `public/images`
+     - Rinominerà automaticamente i file con nomi problematici
+     - Genererà placeholder per eventuali immagini mancanti
 
 3. Costruire l'immagine Docker e avviare i container:
    ```bash
@@ -36,7 +40,17 @@ Questa guida contiene tutte le istruzioni per la configurazione e l'utilizzo del
 
 ### Problema: Immagini non visibili sul sito
 
-1. **Verificare la struttura delle directory**:
+1. **Preparare correttamente le immagini**:
+   - Utilizzare lo script completo per la preparazione delle immagini:
+     ```
+     powershell -ExecutionPolicy Bypass -File .\fix-images.ps1
+     ```
+   - In alternativa, è possibile eseguire solo la generazione dei placeholder:
+     ```
+     powershell -ExecutionPolicy Bypass -File .\create-placeholders.ps1
+     ```
+
+2. **Verificare la struttura delle directory**:
    Assicurarsi che la struttura delle directory sia corretta:
    ```
    public/
@@ -45,13 +59,6 @@ Questa guida contiene tutte le istruzioni per la configurazione e l'utilizzo del
        ├── arcu_de_chelu/
        ├── canne_al_vento/
        └── modolo/
-   ```
-
-2. **Rinominare i file problematici**:
-   Utilizzare lo script fornito per rinominare file con spazi o caratteri speciali:
-   ```
-   # In Windows PowerShell:
-   .\rename-images.ps1
    ```
 
 3. **Aggiornare i riferimenti nel codice**:
@@ -81,12 +88,18 @@ Questa guida contiene tutte le istruzioni per la configurazione e l'utilizzo del
 
 Se vedi errori come `upstream image response failed` o `The requested resource isn't a valid image`:
 
-1. **Controlla i log del container**:
+1. **Eseguire lo script di generazione placeholder**:
+   ```
+   powershell -ExecutionPolicy Bypass -File .\create-placeholders.ps1
+   ```
+   Questo script creerà immagini placeholder per tutti i file mancanti referenziati nel codice.
+
+2. **Controlla i log del container**:
    ```bash
    docker logs arcu-client2
    ```
 
-2. **Verifica la configurazione Next.js**:
+3. **Verifica la configurazione Next.js**:
    - Assicurati che `next.config.js` utilizzi `remotePatterns` invece di `domains`:
      ```js
      images: {
@@ -100,9 +113,12 @@ Se vedi errori come `upstream image response failed` o `The requested resource i
      },
      ```
 
-3. **Assicurati che il pacchetto sharp sia installato**:
+4. **Assicurati che il pacchetto sharp sia installato**:
    Il pacchetto `sharp` è necessario per l'ottimizzazione delle immagini in produzione.
    È già incluso nel Dockerfile, ma se hai personalizzato l'immagine, assicurati che sia presente.
+
+5. **Rimuovi i riferimenti a immagini problematiche**:
+   Se non puoi ottenere determinate immagini, modifica il codice per rimuovere i riferimenti a queste immagini. Ad esempio, puoi commentare le righe problematiche in `app/page.tsx`.
 
 ## Comandi Utili
 
