@@ -4,14 +4,11 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Impostazione per ridurre dimensione dei node_modules
-ENV NODE_ENV=production
-
 # Copia package.json e package-lock.json
 COPY package*.json ./
 
-# Installa solo le dipendenze necessarie per il build
-RUN npm install --omit=dev
+# Installa TUTTE le dipendenze, incluse quelle di sviluppo necessarie per il build
+RUN npm install
 
 # Copia i file del progetto
 COPY . .
