@@ -36,14 +36,10 @@ export default function Home() {
   
   // Array delle immagini di Modolo (tutte in un'unica coda)
   const modoloImages = [
-    "/images/modolo/DSC_1193_optimized_.jpeg",
-    "/images/modolo/DSC_1409_optimized_.jpeg",
-    "/images/modolo/DSC_1467_optimized_.jpeg",
-    "/images/modolo/DSC_1241_edited_optimized_.jpg",
-    "/images/modolo/DSC_1513_optimized_.jpeg",
-    "/images/modolo/IMG_20220721_204145_optimized_.jpg",
-    "/images/modolo/1665427737133_1_optimized_.jpeg",
-    "/images/modolo/IMG_20220811_113556_optimized_.jpg"
+    "/images/modolo/modolo1.jpg",
+    "/images/modolo/modolo2.jpg",
+    "/images/modolo/modolo3.jpg",
+    "/images/modolo/modolo4.jpg",
   ];
 
   // State per il carosello delle recensioni
@@ -305,11 +301,13 @@ export default function Home() {
   // State per il carosello della galleria
   const [galleryImageIndex, setGalleryImageIndex] = useState(0);
   const galleryCarouselImages = [
-    "/images/gallery/DSC_1446_optimized_.jpeg",
-    "/images/gallery/DSC_1467_optimized_.jpeg",
-    "/images/gallery/1665427737133_1_optimized_.jpeg",
-    "/images/gallery/DSC_1241_edited_optimized_.jpg",
-    "/images/gallery/DSC_1513_optimized_.jpeg",
+    "/images/gallery/gallery1.jpg",
+    "/images/gallery/gallery2.jpg",
+    "/images/gallery/gallery3.jpg",
+    "/images/gallery/gallery4.jpg",
+    "/images/gallery/gallery5.jpg",
+    "/images/gallery/gallery6.jpg",
+    "/images/gallery/gallery7.jpg",
   ];
 
   // Funzione per passare all'immagine successiva nella galleria
@@ -402,7 +400,7 @@ export default function Home() {
         {/* Immagine statica invece del carosello */}
         <div className="absolute inset-0">
           <Image 
-            src="/images/IMG_20230511_224007_optimized_.jpg"
+            src="/images/copertina.jpg"
             alt={t('hero.imageAlt', 'Arcu de Chelu B&B')}
             fill
             priority
