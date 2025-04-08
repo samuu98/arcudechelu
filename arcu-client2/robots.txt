@@ -1,0 +1,66 @@
+# robots.txt per il sito web
+# Versione 1.0 - Creato il 08/04/2025
+
+# Regole generali per tutti i crawler
+User-agent: *
+# Permetti l'accesso alla maggior parte del sito
+Allow: /
+# Blocca l'accesso a directory amministrative
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /cpanel/
+Disallow: /wp-json/
+Disallow: /administrator/
+Disallow: /backend/
+Disallow: /dashboard/
+# Blocca l'accesso a file di configurazione o temporanei
+Disallow: /*.php$
+Disallow: /*.sql
+Disallow: /*.config
+Disallow: /*.json
+Disallow: /*.log
+Disallow: /*.xml
+Disallow: /tmp/
+Disallow: /temp/
+# Blocca l'accesso a file privati
+Disallow: /private/
+Disallow: /wp-includes/
+Disallow: /includes/
+# Blocca l'accesso a pagine di ricerca (per ridurre il carico)
+Disallow: */search
+Disallow: */query
+Disallow: *?s=
+# Blocca parametri di query specifici
+Disallow: *?q=
+Disallow: *?search=
+Disallow: *?id=
+Disallow: *?page_id=
+
+# Regole specifiche per crawler aggressivi/malevoli
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+# Rallenta i crawler di Google per ridurre il carico sul server
+User-agent: Googlebot
+Crawl-delay: 10
+
+# Indica dove si trova la sitemap (se ne hai una)
+# Sitemap: https://www.tuodominio.com/sitemap.xml
+
+# Limite di frequenza per bot generici
+Crawl-delay: 20
