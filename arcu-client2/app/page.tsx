@@ -1557,7 +1557,7 @@ export default function Home() {
                   <Phone className="h-6 w-6 text-bnb-600 mr-4 mt-1" />
                   <div>
                     <h3 className="font-semibold text-natural-800 mb-1">{t('contact.phone.title', 'Telefono')}</h3>
-                    <p className="text-natural-600">{t('contact.phone.value', '+39 347 586 4956 / +39 340 895 1010')}</p>
+                    <p className="text-natural-600">{t('contact.phone.value', '+39 347 2405 580 / +39 340 895 1010')}</p>
                   </div>
                 </div>
                 
