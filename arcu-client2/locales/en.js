@@ -13,7 +13,7 @@ export const en = {
   // Hero Section
   hero: {
     title: "Arcu de Chelu",
-    subtitle: "— Bed & Breakfast —",
+    subtitle: "— Guest House —",
     cta: "Discover Our Rooms",
   },
   
@@ -22,9 +22,21 @@ export const en = {
     pretitle: "Welcome to",
     title: "Modolo",
     locationName: "Modolo",
+    shortIntro: "An oasis of tranquility in the heart of the western Sardinian coast",
+    emphasis: "Discover the authentic charm of Sardinia in a welcoming and refined environment, where tradition meets modern comfort in perfect harmony with the surrounding landscape.",
     description1: "Modolo is a charming village nestled in the stunning Sardinian countryside. Located just a few kilometers from Bosa, it offers a peaceful and authentic escape. Olive groves, vineyards, and citrus groves adorn the countryside, creating a landscape that evokes serenity.",
     description2: "The proximity to the western coast allows you to enjoy a unique sea, where you can find pristine beaches and breathtaking coves. This small village is the ideal place to discover the authentic natural beauty of Sardinia.",
     cta: "Learn more about us",
+    features: {
+      location: "Strategic location",
+      breakfast: "Complimentary tea and coffee-making facilities",
+      wifi: "Free Wi-Fi",
+      beaches: "Close to beaches",
+      plane: "100 km from AHO airport",
+      motorcyclists: "Ideal for motorcyclists and cyclists",
+      airConditioning: "Air-conditioned environment",
+      nature: "Surrounded by nature"
+    },
   },
   
   // Rooms Section

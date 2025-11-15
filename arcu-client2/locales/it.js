@@ -13,7 +13,7 @@ export const it = {
   // Hero Section
   hero: {
     title: "Arcu de Chelu",
-    subtitle: "— Bed & Breakfast —",
+    subtitle: "— Guest House —",
     cta: "Scopri le Nostre Camere",
   },
   
@@ -22,9 +22,23 @@ export const it = {
     pretitle: "Benvenuti a",
     title: "Modolo",
     locationName: "Modolo",
+    shortIntro: "Un'oasi di tranquillità nel cuore della costa occidentale sarda",
+    emphasis: "Scopri il fascino autentico della Sardegna in un ambiente accogliente e raffinato, dove la tradizione incontra il comfort moderno in perfetta armonia con il paesaggio circostante.",
     description1: "Modolo è un affascinante borgo immerso nella splendida campagna sarda. Situato a pochi chilometri da Bosa, offre una fuga tranquilla e autentica. Uliveti, vigneti e agrumeti adornano la campagna, creando un paesaggio che dona serenità.",
     description2: "La vicinanza alla costa occidentale permette di godere di un mare unico nel suo genere, dove puoi trovare spiagge immacolate e calette mozzafiato. Questo piccolo borgo è il luogo ideale per scoprire l'autentica bellezza naturale della Sardegna.",
     cta: "Scopri di più su di noi",
+    
+    // Features
+    features: {
+      location: "Posizione strategica",
+      breakfast: "Camere attrezzate per la colazione",
+      wifi: "Wi-Fi gratuito",
+      beaches: "Vicino alle spiagge",
+      plane: "100 km da aeroporto AHO",
+      motorcyclists: "Ideale per motociclisti e ciclisti",
+      airConditioning: "Ambiente climatizzato",
+      nature: "Immerso nella natura",
+    },
   },
   
   // Rooms Section
@@ -178,4 +192,4 @@ export const it = {
   },
 };
 
-export default it; 
+export default it;

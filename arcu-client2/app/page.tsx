@@ -372,7 +372,7 @@ export default function Home() {
                 />
               </div>
               <span className="font-serif italic">Arcu de Chelu</span>
-              <span className="text-sm ml-2 text-natural-600 font-normal">B&B</span>
+              <span className="text-sm ml-2 text-natural-600 font-normal"><i>Guest House</i></span>
             </Link>
           </div>
           <nav className="hidden md:flex items-center space-x-8 text-natural-700">
@@ -388,7 +388,7 @@ export default function Home() {
             <div className="md:hidden">
               <LanguageSwitcher />
             </div>
-            <a href="https://www.booking.com/hotel/it/arcu-de-chelu-b-amp-b.it.html" target="_blank" rel="noopener noreferrer">
+            <a href="https://bookonline.pro/it/properties/101334?unidades=1&filter_zone=1&referencia_propietario=Prenotazione%2520da%2520sito" target="_blank" rel="noopener noreferrer">
               <Button variant="bnb" className="hidden md:flex">{t('nav.bookNow', 'Prenota Ora')}</Button>
             </a>
           </div>
@@ -430,13 +430,13 @@ export default function Home() {
                 {t('hero.title', 'Arcu de Chelu')}
               </h1>
               <p className="text-lg md:text-xl font-light tracking-wider italic text-white/90 drop-shadow-sm">
-                {t('hero.subtitle', '— Bed & Breakfast —')}
+                {t('hero.subtitle', '— Guest House —')}
               </p>
             </div>
           </div>
           
           <div className="mt-auto mb-12">
-            <a href="https://www.booking.com/hotel/it/arcu-de-chelu-b-amp-b.it.html" target="_blank" rel="noopener noreferrer">
+            <Link href="#rooms">
               <Button 
                 variant="bnb" 
                 size="xl" 
@@ -445,7 +445,7 @@ export default function Home() {
                 {t('hero.cta', 'Scopri le Nostre Camere')}
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -699,6 +699,15 @@ export default function Home() {
                 <p className="text-natural-600 mb-4">
                   {t('rooms.canneAlVento.description', 'Camera matrimoniale con balcone e vista sulla piazzetta. La camera include un bagno privato, TV, aria condizionata e accesso a una cucina attrezzata. Ideale per coppie.')}
                 </p>
+                {/* AvaiBook iframe widget */}
+                <div className="flex flex-col items-center my-6">
+                  <iframe src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173837&lang=IT" style={{width: "500px", height: "355px", border: 0}} frameBorder={0} allowTransparency={true}>
+                    Calendario non disponibile
+                  </iframe>
+                  <div style={{width: "500px", margin: "auto"}}>
+                    <a href="https://www.avaibook.com/it/gestione-prenotazioni/" target="_blank"></a>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -759,10 +768,19 @@ export default function Home() {
                 <p className="text-natural-600 mb-4">
                   {t('rooms.arcuDeChelu.description', 'Elegante appartamento con due camere: "Romeo & Giulietta" in stile classico e "L\'infinito" in stile moderno. Entrambe dispongono di balconi con vista sulla piazzetta e sulla valle verso il mare di Bosa. Bagno in comune, cucina attrezzata, TV e aria condizionata.')}
                 </p>
+                {/* AvaiBook iframe widget - Arcu de Chelu */}
+                <div className="flex flex-col items-center my-6">
+                  <iframe src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173838&lang=IT" style={{width: "500px", height: "355px", border: 0}} frameBorder={0} allowTransparency={true}>
+                    Tu navegador no soporta iframes
+                  </iframe>
+                  <div style={{width: "500px", margin: "auto"}}>
+                    <a href="https://www.avaibook.com/it/" target="_blank"></a>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Room Feature 3 - Via Roma (In Costruzione) */}
+            {/* Room Feature 3 - Via Roma */}
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 room-card relative">
               {/* Indicatore elegante "Coming Soon" */}
               <div className="absolute top-3 right-3 z-20">
@@ -795,9 +813,14 @@ export default function Home() {
                 <p className="text-natural-600 mb-4">
                   {t('rooms.viaRoma.description', 'La nostra nuova camera di lusso, attualmente in fase di costruzione, sarà disponibile a partire da giugno 2025. Questa elegante sistemazione offrirà il massimo del comfort con finiture di pregio e una vista mozzafiato.')}
                 </p>
-                <div className="flex items-center text-natural-500 text-sm mt-4">
-                  <Calendar className="h-4 w-4 mr-1.5" />
-                  <span>{t('rooms.viaRoma.bookingsAvailable', 'Prenotazioni disponibili da gennaio 2025')}</span>
+                {/* AvaiBook iframe widget - Via Roma */}
+                <div className="flex flex-col items-center my-6">
+                  <iframe src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173839&lang=IT" style={{width: "500px", height: "355px", border: 0}} frameBorder={0} allowTransparency={true}>
+                    Tu navegador no soporta iframes
+                  </iframe>
+                  <div style={{width: "500px", margin: "auto"}}>
+                    <a href="https://www.avaibook.com/it/blog/cos-e-un-software-per-affitti-turistici-tua-struttu" target="_blank"></a>
+                  </div>
                 </div>
               </div>
             </div>
