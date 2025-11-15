@@ -48,13 +48,13 @@ export const en = {
     // Room 1: Canne Al Vento
     canneAlVento: {
       title: "Canne Al Vento",
-      description: "A charming independent double room with private bathroom, kitchenette, and magnificent panoramic terrace. This haven of tranquility offers a comfortable double bed, air conditioning, smart TV, and all the necessary comforts for a romantic and unforgettable stay, cradled by the sea breeze and the scents of the Mediterranean.",
+      description: "Your romantic escape with a breathtaking valley-view terrace. This spacious self-contained unit offers complete independence: double bed, single bed, private bathroom, and fully equipped kitchenette. Perfect for couples seeking romance or small families wanting the freedom to dine at their own pace, all while enjoying unforgettable sunsets from your private outdoor space.",
     },
     
     // Room 2: Arcu de Chelu
     arcuDeChelu: {
       title: "Arcu de Chelu",
-      description: "An elegant apartment with two rooms: \"Romeo & Giulietta\" in classic style with liberty cement tile flooring and \"L'infinito\" in modern style with parquet flooring. Both rooms have balconies overlooking the picturesque small square and the valley leading to the sea of Bosa. The apartment offers a shared bathroom, equipped kitchenette, TV, air conditioning, and all the comforts for an authentic stay in the heart of Modolo.",
+      description: "An exclusive suite designed for families and friends traveling together. Two elegant rooms with panoramic balconies, dining area with kitchenette, and private bathroom—all yours alone, never shared with other guests. Book one or both bedrooms based on your group size (2-5 people), enjoying complete privacy and flexibility for an authentic Sardinian experience in the heart of Modolo.",
     },
     
     // Room 3: Via Roma (Coming Soon)
@@ -63,7 +63,7 @@ export const en = {
       comingSoon: "Coming Soon",
       availableLabel: "Available June 2025",
       bookingsAvailable: "Bookings available from March 2025",
-      description: "Our next addition in Modolo will be a comfortable double room with private bathroom, designed for travelers looking for a more economical option without sacrificing comfort. The \"Via Roma\" room will offer all essential services in a cozy and welcoming space, ideal for short stays and for those who wish to discover Sardinia without spending a fortune.",
+      description: "Our deluxe double room is perfect for travelers seeking comfort without compromise. This thoughtfully designed 15 sqm retreat features a private modern bathroom, climate control, Smart TV, and charming village street views. Ideal for couples looking for quality accommodation at great value, with all the essentials for a memorable stay.",
     },
   },
   
@@ -74,8 +74,8 @@ export const en = {
     
     // Service 1: Breakfast
     breakfast: {
-      title: "Breakfast",
-      description: "Start your day at our cozy B&B with an irresistible breakfast. Delicious homemade desserts, fresh milk, a selection of cereals, and creamy yogurt await you. Enjoy refreshing fruit juices and genuine jams. A complete and delicious breakfast to start the day in the best way!",
+      title: "Welcome Breakfast Kit",
+      description: "We welcome you with a practical breakfast kit waiting in your room: coffee, tea, herbal teas, cookies, packaged croissants, jam, and rusks. Together with the kettle and kitchenware, you'll have everything for an independent breakfast without time constraints. The kit is our way of welcoming you, perfect for the first moments of your stay in complete freedom.",
     },
     
     // Service 2: Summer Bag

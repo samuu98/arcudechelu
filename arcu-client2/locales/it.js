@@ -50,13 +50,13 @@ export const it = {
     // Room 1: Canne Al Vento
     canneAlVento: {
       title: "Canne Al Vento",
-      description: "Un'incantevole camera matrimoniale indipendente con bagno privato, angolo cottura e magnifico terrazzo panoramico. Questo rifugio di tranquillità offre letto matrimoniale confortevole, climatizzazione, TV smart e tutti i comfort necessari per un soggiorno romantico e indimenticabile, cullati dalla brezza marina e dai profumi del Mediterraneo.",
+      description: "Il vostro rifugio romantico con terrazzo panoramico mozzafiato sulla valle. Questa spaziosa camera indipendente unisce privacy totale e autonomia: letto matrimoniale, letto singolo, bagno privato e angolo cottura completamente attrezzato. Perfetta per coppie in cerca di romanticismo o piccole famiglie che vogliono sentirsi a casa, con la libertà di preparare i propri pasti godendo di tramonti indimenticabili.",
     },
     
     // Room 2: Arcu de Chelu
     arcuDeChelu: {
       title: "Arcu de Chelu",
-      description: "Un elegante appartamento con due camere: \"Romeo & Giulietta\" in stile classico con pavimento in cementine liberty e \"L'infinito\" in stile moderno con parquet. Entrambe le camere hanno balconi con vista sulla pittoresca piazzetta e sulla vallata che conduce al mare di Bosa. L'appartamento offre bagno condiviso, angolo cottura attrezzato, TV, climatizzazione e tutti i comfort per un soggiorno autentico nel cuore di Modolo.",
+      description: "La suite esclusiva ideale per famiglie e gruppi di amici. Due eleganti camere con balcone panoramico, zona pranzo attrezzata e bagno privato: tutto riservato solo a voi, mai condiviso con estranei. Scegliete una o entrambe le camere secondo le vostre esigenze (2-5 persone), godendo di privacy assoluta e della massima flessibilità per un soggiorno autentico nel cuore di Modolo.",
     },
     
     // Room 3: Via Roma (Coming Soon)
@@ -65,7 +65,7 @@ export const it = {
       comingSoon: "Coming Soon",
       availableLabel: "Disponibile Giugno 2025",
       bookingsAvailable: "Prenotazioni disponibili da marzo 2025",
-      description: "La nostra prossima novità a Modolo sarà una confortevole camera matrimoniale con bagno privato, pensata per i viaggiatori che cercano un'opzione più economica senza rinunciare al comfort. La camera \"Via Roma\" offrirà tutti i servizi essenziali in uno spazio raccolto e accogliente, ideale per brevi soggiorni e per chi desidera scoprire la Sardegna senza spendere una fortuna.",
+      description: "Camera matrimoniale deluxe perfetta per chi cerca comfort e praticità. Con circa 15 mq di spazio curato nei minimi dettagli, offre un bagno privato moderno, climatizzazione, Smart TV e una suggestiva vista sul borgo. Ideale per coppie che desiderano un soggiorno confortevole a un prezzo conveniente, senza rinunciare alla qualità.",
     },
   },
   
@@ -76,8 +76,8 @@ export const it = {
     
     // Service 1: Breakfast
     breakfast: {
-      title: "Breakfast",
-      description: "Inizia la tua giornata al nostro accogliente B&B con una colazione irresistibile. Deliziosi dolci fatti in casa, latte fresco, una selezione di cereali e yogurt cremoso ti attendono. Gusta i succhi di frutta rinfrescanti e le marmellate genuine. Una colazione completa e deliziosa per iniziare la giornata nel migliore dei modi!",
+      title: "Breakfast Welcome Kit",
+      description: "Vi diamo il benvenuto con un pratico kit colazione che troverete ad attendervi in camera: caffè, tè, tisane, biscotti, cornetti confezionati, marmellata e fette biscottate. Insieme a bollitore e stoviglie, avrete tutto per una colazione in autonomia e senza orari. Il kit è il nostro modo di accogliervi, perfetto per i primi momenti del vostro soggiorno in totale libertà.",
     },
     
     // Service 2: Summer Bag

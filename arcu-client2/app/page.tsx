@@ -715,15 +715,34 @@ export default function Home() {
                 <p className="text-natural-600 mb-4">
                   {t('rooms.canneAlVento.description', 'Camera matrimoniale con balcone e vista sulla piazzetta. La camera include un bagno privato, TV, aria condizionata e accesso a una cucina attrezzata. Ideale per coppie.')}
                 </p>
-                {/* AvaiBook iframe widget */}
-                <div className="flex flex-col items-center my-6">
-                  <iframe src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173837&lang=IT" style={{width: "500px", height: "355px", border: 0}} frameBorder={0} allowTransparency={true}>
-                    Calendario non disponibile
-                  </iframe>
-                  <div style={{width: "500px", margin: "auto"}}>
-                    <a href="https://www.avaibook.com/it/gestione-prenotazioni/" target="_blank"></a>
-                  </div>
-                </div>
+                {/* Collapsible AvaiBook calendar widget */}
+                {(() => {
+                  const [showCanneCalendar, setShowCanneCalendar] = useState(false);
+                  return (
+                    <div className="flex flex-col items-center justify-end my-6 h-full">
+                      <Button
+                        variant="bnb"
+                        className="w-full max-w-xs mb-2"
+                        onClick={() => setShowCanneCalendar((prev) => !prev)}
+                        aria-expanded={showCanneCalendar}
+                        aria-controls="canne-calendar-iframe"
+                      >
+                        {showCanneCalendar ? 'Nascondi calendario' : 'Verifica disponibilità e prenota'}
+                      </Button>
+                      {showCanneCalendar && (
+                        <iframe
+                          id="canne-calendar-iframe"
+                          src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173837&lang=IT"
+                          style={{ width: '500px', height: '355px', border: 0 }}
+                          frameBorder={0}
+                          allowTransparency={true}
+                        >
+                          Calendario non disponibile
+                        </iframe>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
             </div>
 
@@ -784,15 +803,34 @@ export default function Home() {
                 <p className="text-natural-600 mb-4">
                   {t('rooms.arcuDeChelu.description', 'Elegante appartamento con due camere: "Romeo & Giulietta" in stile classico e "L\'infinito" in stile moderno. Entrambe dispongono di balconi con vista sulla piazzetta e sulla valle verso il mare di Bosa. Bagno in comune, cucina attrezzata, TV e aria condizionata.')}
                 </p>
-                {/* AvaiBook iframe widget - Arcu de Chelu */}
-                <div className="flex flex-col items-center my-6">
-                  <iframe src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173838&lang=IT" style={{width: "500px", height: "355px", border: 0}} frameBorder={0} allowTransparency={true}>
-                    Tu navegador no soporta iframes
-                  </iframe>
-                  <div style={{width: "500px", margin: "auto"}}>
-                    <a href="https://www.avaibook.com/it/" target="_blank"></a>
-                  </div>
-                </div>
+                {/* Collapsible AvaiBook calendar widget - Arcu de Chelu */}
+                {(() => {
+                  const [showArcuCalendar, setShowArcuCalendar] = useState(false);
+                  return (
+                    <div className="flex flex-col items-center justify-end my-6 h-full">
+                      <Button
+                        variant="bnb"
+                        className="w-full max-w-xs mb-2"
+                        onClick={() => setShowArcuCalendar((prev) => !prev)}
+                        aria-expanded={showArcuCalendar}
+                        aria-controls="arcu-calendar-iframe"
+                      >
+                        {showArcuCalendar ? 'Nascondi calendario' : 'Verifica disponibilità e prenota'}
+                      </Button>
+                      {showArcuCalendar && (
+                        <iframe
+                          id="arcu-calendar-iframe"
+                          src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173838&lang=IT"
+                          style={{ width: '500px', height: '355px', border: 0 }}
+                          frameBorder={0}
+                          allowTransparency={true}
+                        >
+                          Tu navegador no soporta iframes
+                        </iframe>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
             </div>
 
@@ -851,15 +889,34 @@ export default function Home() {
                 <p className="text-natural-600 mb-4">
                   {t('rooms.viaRoma.description', 'La nostra nuova camera di lusso, attualmente in fase di costruzione, sarà disponibile a partire da giugno 2025. Questa elegante sistemazione offrirà il massimo del comfort con finiture di pregio e una vista mozzafiato.')}
                 </p>
-                {/* AvaiBook iframe widget - Via Roma */}
-                <div className="flex flex-col items-center my-6">
-                  <iframe src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173839&lang=IT" style={{width: "500px", height: "355px", border: 0}} frameBorder={0} allowTransparency={true}>
-                    Tu navegador no soporta iframes
-                  </iframe>
-                  <div style={{width: "500px", margin: "auto"}}>
-                    <a href="https://www.avaibook.com/it/blog/cos-e-un-software-per-affitti-turistici-tua-struttu" target="_blank">Software per strutture ricettive</a>
-                  </div>
-                </div>
+                {/* Collapsible AvaiBook calendar widget - Via Roma */}
+                {(() => {
+                  const [showViaRomaCalendar, setShowViaRomaCalendar] = useState(false);
+                  return (
+                    <div className="flex flex-col items-center justify-end my-6 h-full">
+                      <Button
+                        variant="bnb"
+                        className="w-full max-w-xs mb-2"
+                        onClick={() => setShowViaRomaCalendar((prev) => !prev)}
+                        aria-expanded={showViaRomaCalendar}
+                        aria-controls="viaroma-calendar-iframe"
+                      >
+                        {showViaRomaCalendar ? 'Nascondi calendario' : 'Verifica disponibilità e prenota'}
+                      </Button>
+                      {showViaRomaCalendar && (
+                        <iframe
+                          id="viaroma-calendar-iframe"
+                          src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173839&lang=IT"
+                          style={{ width: '500px', height: '355px', border: 0 }}
+                          frameBorder={0}
+                          allowTransparency={true}
+                        >
+                          Tu navegador no soporta iframes
+                        </iframe>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
             </div>
           </div>
@@ -1618,7 +1675,7 @@ export default function Home() {
                   <Phone className="h-6 w-6 text-bnb-600 mr-4 mt-1" />
                   <div>
                     <h3 className="font-semibold text-natural-800 mb-1">{t('contact.phone.title', 'Telefono')}</h3>
-                    <p className="text-natural-600">{t('contact.phone.value', '+39 347 586 4956 / +39 340 895 1010')}</p>
+                    <p className="text-natural-600">{t('contact.phone.value', '+39 347 240 55 80 / +39 340 895 1010')}</p>
                   </div>
                 </div>
                 
@@ -1737,7 +1794,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-start">
                   <Phone className="h-5 w-5 text-bnb-500 mr-2" />
-                  <span className="text-natural-400">{t('footer.contact.phone', '+39 347 586 4956 / +39 340 895 1010')}</span  >
+                  <span className="text-natural-400">{t('footer.contact.phone', '+39 347 240 55 80 / +39 340 895 1010')}</span  >
                 </li>
                 <li className="flex items-start">
                   <Mail className="h-5 w-5 text-bnb-500 mr-2" />
