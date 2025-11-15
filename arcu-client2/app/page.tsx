@@ -1,6 +1,7 @@
 "use client"
 
-import Image from 'next/image'
+import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link'
 import { Bed, Coffee, Wifi, Utensils,AirVent , MapPin, Phone,Bike , Mail, Star, ChevronRight,PlaneTakeoff , Instagram, Facebook, Umbrella, ChevronLeft, HardHat,Leaf , Calendar, Construction, Map, Columns, ParkingSquare } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -9,6 +10,21 @@ import { useLanguage } from '@/locales'
 import { LanguageSwitcher } from '@/components/ui/language-switcher'
 
 export default function Home() {
+    // Carosello immagini Via Roma (identico a Arcu de Chelu)
+    const viaRomaImages = [
+      "/images/via_roma/398828_6908b43f87fe7_1.jpg",
+      "/images/via_roma/398828_6908b43f88fd0_2.jpg",
+      "/images/via_roma/398828_6908b43f8a309_3.jpg",
+      "/images/via_roma/398828_6908b43f8b248_4.jpg",
+      "/images/via_roma/398828_6908b43f8bc0b_5.jpg",
+      "/images/via_roma/398828_6908b43f8cb9c_7.jpg",
+      "/images/via_roma/398828_6908b43f8d586_8.jpg",
+      "/images/via_roma/398828_48aa19ba24_8.jpg",
+      "/images/via_roma/398828_a77da6dc65_9.jpg"
+    ];
+    const [viaRomaImageIndex, setViaRomaImageIndex] = React.useState(0);
+    const prevViaRomaImage = () => setViaRomaImageIndex((prev) => (prev - 1 + viaRomaImages.length) % viaRomaImages.length);
+    const nextViaRomaImage = () => setViaRomaImageIndex((prev) => (prev + 1) % viaRomaImages.length);
   const { translations, t } = useLanguage();
 
   // State per il carosello delle immagini di Canne Al Vento
@@ -781,34 +797,56 @@ export default function Home() {
             </div>
 
             {/* Room Feature 3 - Via Roma */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 room-card relative">
-              {/* Indicatore elegante "Coming Soon" */}
-              <div className="absolute top-3 right-3 z-20">
-                <div className="bg-natural-800/80 backdrop-blur-sm text-white text-xs uppercase tracking-wider py-1.5 px-3 rounded-full shadow-sm border border-natural-200/20">
-                  {t('rooms.viaRoma.availableLabel', 'Disponibile da Giugno 2025')}
-                </div>
-              </div>
-              
-              <div className="relative h-64 overflow-hidden bg-natural-50">
-                <div className="absolute inset-0 flex items-center justify-center flex-col p-6 text-center">
-                  <div className="relative w-24 h-24 mb-4">
-                    <div className="absolute inset-0 rounded-full bg-natural-200 bg-opacity-30 backdrop-blur-sm flex items-center justify-center">
-                      <Calendar className="h-10 w-10 text-natural-800/50" />
-                    </div>
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 room-card">
+              <div className="relative h-64 overflow-hidden">
+                {/* Carosello delle immagini - Via Roma */}
+                <div className="relative h-full w-full">
+                  <Image 
+                    src={viaRomaImages[viaRomaImageIndex]}
+                    alt={t('rooms.viaRoma.title', 'Camera Via Roma')} 
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    style={{objectFit: "cover"}}
+                    className="transition-opacity duration-500 optimize-gpu"
+                    priority={viaRomaImageIndex === 0}
+                    loading={viaRomaImageIndex === 0 ? undefined : "lazy"}
+                    quality={80}
+                  />
+                  {/* Controlli del carosello */}
+                  <div className="absolute inset-0 flex items-center justify-between p-2">
+                    <button 
+                      onClick={prevViaRomaImage} 
+                      className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
+                      aria-label="Immagine precedente"
+                    >
+                      <ChevronLeft className="h-5 w-5" />
+                    </button>
+                    <button 
+                      onClick={nextViaRomaImage} 
+                      className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
+                      aria-label="Immagine successiva"
+                    >
+                      <ChevronRight className="h-5 w-5" />
+                    </button>
                   </div>
-                  <h3 className="text-xl font-serif text-natural-800 mb-2 italic">{t('rooms.viaRoma.comingSoon', 'In Costruzione')}</h3>
-                  <div className="w-12 h-0.5 bg-natural-300 my-2"></div>
-                </div>
-                
-                {/* Sfondo elegante */}
-                <div className="absolute inset-0">
-                  <svg className="w-full h-full text-natural-200 opacity-10" fill="currentColor" viewBox="0 0 100 100">
-                    <path d="M50,0 L100,100 L0,100 Z" />
-                  </svg>
+                  {/* Indicatori */}
+                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1.5">
+                    {viaRomaImages.map((_, index) => (
+                      <button 
+                        key={index}
+                        onClick={() => setViaRomaImageIndex(index)}
+                        className={`h-1.5 rounded-full transition-all ${
+                          viaRomaImageIndex === index 
+                            ? "w-4 bg-white" 
+                            : "w-1.5 bg-white/60"
+                        }`}
+                        aria-label={`Vai all'immagine ${index + 1}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
-              
-              <div className="p-6 border-t border-natural-100">
+              <div className="p-6">
                 <h3 className="text-xl font-serif text-natural-800 mb-2">{t('rooms.viaRoma.title', 'Via Roma')}</h3>
                 <p className="text-natural-600 mb-4">
                   {t('rooms.viaRoma.description', 'La nostra nuova camera di lusso, attualmente in fase di costruzione, sarà disponibile a partire da giugno 2025. Questa elegante sistemazione offrirà il massimo del comfort con finiture di pregio e una vista mozzafiato.')}
@@ -819,7 +857,7 @@ export default function Home() {
                     Tu navegador no soporta iframes
                   </iframe>
                   <div style={{width: "500px", margin: "auto"}}>
-                    <a href="https://www.avaibook.com/it/blog/cos-e-un-software-per-affitti-turistici-tua-struttu" target="_blank"></a>
+                    <a href="https://www.avaibook.com/it/blog/cos-e-un-software-per-affitti-turistici-tua-struttu" target="_blank">Software per strutture ricettive</a>
                   </div>
                 </div>
               </div>
