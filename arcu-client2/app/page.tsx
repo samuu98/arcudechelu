@@ -1,14 +1,31 @@
 "use client"
 
-import Image from 'next/image'
+import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link'
-import { Bed, Coffee, Wifi, Utensils,AirVent , MapPin, Phone,Bike , Mail, Star, ChevronRight,PlaneTakeoff , Instagram, Facebook, Umbrella, ChevronLeft, HardHat,Leaf , Calendar, Construction, Map, Columns, ParkingSquare } from 'lucide-react'
+import { Bed, Coffee, Wifi, Utensils, AirVent, MapPin, Phone, Bike, Mail, Star, ChevronRight, PlaneTakeoff, Instagram, Facebook, Umbrella, ChevronLeft, HardHat, Leaf, Calendar, Construction, Map, Columns, ParkingSquare, Tv, Square, Eye, Sun, Lock, Users, ChefHat, Bath, Building2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useState, useEffect } from 'react'
 import { useLanguage } from '@/locales'
 import { LanguageSwitcher } from '@/components/ui/language-switcher'
 
+
 export default function Home() {
+    // Carosello immagini Via Roma (identico a Arcu de Chelu)
+    const viaRomaImages = [
+      "/images/via_roma/398828_6908b43f87fe7_1.jpg",
+      "/images/via_roma/398828_6908b43f88fd0_2.jpg",
+      "/images/via_roma/398828_6908b43f8a309_3.jpg",
+      "/images/via_roma/398828_6908b43f8b248_4.jpg",
+      "/images/via_roma/398828_6908b43f8bc0b_5.jpg",
+      "/images/via_roma/398828_6908b43f8cb9c_7.jpg",
+      "/images/via_roma/398828_6908b43f8d586_8.jpg",
+      "/images/via_roma/398828_48aa19ba24_8.jpg",
+      "/images/via_roma/398828_a77da6dc65_9.jpg"
+    ];
+    const [viaRomaImageIndex, setViaRomaImageIndex] = React.useState(0);
+    const prevViaRomaImage = () => setViaRomaImageIndex((prev) => (prev - 1 + viaRomaImages.length) % viaRomaImages.length);
+    const nextViaRomaImage = () => setViaRomaImageIndex((prev) => (prev + 1) % viaRomaImages.length);
   const { translations, t } = useLanguage();
 
   // State per il carosello delle immagini di Canne Al Vento
@@ -372,7 +389,7 @@ export default function Home() {
                 />
               </div>
               <span className="font-serif italic">Arcu de Chelu</span>
-              <span className="text-sm ml-2 text-natural-600 font-normal">B&B</span>
+              <span className="text-sm ml-2 text-natural-600 font-normal"><i>Guest House</i></span>
             </Link>
           </div>
           <nav className="hidden md:flex items-center space-x-8 text-natural-700">
@@ -388,7 +405,7 @@ export default function Home() {
             <div className="md:hidden">
               <LanguageSwitcher />
             </div>
-            <a href="https://www.booking.com/hotel/it/arcu-de-chelu-b-amp-b.it.html" target="_blank" rel="noopener noreferrer">
+            <a href="https://bookonline.pro/it/properties/101334?unidades=1&filter_zone=1&referencia_propietario=Prenotazione%2520da%2520sito" target="_blank" rel="noopener noreferrer">
               <Button variant="bnb" className="hidden md:flex">{t('nav.bookNow', 'Prenota Ora')}</Button>
             </a>
           </div>
@@ -430,13 +447,13 @@ export default function Home() {
                 {t('hero.title', 'Arcu de Chelu')}
               </h1>
               <p className="text-lg md:text-xl font-light tracking-wider italic text-white/90 drop-shadow-sm">
-                {t('hero.subtitle', '— Bed & Breakfast —')}
+                {t('hero.subtitle', '— Guest House —')}
               </p>
             </div>
           </div>
           
           <div className="mt-auto mb-12">
-            <a href="https://www.booking.com/hotel/it/arcu-de-chelu-b-amp-b.it.html" target="_blank" rel="noopener noreferrer">
+            <Link href="#rooms">
               <Button 
                 variant="bnb" 
                 size="xl" 
@@ -445,7 +462,7 @@ export default function Home() {
                 {t('hero.cta', 'Scopri le Nostre Camere')}
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -699,6 +716,83 @@ export default function Home() {
                 <p className="text-natural-600 mb-4">
                   {t('rooms.canneAlVento.description', 'Camera matrimoniale con balcone e vista sulla piazzetta. La camera include un bagno privato, TV, aria condizionata e accesso a una cucina attrezzata. Ideale per coppie.')}
                 </p>
+                  {/* Elenco caratteristiche compatto */}
+                  <div className="flex flex-col items-center justify-end my-6 h-full">
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 text-xs text-natural-700">
+                      <div className="flex items-center gap-1.5">
+                      <Square className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Circa 27 mq</span>
+                    </div>
+                      <div className="flex items-center gap-1.5">
+                        <Bed className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                        <span>Letto matrimoniale</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Bed className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                        <span>Letto singolo</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Sun className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                        <span>Terrazzo panoramico</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Bath className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                        <span>Bagno privato</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <ChefHat className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                        <span>Angolo cottura attrezzato</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <AirVent className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                        <span>Aria condizionata</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Tv className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                        <span>Smart TV</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Wifi className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                        <span>Wi-Fi gratuito</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Utensils className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                        <span>Zona pranzo</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Coffee className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                        <span>Kit colazione</span>
+                      </div>
+                        </div>
+                      </div>
+                {/* Collapsible AvaiBook calendar widget */}
+                {(() => {
+                  const [showCanneCalendar, setShowCanneCalendar] = useState(false);
+                  return (
+                    <div className="flex flex-col items-center justify-end my-6 h-full">
+                      <Button
+                        variant="bnb"
+                        className="w-full max-w-xs mb-2"
+                        onClick={() => setShowCanneCalendar((prev) => !prev)}
+                        aria-expanded={showCanneCalendar}
+                        aria-controls="canne-calendar-iframe"
+                      >
+                        {showCanneCalendar ? 'Nascondi calendario' : 'Verifica disponibilità e prenota'}
+                      </Button>
+                      {showCanneCalendar && (
+                        <iframe
+                          id="canne-calendar-iframe"
+                          src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173837&lang=IT"
+                          style={{ width: '500px', height: '355px', border: 0 }}
+                          frameBorder={0}
+                          allowTransparency={true}
+                        >
+                          Calendario non disponibile
+                        </iframe>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
             </div>
 
@@ -759,46 +853,220 @@ export default function Home() {
                 <p className="text-natural-600 mb-4">
                   {t('rooms.arcuDeChelu.description', 'Elegante appartamento con due camere: "Romeo & Giulietta" in stile classico e "L\'infinito" in stile moderno. Entrambe dispongono di balconi con vista sulla piazzetta e sulla valle verso il mare di Bosa. Bagno in comune, cucina attrezzata, TV e aria condizionata.')}
                 </p>
+                <div className="flex flex-col items-center justify-end my-6 h-full">
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 text-xs text-natural-700">
+                    <div className="flex items-center gap-1.5">
+                      <Square className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Circa 50 mq</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Bed className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>2 camere separate</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Bed className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Letti matrimoniali</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Bed className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Letti singoli</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Building2 className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Balconi panoramici</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Bath className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Bagno ad uso esclusivo</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <ChefHat className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Angolo cottura</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Utensils className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Zona pranzo</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <AirVent className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Aria condizionata</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Tv className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Smart TV</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Wifi className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Wi-Fi gratuito</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Lock className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Privacy totale</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Users className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>1-4 persone</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Coffee className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Kit colazione</span>
+                    </div>
+                  </div>
+                </div>
+                {/* Collapsible AvaiBook calendar widget - Arcu de Chelu */}
+                {(() => {
+                  const [showArcuCalendar, setShowArcuCalendar] = useState(false);
+                  return (
+                    <div className="flex flex-col items-center justify-end my-6 h-full">
+                      <Button
+                        variant="bnb"
+                        className="w-full max-w-xs mb-2"
+                        onClick={() => setShowArcuCalendar((prev) => !prev)}
+                        aria-expanded={showArcuCalendar}
+                        aria-controls="arcu-calendar-iframe"
+                      >
+                        {showArcuCalendar ? 'Nascondi calendario' : 'Verifica disponibilità e prenota'}
+                      </Button>
+                      {showArcuCalendar && (
+                        <iframe
+                          id="arcu-calendar-iframe"
+                          src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173838&lang=IT"
+                          style={{ width: '500px', height: '355px', border: 0 }}
+                          frameBorder={0}
+                          allowTransparency={true}
+                        >
+                          Tu navegador no soporta iframes
+                        </iframe>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
             </div>
 
-            {/* Room Feature 3 - Via Roma (In Costruzione) */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 room-card relative">
-              {/* Indicatore elegante "Coming Soon" */}
-              <div className="absolute top-3 right-3 z-20">
-                <div className="bg-natural-800/80 backdrop-blur-sm text-white text-xs uppercase tracking-wider py-1.5 px-3 rounded-full shadow-sm border border-natural-200/20">
-                  {t('rooms.viaRoma.availableLabel', 'Disponibile da Giugno 2025')}
-                </div>
-              </div>
-              
-              <div className="relative h-64 overflow-hidden bg-natural-50">
-                <div className="absolute inset-0 flex items-center justify-center flex-col p-6 text-center">
-                  <div className="relative w-24 h-24 mb-4">
-                    <div className="absolute inset-0 rounded-full bg-natural-200 bg-opacity-30 backdrop-blur-sm flex items-center justify-center">
-                      <Calendar className="h-10 w-10 text-natural-800/50" />
-                    </div>
+            {/* Room Feature 3 - Via Roma */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 room-card">
+              <div className="relative h-64 overflow-hidden">
+                {/* Carosello delle immagini - Via Roma */}
+                <div className="relative h-full w-full">
+                  <Image 
+                    src={viaRomaImages[viaRomaImageIndex]}
+                    alt={t('rooms.viaRoma.title', 'Camera Via Roma')} 
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    style={{objectFit: "cover"}}
+                    className="transition-opacity duration-500 optimize-gpu"
+                    priority={viaRomaImageIndex === 0}
+                    loading={viaRomaImageIndex === 0 ? undefined : "lazy"}
+                    quality={80}
+                  />
+                  {/* Controlli del carosello */}
+                  <div className="absolute inset-0 flex items-center justify-between p-2">
+                    <button 
+                      onClick={prevViaRomaImage} 
+                      className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
+                      aria-label="Immagine precedente"
+                    >
+                      <ChevronLeft className="h-5 w-5" />
+                    </button>
+                    <button 
+                      onClick={nextViaRomaImage} 
+                      className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
+                      aria-label="Immagine successiva"
+                    >
+                      <ChevronRight className="h-5 w-5" />
+                    </button>
                   </div>
-                  <h3 className="text-xl font-serif text-natural-800 mb-2 italic">{t('rooms.viaRoma.comingSoon', 'In Costruzione')}</h3>
-                  <div className="w-12 h-0.5 bg-natural-300 my-2"></div>
-                </div>
-                
-                {/* Sfondo elegante */}
-                <div className="absolute inset-0">
-                  <svg className="w-full h-full text-natural-200 opacity-10" fill="currentColor" viewBox="0 0 100 100">
-                    <path d="M50,0 L100,100 L0,100 Z" />
-                  </svg>
+                  {/* Indicatori */}
+                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1.5">
+                    {viaRomaImages.map((_, index) => (
+                      <button 
+                        key={index}
+                        onClick={() => setViaRomaImageIndex(index)}
+                        className={`h-1.5 rounded-full transition-all ${
+                          viaRomaImageIndex === index 
+                            ? "w-4 bg-white" 
+                            : "w-1.5 bg-white/60"
+                        }`}
+                        aria-label={`Vai all'immagine ${index + 1}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
-              
-              <div className="p-6 border-t border-natural-100">
+              <div className="p-6">
                 <h3 className="text-xl font-serif text-natural-800 mb-2">{t('rooms.viaRoma.title', 'Via Roma')}</h3>
                 <p className="text-natural-600 mb-4">
                   {t('rooms.viaRoma.description', 'La nostra nuova camera di lusso, attualmente in fase di costruzione, sarà disponibile a partire da giugno 2025. Questa elegante sistemazione offrirà il massimo del comfort con finiture di pregio e una vista mozzafiato.')}
                 </p>
-                <div className="flex items-center text-natural-500 text-sm mt-4">
-                  <Calendar className="h-4 w-4 mr-1.5" />
-                  <span>{t('rooms.viaRoma.bookingsAvailable', 'Prenotazioni disponibili da gennaio 2025')}</span>
+                <div className="flex flex-col items-center justify-end my-6 h-full">
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 text-xs text-natural-700">
+                    <div className="flex items-center gap-1.5">
+                      <Square className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Circa 15 mq</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Bed className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Letto matrimoniale</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Bath className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Bagno privato</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Eye className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Vista sul borgo</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <AirVent className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Aria condizionata</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Tv className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Smart TV</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Utensils className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Tavolo con sedie</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Wifi className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Wi-Fi gratuito</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Coffee className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Kit colazione</span>
+                    </div>
+                  </div>
                 </div>
+                {/* Collapsible AvaiBook calendar widget - Via Roma */}
+                {(() => {
+                  const [showViaRomaCalendar, setShowViaRomaCalendar] = useState(false);
+                  return (
+                    <div className="flex flex-col items-center justify-end my-6 h-full">
+                      <Button
+                        variant="bnb"
+                        className="w-full max-w-xs mb-2"
+                        onClick={() => setShowViaRomaCalendar((prev) => !prev)}
+                        aria-expanded={showViaRomaCalendar}
+                        aria-controls="viaroma-calendar-iframe"
+                      >
+                        {showViaRomaCalendar ? 'Nascondi calendario' : 'Verifica disponibilità e prenota'}
+                      </Button>
+                      {showViaRomaCalendar && (
+                        <iframe
+                          id="viaroma-calendar-iframe"
+                          src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173839&lang=IT"
+                          style={{ width: '500px', height: '355px', border: 0 }}
+                          frameBorder={0}
+                          allowTransparency={true}
+                        >
+                          Tu navegador no soporta iframes
+                        </iframe>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
             </div>
           </div>
@@ -1557,7 +1825,7 @@ export default function Home() {
                   <Phone className="h-6 w-6 text-bnb-600 mr-4 mt-1" />
                   <div>
                     <h3 className="font-semibold text-natural-800 mb-1">{t('contact.phone.title', 'Telefono')}</h3>
-                    <p className="text-natural-600">{t('contact.phone.value', '+39 347 2405 580 / +39 340 895 1010')}</p>
+                    <p className="text-natural-600">{t('contact.phone.value', '+39 347 240 55 80 / +39 340 895 1010')}</p>
                   </div>
                 </div>
                 
@@ -1676,7 +1944,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-start">
                   <Phone className="h-5 w-5 text-bnb-500 mr-2" />
-                  <span className="text-natural-400">{t('footer.contact.phone', '+39 347 586 4956 / +39 340 895 1010')}</span  >
+                  <span className="text-natural-400">{t('footer.contact.phone', '+39 347 240 55 80 / +39 340 895 1010')}</span  >
                 </li>
                 <li className="flex items-start">
                   <Mail className="h-5 w-5 text-bnb-500 mr-2" />
