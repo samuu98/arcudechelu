@@ -11,21 +11,21 @@ import { LanguageSwitcher } from '@/components/ui/language-switcher'
 
 
 export default function Home() {
-    // Carosello immagini Via Roma (identico a Arcu de Chelu)
-    const viaRomaImages = [
-      "/images/via_roma/398828_6908b43f87fe7_1.jpg",
-      "/images/via_roma/398828_6908b43f88fd0_2.jpg",
-      "/images/via_roma/398828_6908b43f8a309_3.jpg",
-      "/images/via_roma/398828_6908b43f8b248_4.jpg",
-      "/images/via_roma/398828_6908b43f8bc0b_5.jpg",
-      "/images/via_roma/398828_6908b43f8cb9c_7.jpg",
-      "/images/via_roma/398828_6908b43f8d586_8.jpg",
-      "/images/via_roma/398828_48aa19ba24_8.jpg",
-      "/images/via_roma/398828_a77da6dc65_9.jpg"
-    ];
-    const [viaRomaImageIndex, setViaRomaImageIndex] = React.useState(0);
-    const prevViaRomaImage = () => setViaRomaImageIndex((prev) => (prev - 1 + viaRomaImages.length) % viaRomaImages.length);
-    const nextViaRomaImage = () => setViaRomaImageIndex((prev) => (prev + 1) % viaRomaImages.length);
+  // Carosello immagini Via Roma (identico a Arcu de Chelu)
+  const viaRomaImages = [
+    "/images/via_roma/398828_6908b43f87fe7_1.jpg",
+    "/images/via_roma/398828_6908b43f88fd0_2.jpg",
+    "/images/via_roma/398828_6908b43f8a309_3.jpg",
+    "/images/via_roma/398828_6908b43f8b248_4.jpg",
+    "/images/via_roma/398828_6908b43f8bc0b_5.jpg",
+    "/images/via_roma/398828_6908b43f8cb9c_7.jpg",
+    "/images/via_roma/398828_6908b43f8d586_8.jpg",
+    "/images/via_roma/398828_48aa19ba24_8.jpg",
+    "/images/via_roma/398828_a77da6dc65_9.jpg"
+  ];
+  const [viaRomaImageIndex, setViaRomaImageIndex] = React.useState(0);
+  const prevViaRomaImage = () => setViaRomaImageIndex((prev) => (prev - 1 + viaRomaImages.length) % viaRomaImages.length);
+  const nextViaRomaImage = () => setViaRomaImageIndex((prev) => (prev + 1) % viaRomaImages.length);
   const { translations, t } = useLanguage();
 
   // State per il carosello delle immagini di Canne Al Vento
@@ -50,7 +50,7 @@ export default function Home() {
 
   // State per il carosello delle immagini di Modolo
   const [currentModoloImageIndex, setCurrentModoloImageIndex] = useState(0);
-  
+
   // Array delle immagini di Modolo (tutte in un'unica coda)
   const modoloImages = [
     "/images/modolo/modolo1.jpg",
@@ -62,21 +62,21 @@ export default function Home() {
   // State per il carosello delle recensioni
   const [currentReviewGroup, setCurrentReviewGroup] = useState(0);
   const totalReviewGroups = 3;
-  
+
   // Funzione per passare alla recensione successiva
   const nextReviewGroup = () => {
-    setCurrentReviewGroup((prevIndex) => 
+    setCurrentReviewGroup((prevIndex) =>
       prevIndex === totalReviewGroups - 1 ? 0 : prevIndex + 1
     );
   };
 
   // Funzione per passare alla recensione precedente
   const prevReviewGroup = () => {
-    setCurrentReviewGroup((prevIndex) => 
+    setCurrentReviewGroup((prevIndex) =>
       prevIndex === 0 ? totalReviewGroups - 1 : prevIndex - 1
     );
   };
-  
+
   // Funzione per passare a una recensione specifica
   const goToReviewGroup = (index: number) => {
     setCurrentReviewGroup(index);
@@ -87,7 +87,7 @@ export default function Home() {
     // Usa requestAnimationFrame per assicurarsi che il browser sia pronto
     let animationFrameId: number;
     let intervalId: NodeJS.Timeout;
-    
+
     // Funzione che avvia l'intervallo solo quando la pagina è visibile
     const startInterval = () => {
       intervalId = setInterval(() => {
@@ -96,10 +96,10 @@ export default function Home() {
         });
       }, 8000);
     };
-    
+
     // Avvia l'intervallo inizialmente
     startInterval();
-    
+
     // Gestisce la visibilità della pagina
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -111,10 +111,10 @@ export default function Home() {
         startInterval();
       }
     };
-    
+
     // Aggiungi event listener per quando l'utente cambia tab
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    
+
     // Pulizia
     return () => {
       clearInterval(intervalId);
@@ -122,7 +122,7 @@ export default function Home() {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
-  
+
   // Aggiorna il carosello delle recensioni e gli indicatori quando cambia il gruppo di recensioni
   useEffect(() => {
     if (typeof document !== 'undefined') {
@@ -131,10 +131,10 @@ export default function Home() {
       if (slider) {
         slider.style.transform = `translateX(-${currentReviewGroup * 100}%)`;
       }
-      
+
       // Aggiorna gli indicatori
       for (let i = 0; i < totalReviewGroups; i++) {
-        const indicator = document.getElementById(`indicator${i+1}`);
+        const indicator = document.getElementById(`indicator${i + 1}`);
         if (indicator) {
           if (i === currentReviewGroup) {
             indicator.classList.remove('bg-bnb-200');
@@ -145,19 +145,19 @@ export default function Home() {
           }
         }
       }
-      
+
       // Collega eventi ai pulsanti
       const prevBtn = document.getElementById('prevReviewBtn');
       const nextBtn = document.getElementById('nextReviewBtn');
-      
+
       if (prevBtn && nextBtn) {
         prevBtn.onclick = () => prevReviewGroup();
         nextBtn.onclick = () => nextReviewGroup();
       }
-      
+
       // Collega eventi agli indicatori
       for (let i = 0; i < totalReviewGroups; i++) {
-        const indicator = document.getElementById(`indicator${i+1}`);
+        const indicator = document.getElementById(`indicator${i + 1}`);
         if (indicator) {
           const groupIndex = i; // Creiamo una costante per mantenere il valore corretto nella closure
           indicator.onclick = () => goToReviewGroup(groupIndex);
@@ -168,42 +168,42 @@ export default function Home() {
 
   // Funzione per passare all'immagine successiva - Canne Al Vento
   const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => 
+    setCurrentImageIndex((prevIndex) =>
       prevIndex === canneAlVentoImages.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   // Funzione per passare all'immagine precedente - Canne Al Vento
   const prevImage = () => {
-    setCurrentImageIndex((prevIndex) => 
+    setCurrentImageIndex((prevIndex) =>
       prevIndex === 0 ? canneAlVentoImages.length - 1 : prevIndex - 1
     );
   };
 
   // Funzione per passare all'immagine successiva - Arcu de Chelu
   const nextArcuImage = () => {
-    setArcuImageIndex((prevIndex) => 
+    setArcuImageIndex((prevIndex) =>
       prevIndex === arcuDeChechuImages.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   // Funzione per passare all'immagine precedente - Arcu de Chelu
   const prevArcuImage = () => {
-    setArcuImageIndex((prevIndex) => 
+    setArcuImageIndex((prevIndex) =>
       prevIndex === 0 ? arcuDeChechuImages.length - 1 : prevIndex - 1
     );
   };
 
   // Funzione per passare all'immagine successiva - Modolo
   const nextModoloImage = () => {
-    setCurrentModoloImageIndex((prevIndex) => 
+    setCurrentModoloImageIndex((prevIndex) =>
       prevIndex === modoloImages.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   // Funzione per passare all'immagine precedente - Modolo
   const prevModoloImage = () => {
-    setCurrentModoloImageIndex((prevIndex) => 
+    setCurrentModoloImageIndex((prevIndex) =>
       prevIndex === 0 ? modoloImages.length - 1 : prevIndex - 1
     );
   };
@@ -213,7 +213,7 @@ export default function Home() {
     // Usa requestAnimationFrame per assicurarsi che il browser sia pronto
     let animationFrameId: number;
     let intervalId: NodeJS.Timeout;
-    
+
     // Funzione che avvia l'intervallo solo quando la pagina è visibile
     const startInterval = () => {
       intervalId = setInterval(() => {
@@ -222,10 +222,10 @@ export default function Home() {
         });
       }, 5000);
     };
-    
+
     // Avvia l'intervallo inizialmente
     startInterval();
-    
+
     // Gestisce la visibilità della pagina
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -237,10 +237,10 @@ export default function Home() {
         startInterval();
       }
     };
-    
+
     // Aggiungi event listener per quando l'utente cambia tab
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    
+
     // Pulizia
     return () => {
       clearInterval(intervalId);
@@ -253,7 +253,7 @@ export default function Home() {
   useEffect(() => {
     let animationFrameId: number;
     let intervalId: NodeJS.Timeout;
-    
+
     const startInterval = () => {
       intervalId = setInterval(() => {
         animationFrameId = requestAnimationFrame(() => {
@@ -261,9 +261,9 @@ export default function Home() {
         });
       }, 5500);
     };
-    
+
     startInterval();
-    
+
     const handleVisibilityChange = () => {
       if (document.hidden) {
         clearInterval(intervalId);
@@ -272,9 +272,9 @@ export default function Home() {
         startInterval();
       }
     };
-    
+
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    
+
     return () => {
       clearInterval(intervalId);
       cancelAnimationFrame(animationFrameId);
@@ -286,7 +286,7 @@ export default function Home() {
   useEffect(() => {
     let animationFrameId: number;
     let intervalId: NodeJS.Timeout;
-    
+
     const startInterval = () => {
       intervalId = setInterval(() => {
         animationFrameId = requestAnimationFrame(() => {
@@ -294,9 +294,9 @@ export default function Home() {
         });
       }, 6000);
     };
-    
+
     startInterval();
-    
+
     const handleVisibilityChange = () => {
       if (document.hidden) {
         clearInterval(intervalId);
@@ -305,9 +305,9 @@ export default function Home() {
         startInterval();
       }
     };
-    
+
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    
+
     return () => {
       clearInterval(intervalId);
       cancelAnimationFrame(animationFrameId);
@@ -329,14 +329,14 @@ export default function Home() {
 
   // Funzione per passare all'immagine successiva nella galleria
   const nextGalleryImage = () => {
-    setGalleryImageIndex((prevIndex) => 
+    setGalleryImageIndex((prevIndex) =>
       prevIndex === galleryCarouselImages.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   // Funzione per passare all'immagine precedente nella galleria
   const prevGalleryImage = () => {
-    setGalleryImageIndex((prevIndex) => 
+    setGalleryImageIndex((prevIndex) =>
       prevIndex === 0 ? galleryCarouselImages.length - 1 : prevIndex - 1
     );
   };
@@ -346,7 +346,7 @@ export default function Home() {
     const interval = setInterval(() => {
       nextGalleryImage();
     }, 7000);
-    
+
     return () => clearInterval(interval);
   }, []);
 
@@ -378,12 +378,12 @@ export default function Home() {
           <div className="text-2xl font-semibold text-bnb-700">
             <Link href="/" className="flex items-center">
               <div className="relative h-10 w-10 mr-2">
-                <Image 
-                  src="/images/B2_reduction_optimized_.png" 
-                  alt="Arcu de Chelu Logo" 
+                <Image
+                  src="/images/B2_reduction_optimized_.png"
+                  alt="Arcu de Chelu Logo"
                   fill
                   sizes="40px"
-                  style={{objectFit: "contain"}}
+                  style={{ objectFit: "contain" }}
                   priority
                   quality={90}
                 />
@@ -416,27 +416,28 @@ export default function Home() {
       <section className="relative h-screen bg-natural-900 overflow-hidden">
         {/* Immagine statica invece del carosello */}
         <div className="absolute inset-0">
-          <Image 
+          <Image
             src="/images/copertina.jpg"
             alt={t('hero.imageAlt', 'Arcu de Chelu B&B')}
             fill
             priority
             sizes="100vw"
-            style={{objectFit: "cover"}}
+            style={{ objectFit: "cover" }}
             className="opacity-80"
             quality={85}
           />
         </div>
-        
+
         <div className="container mx-auto text-center px-4 flex flex-col h-full justify-center">
           <div className="animate-fade-in flex flex-col items-center mb-auto mt-auto">
-            <div className="relative h-96 w-96 mx-auto mb-0" style={{animation: 'scaleIn 1.5s ease forwards'}}>
-              <Image 
-                src="/images/B2_reduction_edited_optimized_.png" 
-                alt="Arcu de Chelu Symbol" 
+            <div className="relative h-96 w-96 mx-auto mb-0" style={{ animation: 'scaleIn 1.5s ease forwards' }}>
+              <Image
+                src="/images/B2_reduction_edited_optimized_.png"
+                alt="Arcu de Chelu Symbol"
                 fill
                 sizes="(max-width: 768px) 90vw, 384px"
-                style={{objectFit: "contain"}}
+
+                style={{ objectFit: "contain" }}
                 priority
                 className="opacity-75 drop-shadow-xl"
                 quality={90}
@@ -451,18 +452,34 @@ export default function Home() {
               </p>
             </div>
           </div>
-          
-          <div className="mt-auto mb-12">
+
+          <div className="mt-auto mb-12 flex flex-col items-center gap-4">
             <Link href="#rooms">
-              <Button 
-                variant="bnb" 
-                size="xl" 
+              <Button
+                variant="bnb"
+                size="xl"
                 className="animate-slide-in backdrop-blur-sm bg-white/20 hover:bg-white/30 border border-white/30 transition-all duration-300 shadow-lg"
               >
                 {t('hero.cta', 'Scopri le Nostre Camere')}
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
+
+            <a
+              href="https://bookonline.pro/it/properties/101334?unidades=1&filter_zone=1&referencia_propietario=Prenotazione%2520da%2520sito"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="md:hidden animate-slide-in"
+              style={{ animationDelay: '0.2s' }}
+            >
+              <Button
+                variant="bnb"
+                size="xl"
+                className="backdrop-blur-sm bg-bnb-600/90 hover:bg-bnb-700/90 border border-bnb-500/30 transition-all duration-300 shadow-lg"
+              >
+                {t('nav.bookNow', 'Prenota Ora')}
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -482,7 +499,7 @@ export default function Home() {
               {t('about.shortIntro', 'Un\'oasi di tranquillità nel cuore della costa occidentale sarda')}
             </p>
           </div>
-          
+
           {/* Carosello e descrizione - migliorato allineamento */}
           <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
             {/* Carosello delle immagini di Modolo */}
@@ -493,13 +510,12 @@ export default function Home() {
                   <div id="modoloCarousel" className="relative w-full h-full">
                     {/* Immagini del carosello principale */}
                     {modoloImages.map((img, index) => (
-                      <div 
-                        key={index} 
-                        className={`absolute inset-0 w-full h-full transition-all duration-1000 transform ${
-                          index === currentModoloImageIndex ? 'opacity-100 z-10 scale-100' : 'opacity-0 z-0 scale-105'
-                        } optimize-gpu`}
+                      <div
+                        key={index}
+                        className={`absolute inset-0 w-full h-full transition-all duration-1000 transform ${index === currentModoloImageIndex ? 'opacity-100 z-10 scale-100' : 'opacity-0 z-0 scale-105'
+                          } optimize-gpu`}
                       >
-                        <Image 
+                        <Image
                           src={img}
                           alt={t('about.imageAlt', 'Immagini di Modolo')}
                           fill
@@ -509,54 +525,53 @@ export default function Home() {
                         />
                       </div>
                     ))}
-                    
+
                     {/* Controlli del carosello */}
                     <div className="absolute inset-0 flex items-center justify-between p-2 z-20">
-                      <button 
-                        onClick={prevModoloImage} 
+                      <button
+                        onClick={prevModoloImage}
                         className="rounded-full bg-white/20 backdrop-blur-sm p-2 text-white hover:bg-white/40 transition-colors shadow-lg transform -translate-x-2 hover:scale-105"
                         aria-label="Immagine precedente"
                       >
                         <ChevronLeft className="h-5 w-5" />
                       </button>
-                      <button 
-                        onClick={nextModoloImage} 
+                      <button
+                        onClick={nextModoloImage}
                         className="rounded-full bg-white/20 backdrop-blur-sm p-2 text-white hover:bg-white/40 transition-colors shadow-lg transform translate-x-2 hover:scale-105"
                         aria-label="Immagine successiva"
                       >
                         <ChevronRight className="h-5 w-5" />
                       </button>
                     </div>
-                    
+
                     {/* Indicatori del carosello principale */}
                     <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1.5 z-20">
                       {modoloImages.slice(0, 5).map((_, index) => (
-                        <button 
+                        <button
                           key={index}
                           onClick={() => setCurrentModoloImageIndex(index)}
-                          className={`h-1.5 rounded-full transition-all ${
-                            currentModoloImageIndex === index || (currentModoloImageIndex >= 5 && index === 4)
-                              ? "w-6 bg-white" 
-                              : "w-1.5 bg-white/60"
-                          }`}
+                          className={`h-1.5 rounded-full transition-all ${currentModoloImageIndex === index || (currentModoloImageIndex >= 5 && index === 4)
+                            ? "w-6 bg-white"
+                            : "w-1.5 bg-white/60"
+                            }`}
                           aria-label={`Vai all'immagine ${index + 1}`}
                         />
                       ))}
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Elementi decorativi */}
                 <div className="absolute -bottom-5 -right-5 w-24 h-24 bg-bnb-500/20 rounded-full blur-xl"></div>
                 <div className="absolute -top-5 -left-5 w-20 h-20 bg-bnb-600/10 rounded-full blur-xl"></div>
               </div>
-              
+
               {/* Mini-gallery sotto al carosello */}
               <div className="grid grid-cols-3 gap-3 mt-4">
                 {Array.from({ length: 3 }).map((_, i) => {
                   // Mostriamo l'immagine corrente, la successiva e la precedente
                   const totalImages = modoloImages.length;
-                  
+
                   // Calcolo corretto degli indici per mostrare immagine precedente, corrente e successiva
                   let idx;
                   if (i === 0) {
@@ -569,18 +584,17 @@ export default function Home() {
                     // Immagine successiva
                     idx = (currentModoloImageIndex + 1) % totalImages;
                   }
-                  
+
                   return (
-                    <div 
-                      key={i} 
-                      className={`relative rounded overflow-hidden shadow-md h-28 transition-all duration-300 cursor-pointer ${
-                        idx === currentModoloImageIndex 
-                          ? 'ring-2 ring-bnb-500 ring-offset-2 transform scale-105' 
-                          : 'hover:opacity-90 hover:shadow-lg hover:transform hover:scale-105'
-                      }`} 
+                    <div
+                      key={i}
+                      className={`relative rounded overflow-hidden shadow-md h-28 transition-all duration-300 cursor-pointer ${idx === currentModoloImageIndex
+                        ? 'ring-2 ring-bnb-500 ring-offset-2 transform scale-105'
+                        : 'hover:opacity-90 hover:shadow-lg hover:transform hover:scale-105'
+                        }`}
                       onClick={() => setCurrentModoloImageIndex(idx)}
                     >
-                      <Image 
+                      <Image
                         src={modoloImages[idx]}
                         alt={t('about.thumbAlt', 'Miniatura di Modolo')}
                         fill
@@ -592,7 +606,7 @@ export default function Home() {
                 })}
               </div>
             </div>
-            
+
             {/* Testo - allineato con il carosello */}
             <div className="order-1 md:order-2 space-y-6 pt-0">
               <div className="prose prose-lg max-w-none text-natural-700">
@@ -603,14 +617,14 @@ export default function Home() {
                   {t('about.description2', 'A soli 5 minuti dalle spettacolari spiagge di Bosa e da tutti i servizi essenziali, il nostro B&B è il punto di partenza privilegiato per esplorare le meraviglie della costa. A un\'ora dall\'aeroporto di Alghero, siamo facilmente raggiungibili per chi arriva dall\'esterno dell\'isola.')}
                 </p>
               </div>
-              
+
               {/* Box di enfasi */}
               <div className="bg-natural-50/70 p-5 border-l-4 border-bnb-500/50 rounded-r-lg italic text-natural-600 my-6">
                 <p>
                   {t('about.emphasis', 'Scopri il fascino autentico della Sardegna in un ambiente accogliente e raffinato, dove la tradizione incontra il comfort moderno in perfetta armonia con il paesaggio circostante.')}
                 </p>
               </div>
-              
+
               {/* Features in punti */}
               <div className="grid grid-cols-2 gap-y-4 gap-x-6 mt-8">
                 {[
@@ -618,21 +632,25 @@ export default function Home() {
                   { icon: <Coffee className="h-5 w-5 text-bnb-600" />, text: t('about.features.breakfast', 'Colazione di qualità') },
                   { icon: <Wifi className="h-5 w-5 text-bnb-600" />, text: t('about.features.wifi', 'Wi-Fi gratuito') },
                   { icon: <Umbrella className="h-5 w-5 text-bnb-600" />, text: t('about.features.beaches', 'Vicino alle spiagge') },
-                  { icon: 
-                    <PlaneTakeoff className="h-5 w-5 text-bnb-600"/>, 
-                    text: t('about.features.plane', '100 km da aeroporto AHO') 
+                  {
+                    icon:
+                      <PlaneTakeoff className="h-5 w-5 text-bnb-600" />,
+                    text: t('about.features.plane', '100 km da aeroporto AHO')
                   },
-                  { icon: 
-                    <Bike className="h-5 w-5 text-bnb-600"/>, 
-                    text: t('about.features.motorcyclists', 'Ideale per motociclisti e ciclisti') 
+                  {
+                    icon:
+                      <Bike className="h-5 w-5 text-bnb-600" />,
+                    text: t('about.features.motorcyclists', 'Ideale per motociclisti e ciclisti')
                   },
-                  { icon: 
-                    <AirVent  className="h-5 w-5 text-bnb-600" />, 
-                    text: t('about.features.airConditioning', 'Ambiente climatizzato') 
+                  {
+                    icon:
+                      <AirVent className="h-5 w-5 text-bnb-600" />,
+                    text: t('about.features.airConditioning', 'Ambiente climatizzato')
                   },
-                  { icon: 
-                    <Leaf className="h-5 w-5 text-bnb-600"/>, 
-                    text: t('about.features.nature', 'Immerso nella natura') 
+                  {
+                    icon:
+                      <Leaf className="h-5 w-5 text-bnb-600" />,
+                    text: t('about.features.nature', 'Immerso nella natura')
                   }
                 ].map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3 group">
@@ -657,54 +675,53 @@ export default function Home() {
               {t('rooms.subtitle', 'Le nostre camere sono pensate per offrire il massimo comfort durante il vostro soggiorno.')}
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Room Feature 1 - Canne Al Vento */}
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 room-card">
               <div className="relative h-64 overflow-hidden">
                 {/* Carosello delle immagini */}
                 <div className="relative h-full w-full">
-                  <Image 
+                  <Image
                     src={canneAlVentoImages[currentImageIndex]}
-                    alt={t('rooms.canneAlVento.title', 'Camera Canne Al Vento')} 
+                    alt={t('rooms.canneAlVento.title', 'Camera Canne Al Vento')}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    style={{objectFit: "cover"}}
+                    style={{ objectFit: "cover" }}
                     className="transition-opacity duration-500 optimize-gpu"
                     priority={currentImageIndex === 0}
                     loading={currentImageIndex === 0 ? undefined : "lazy"}
                     quality={80}
                   />
-                  
+
                   {/* Controlli del carosello */}
                   <div className="absolute inset-0 flex items-center justify-between p-2">
-                    <button 
-                      onClick={prevImage} 
+                    <button
+                      onClick={prevImage}
                       className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
                       aria-label="Immagine precedente"
                     >
                       <ChevronLeft className="h-5 w-5" />
                     </button>
-                    <button 
-                      onClick={nextImage} 
+                    <button
+                      onClick={nextImage}
                       className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
                       aria-label="Immagine successiva"
                     >
                       <ChevronRight className="h-5 w-5" />
                     </button>
                   </div>
-                  
+
                   {/* Indicatori */}
                   <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1.5">
                     {canneAlVentoImages.map((_, index) => (
-                      <button 
+                      <button
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
-                        className={`h-1.5 rounded-full transition-all ${
-                          currentImageIndex === index 
-                            ? "w-4 bg-white" 
-                            : "w-1.5 bg-white/60"
-                        }`}
+                        className={`h-1.5 rounded-full transition-all ${currentImageIndex === index
+                          ? "w-4 bg-white"
+                          : "w-1.5 bg-white/60"
+                          }`}
                         aria-label={`Vai all'immagine ${index + 1}`}
                       />
                     ))}
@@ -716,55 +733,55 @@ export default function Home() {
                 <p className="text-natural-600 mb-4">
                   {t('rooms.canneAlVento.description', 'Camera matrimoniale con balcone e vista sulla piazzetta. La camera include un bagno privato, TV, aria condizionata e accesso a una cucina attrezzata. Ideale per coppie.')}
                 </p>
-                  {/* Elenco caratteristiche compatto */}
-                  <div className="flex flex-col items-center justify-end my-6 h-full">
-                    <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 text-xs text-natural-700">
-                      <div className="flex items-center gap-1.5">
+                {/* Elenco caratteristiche compatto */}
+                <div className="flex flex-col items-center justify-end my-6 h-full">
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 text-xs text-natural-700">
+                    <div className="flex items-center gap-1.5">
                       <Square className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
                       <span>Circa 27 mq</span>
                     </div>
-                      <div className="flex items-center gap-1.5">
-                        <Bed className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
-                        <span>Letto matrimoniale</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Bed className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
-                        <span>Letto singolo</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Sun className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
-                        <span>Terrazzo panoramico</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Bath className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
-                        <span>Bagno privato</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <ChefHat className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
-                        <span>Angolo cottura attrezzato</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <AirVent className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
-                        <span>Aria condizionata</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Tv className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
-                        <span>Smart TV</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Wifi className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
-                        <span>Wi-Fi gratuito</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Utensils className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
-                        <span>Zona pranzo</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Coffee className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
-                        <span>Kit colazione</span>
-                      </div>
-                        </div>
-                      </div>
+                    <div className="flex items-center gap-1.5">
+                      <Bed className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Letto matrimoniale</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Bed className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Letto singolo</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Sun className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Terrazzo panoramico</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Bath className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Bagno privato</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <ChefHat className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Angolo cottura attrezzato</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <AirVent className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Aria condizionata</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Tv className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Smart TV</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Wifi className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Wi-Fi gratuito</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Utensils className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Zona pranzo</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Coffee className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
+                      <span>Kit colazione</span>
+                    </div>
+                  </div>
+                </div>
                 {/* Collapsible AvaiBook calendar widget */}
                 {(() => {
                   const [showCanneCalendar, setShowCanneCalendar] = useState(false);
@@ -801,47 +818,46 @@ export default function Home() {
               <div className="relative h-64 overflow-hidden">
                 {/* Carosello delle immagini */}
                 <div className="relative h-full w-full">
-                  <Image 
+                  <Image
                     src={arcuDeChechuImages[arcuImageIndex]}
-                    alt={t('rooms.arcuDeChelu.title', 'Appartamento Arcu de Chelu')} 
+                    alt={t('rooms.arcuDeChelu.title', 'Appartamento Arcu de Chelu')}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    style={{objectFit: "cover"}}
+                    style={{ objectFit: "cover" }}
                     className="transition-opacity duration-500 optimize-gpu"
                     priority={arcuImageIndex === 0}
                     loading={arcuImageIndex === 0 ? undefined : "lazy"}
                     quality={80}
                   />
-                  
+
                   {/* Controlli del carosello */}
                   <div className="absolute inset-0 flex items-center justify-between p-2">
-                    <button 
-                      onClick={prevArcuImage} 
+                    <button
+                      onClick={prevArcuImage}
                       className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
                       aria-label="Immagine precedente"
                     >
                       <ChevronLeft className="h-5 w-5" />
                     </button>
-                    <button 
-                      onClick={nextArcuImage} 
+                    <button
+                      onClick={nextArcuImage}
                       className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
                       aria-label="Immagine successiva"
                     >
                       <ChevronRight className="h-5 w-5" />
                     </button>
                   </div>
-                  
+
                   {/* Indicatori */}
                   <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1.5">
                     {arcuDeChechuImages.map((_, index) => (
-                      <button 
+                      <button
                         key={index}
                         onClick={() => setArcuImageIndex(index)}
-                        className={`h-1.5 rounded-full transition-all ${
-                          arcuImageIndex === index 
-                            ? "w-4 bg-white" 
-                            : "w-1.5 bg-white/60"
-                        }`}
+                        className={`h-1.5 rounded-full transition-all ${arcuImageIndex === index
+                          ? "w-4 bg-white"
+                          : "w-1.5 bg-white/60"
+                          }`}
                         aria-label={`Vai all'immagine ${index + 1}`}
                       />
                     ))}
@@ -949,12 +965,12 @@ export default function Home() {
               <div className="relative h-64 overflow-hidden">
                 {/* Carosello delle immagini - Via Roma */}
                 <div className="relative h-full w-full">
-                  <Image 
+                  <Image
                     src={viaRomaImages[viaRomaImageIndex]}
-                    alt={t('rooms.viaRoma.title', 'Camera Via Roma')} 
+                    alt={t('rooms.viaRoma.title', 'Camera Via Roma')}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    style={{objectFit: "cover"}}
+                    style={{ objectFit: "cover" }}
                     className="transition-opacity duration-500 optimize-gpu"
                     priority={viaRomaImageIndex === 0}
                     loading={viaRomaImageIndex === 0 ? undefined : "lazy"}
@@ -962,15 +978,15 @@ export default function Home() {
                   />
                   {/* Controlli del carosello */}
                   <div className="absolute inset-0 flex items-center justify-between p-2">
-                    <button 
-                      onClick={prevViaRomaImage} 
+                    <button
+                      onClick={prevViaRomaImage}
                       className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
                       aria-label="Immagine precedente"
                     >
                       <ChevronLeft className="h-5 w-5" />
                     </button>
-                    <button 
-                      onClick={nextViaRomaImage} 
+                    <button
+                      onClick={nextViaRomaImage}
                       className="rounded-full bg-white/20 backdrop-blur-sm p-1.5 text-white hover:bg-white/40 transition-colors"
                       aria-label="Immagine successiva"
                     >
@@ -980,14 +996,13 @@ export default function Home() {
                   {/* Indicatori */}
                   <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1.5">
                     {viaRomaImages.map((_, index) => (
-                      <button 
+                      <button
                         key={index}
                         onClick={() => setViaRomaImageIndex(index)}
-                        className={`h-1.5 rounded-full transition-all ${
-                          viaRomaImageIndex === index 
-                            ? "w-4 bg-white" 
-                            : "w-1.5 bg-white/60"
-                        }`}
+                        className={`h-1.5 rounded-full transition-all ${viaRomaImageIndex === index
+                          ? "w-4 bg-white"
+                          : "w-1.5 bg-white/60"
+                          }`}
                         aria-label={`Vai all'immagine ${index + 1}`}
                       />
                     ))}
@@ -1073,8 +1088,8 @@ export default function Home() {
 
           <div className="mt-12 bg-natural-50 p-8 rounded-lg shadow-sm max-w-3xl mx-auto">
             <p className="text-natural-700 leading-relaxed text-center italic">
-              Le camere degli ospiti sono situate in un piano dedicato, garantendo una maggiore privacy e tranquillità. 
-              Gli host non vivono nello stesso piano, ma saranno sempre a vostra disposizione per assicurarsi che il 
+              Le camere degli ospiti sono situate in un piano dedicato, garantendo una maggiore privacy e tranquillità.
+              Gli host non vivono nello stesso piano, ma saranno sempre a vostra disposizione per assicurarsi che il
               vostro soggiorno sia perfetto in ogni dettaglio.
             </p>
           </div>
@@ -1090,7 +1105,7 @@ export default function Home() {
               {t('services.subtitle', 'Scopri tutti i servizi inclusi nel tuo soggiorno al B&B Arcu de Chelu.')}
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {/* Service 1 - Breakfast */}
             <div className="p-6 border border-natural-200 bg-white rounded-lg hover:shadow-md transition duration-300">
@@ -1102,7 +1117,7 @@ export default function Home() {
                 {t('services.breakfast.description', 'Colazione con prodotti freschi locali servita in terrazza con vista sulla valle. Offriamo specialità dolci e salate, frutta fresca e bevande calde.')}
               </p>
             </div>
-            
+
             {/* Service 2 - WiFi */}
             <div className="p-6 border border-natural-200 bg-white rounded-lg hover:shadow-md transition duration-300">
               <div className="p-3 inline-block rounded-full bg-primary-50 text-primary-600 mb-4">
@@ -1113,14 +1128,14 @@ export default function Home() {
                 {t('services.wifi.description', 'Connessione Wi-Fi gratuita ad alta velocità in tutte le aree del B&B. Resta connesso con i tuoi cari e condividi subito i tuoi momenti più belli.')}
               </p>
             </div>
-            
+
             {/* Service 3 - Bike Facilities */}
             <div className="p-6 border border-natural-200 bg-white rounded-lg hover:shadow-md transition duration-300">
               <div className="p-3 inline-block rounded-full bg-primary-50 text-primary-600 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-                  <circle cx="5.5" cy="17.5" r="3.5"/>
-                  <circle cx="18.5" cy="17.5" r="3.5"/>
-                  <path d="M15 6a1 1 0 100-2 1 1 0 000 2zm-3 11.5V14l-3-3 4-3 2 3h2"/>
+                  <circle cx="5.5" cy="17.5" r="3.5" />
+                  <circle cx="18.5" cy="17.5" r="3.5" />
+                  <path d="M15 6a1 1 0 100-2 1 1 0 000 2zm-3 11.5V14l-3-3 4-3 2 3h2" />
                 </svg>
               </div>
               <h3 className="text-xl font-serif text-natural-800 mb-2">{t('services.bikeGarage.title', 'Servizi per Ciclisti')}</h3>
@@ -1129,7 +1144,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          
+
           <div className="mt-10 text-center">
             <p className="text-natural-600 italic max-w-3xl mx-auto">
               {t('services.cyclistNote', 'In particolare, i ciclisti apprezzeranno la nostra posizione strategica tra montagne e mare, con facile accesso a percorsi panoramici che offrono viste spettacolari della costa occidentale sarda. Dopo una giornata in sella, potrete rilassarvi nella tranquillità del nostro B&B.')}
@@ -1148,13 +1163,13 @@ export default function Home() {
             </p>
             <div className="w-24 h-1 bg-gradient-to-r from-bnb-400 to-bnb-600 mx-auto mt-5 rounded-full"></div>
           </div>
-          
+
           {/* Carosello principale ripristinato */}
           <div className="relative mb-8 overflow-hidden rounded-xl shadow-lg">
             <div className="relative aspect-[16/9] w-full">
               {/* Controlli del carosello */}
               <div className="absolute inset-y-0 left-0 flex items-center z-20 pl-4">
-                <button 
+                <button
                   className="bg-white/20 hover:bg-white/30 text-white rounded-full p-2.5 backdrop-blur-sm transition-transform hover:scale-110 focus:outline-none"
                   onClick={() => prevGalleryImage()}
                   aria-label="Immagine precedente"
@@ -1163,7 +1178,7 @@ export default function Home() {
                 </button>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center z-20 pr-4">
-                <button 
+                <button
                   className="bg-white/20 hover:bg-white/30 text-white rounded-full p-2.5 backdrop-blur-sm transition-transform hover:scale-110 focus:outline-none"
                   onClick={() => nextGalleryImage()}
                   aria-label="Immagine successiva"
@@ -1171,32 +1186,32 @@ export default function Home() {
                   <ChevronRight className="h-5 w-5" />
                 </button>
               </div>
-              
+
               {/* Contenitore immagini carosello */}
-              <div 
+              <div
                 className="absolute inset-0 transition-transform duration-500 ease-in-out carousel-container optimize-gpu"
                 style={{ transform: `translateX(-${galleryImageIndex * 100}%)` }}
               >
                 {galleryCarouselImages.map((imgSrc, idx) => (
-                  <div 
-                    key={idx} 
+                  <div
+                    key={idx}
                     className="absolute inset-0"
                     style={{ transform: `translateX(${idx * 100}%)` }}
                   >
-                    <Image 
+                    <Image
                       src={imgSrc}
                       alt={t('gallery.landscapeAlt', 'Paesaggio della Sardegna')}
                       fill
                       priority={idx === galleryImageIndex}
                       sizes="100vw"
-                      style={{objectFit: "cover"}}
+                      style={{ objectFit: "cover" }}
                       loading={idx === galleryImageIndex ? undefined : "lazy"}
                       quality={80}
                     />
                   </div>
                 ))}
               </div>
-              
+
               {/* Testo overlay con sfondo solido per leggibilità */}
               <div className="absolute bottom-0 left-0 right-0 bg-natural-900/70 p-5 md:p-6 z-10">
                 <div className="max-w-3xl mx-auto">
@@ -1208,15 +1223,14 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              
+
               {/* Indicatori */}
               <div className="absolute bottom-24 left-0 right-0 z-20 flex justify-center space-x-1.5">
                 {galleryCarouselImages.map((_, idx) => (
                   <button
                     key={idx}
-                    className={`h-1.5 rounded-full transition-all ${
-                      idx === galleryImageIndex ? "bg-white w-6" : "bg-white/40 w-1.5"
-                    }`}
+                    className={`h-1.5 rounded-full transition-all ${idx === galleryImageIndex ? "bg-white w-6" : "bg-white/40 w-1.5"
+                      }`}
                     onClick={() => setGalleryImageIndex(idx)}
                     aria-label={`Vai all'immagine ${idx + 1}`}
                   />
@@ -1224,11 +1238,11 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
+
           {/* Mini-galleria delle miniature */}
           <div className="flex flex-wrap justify-center gap-3 mb-8">
             {galleryCarouselImages.map((img, idx) => (
-              <div 
+              <div
                 key={idx}
                 className={`relative h-20 w-32 md:h-24 md:w-40 rounded-lg overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-shadow duration-200 ${idx === galleryImageIndex ? 'ring-2 ring-bnb-500' : ''}`}
                 onClick={() => setGalleryImageIndex(idx)}
@@ -1238,7 +1252,7 @@ export default function Home() {
                   alt={t('gallery.thumbnailAlt', 'Miniatura')}
                   fill
                   sizes="(max-width: 768px) 32vw, 160px"
-                  style={{objectFit: "cover"}}
+                  style={{ objectFit: "cover" }}
                   className="hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                   quality={60}
@@ -1246,7 +1260,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          
+
           <div className="text-center mt-8">
             <Button variant="outline" className="border-bnb-300 text-bnb-600 hover:bg-bnb-50 hover:text-bnb-700 shadow-sm px-6 py-2">
               <Instagram className="mr-2 h-4 w-4" /> {t('gallery.instagramCTA', 'Seguici su Instagram per altre foto')}
@@ -1274,12 +1288,12 @@ export default function Home() {
               <span className="text-natural-600">Oltre 80 recensioni verificate</span>
             </div>
           </div>
-          
+
           {/* Recensioni Desktop Carousel */}
           <div className="hidden md:block relative">
             {/* Controlli del carosello */}
             <div className="absolute inset-y-0 left-0 flex items-center -ml-6 z-10">
-              <button 
+              <button
                 id="prevReviewBtn"
                 className="bg-white/80 hover:bg-white text-natural-700 rounded-full p-3 shadow-md focus:outline-none transition-transform hover:scale-105"
                 aria-label="Recensione precedente"
@@ -1288,7 +1302,7 @@ export default function Home() {
               </button>
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center -mr-6 z-10">
-              <button 
+              <button
                 id="nextReviewBtn"
                 className="bg-white/80 hover:bg-white text-natural-700 rounded-full p-3 shadow-md focus:outline-none transition-transform hover:scale-105"
                 aria-label="Recensione successiva"
@@ -1334,7 +1348,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Recensione 2 */}
                   <div className="testimonial-card bg-white p-6 rounded-lg shadow-md border border-natural-100 flex flex-col h-full my-4">
                     <div className="flex justify-between items-start mb-4">
@@ -1367,7 +1381,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Recensione 3 */}
                   <div className="testimonial-card bg-white p-6 rounded-lg shadow-md border border-natural-100 flex flex-col h-full my-4">
                     <div className="flex justify-between items-start mb-4">
@@ -1436,7 +1450,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Recensione 5 */}
                   <div className="testimonial-card bg-white p-6 rounded-lg shadow-md border border-natural-100 flex flex-col h-full my-4">
                     <div className="flex justify-between items-start mb-4">
@@ -1469,7 +1483,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Recensione 6 */}
                   <div className="testimonial-card bg-white p-6 rounded-lg shadow-md border border-natural-100 flex flex-col h-full my-4">
                     <div className="flex justify-between items-start mb-4">
@@ -1538,7 +1552,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Recensione 8 */}
                   <div className="testimonial-card bg-white p-6 rounded-lg shadow-md border border-natural-100 flex flex-col h-full my-4">
                     <div className="flex justify-between items-start mb-4">
@@ -1571,7 +1585,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Recensione 9 */}
                   <div className="testimonial-card bg-white p-6 rounded-lg shadow-md border border-natural-100 flex flex-col h-full my-4">
                     <div className="flex justify-between items-start mb-4">
@@ -1607,7 +1621,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
+
             {/* Indicatori del carosello */}
             <div className="flex justify-center mt-8 space-x-2">
               <button id="indicator1" className="w-3 h-3 rounded-full bg-bnb-500"></button>
@@ -1615,12 +1629,12 @@ export default function Home() {
               <button id="indicator3" className="w-3 h-3 rounded-full bg-bnb-200"></button>
             </div>
           </div>
-          
+
           {/* Recensioni Mobile Carousel */}
           <div className="md:hidden mt-8 px-2 py-3">
             <div className="overflow-x-auto snap-x snap-mandatory scrollbar-hide">
               <div className="flex space-x-4 pb-6 pt-1">
-                
+
                 {/* Recensione Mobile 1 */}
                 <div className="snap-center min-w-[90%] bg-white p-6 rounded-lg shadow-md border border-natural-100 flex flex-col my-3">
                   <div className="flex justify-between items-start mb-4">
@@ -1653,7 +1667,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Recensione Mobile 2 */}
                 <div className="snap-center min-w-[90%] bg-white p-6 rounded-lg shadow-md border border-natural-100 flex flex-col my-3">
                   <div className="flex justify-between items-start mb-4">
@@ -1686,7 +1700,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Recensione Mobile 3 */}
                 <div className="snap-center min-w-[90%] bg-white p-6 rounded-lg shadow-md border border-natural-100 flex flex-col my-3">
                   <div className="flex justify-between items-start mb-4">
@@ -1719,7 +1733,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Recensione Mobile 4 */}
                 <div className="snap-center min-w-[90%] bg-white p-6 rounded-lg shadow-md border border-natural-100 flex flex-col my-3">
                   <div className="flex justify-between items-start mb-4">
@@ -1752,7 +1766,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Recensione Mobile 5 */}
                 <div className="snap-center min-w-[90%] bg-white p-6 rounded-lg shadow-md border border-natural-100 flex flex-col my-3">
                   <div className="flex justify-between items-start mb-4">
@@ -1785,11 +1799,11 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
-          
+
           {/* CTA Button */}
           <div className="text-center mt-12">
             <a href="https://www.booking.com/hotel/it/arcu-de-chelu-b-amp-b.it.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
@@ -1811,7 +1825,7 @@ export default function Home() {
               <p className="text-natural-600 mb-8">
                 {t('contact.subtitle', 'Siamo qui per rispondere a tutte le tue domande e aiutarti a pianificare il tuo soggiorno perfetto in Sardegna.')}
               </p>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start">
                   <MapPin className="h-6 w-6 text-bnb-600 mr-4 mt-1" />
@@ -1820,7 +1834,7 @@ export default function Home() {
                     <p className="text-natural-600">{t('contact.address.value', 'Via Roma 42, 09090 Modolo (OR), Sardegna, Italia')}</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <Phone className="h-6 w-6 text-bnb-600 mr-4 mt-1" />
                   <div>
@@ -1828,7 +1842,7 @@ export default function Home() {
                     <p className="text-natural-600">{t('contact.phone.value', '+39 347 240 55 80 / +39 340 895 1010')}</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <Mail className="h-6 w-6 text-bnb-600 mr-4 mt-1" />
                   <div>
@@ -1836,7 +1850,7 @@ export default function Home() {
                     <p className="text-natural-600">{t('contact.email.value', 'arcudechelubnb@gmail.com')}</p>
                   </div>
                 </div>
-                
+
                 <div className="flex space-x-4 mt-8">
                   <a href="#" className="bg-bnb-50 p-3 rounded-full text-bnb-600 hover:bg-bnb-100 transition-colors">
                     <Instagram className="h-6 w-6" />
@@ -1844,25 +1858,25 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
+
             <div className="bg-natural-50 p-8 rounded-lg shadow-md">
               <h3 className="text-2xl font-serif text-natural-800 mb-6">{t('contact.form.title', 'Invia un Messaggio')}</h3>
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-natural-700 mb-1">{t('contact.form.name', 'Nome')}</label>
-                    <input 
-                      type="text" 
-                      id="name" 
+                    <input
+                      type="text"
+                      id="name"
                       className="w-full px-4 py-2 border border-natural-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bnb-500 focus:border-transparent"
                       placeholder={t('contact.form.namePlaceholder', 'Il tuo nome')}
                     />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-natural-700 mb-1">{t('contact.form.email', 'Email')}</label>
-                    <input 
-                      type="email" 
-                      id="email" 
+                    <input
+                      type="email"
+                      id="email"
                       className="w-full px-4 py-2 border border-natural-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bnb-500 focus:border-transparent"
                       placeholder={t('contact.form.emailPlaceholder', 'La tua email')}
                     />
@@ -1870,18 +1884,18 @@ export default function Home() {
                 </div>
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-natural-700 mb-1">{t('contact.form.subject', 'Oggetto')}</label>
-                  <input 
-                    type="text" 
-                    id="subject" 
+                  <input
+                    type="text"
+                    id="subject"
                     className="w-full px-4 py-2 border border-natural-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bnb-500 focus:border-transparent"
                     placeholder={t('contact.form.subjectPlaceholder', 'Oggetto del messaggio')}
                   />
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-natural-700 mb-1">{t('contact.form.message', 'Messaggio')}</label>
-                  <textarea 
-                    id="message" 
-                    rows={4} 
+                  <textarea
+                    id="message"
+                    rows={4}
                     className="w-full px-4 py-2 border border-natural-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bnb-500 focus:border-transparent"
                     placeholder={t('contact.form.messagePlaceholder', 'Il tuo messaggio...')}
                   />
@@ -1901,11 +1915,11 @@ export default function Home() {
               <h4 className="text-xl font-serif text-white mb-4">{t('footer.title', 'Arcu de Chelu')}</h4>
               <div className="flex items-center mb-4">
                 <div className="relative h-10 w-10 mr-2">
-                  <Image 
-                    src="/images/B2_reduction_edited_optimized_.png" 
-                    alt={t('footer.logoAlt', 'Arcu de Chelu Logo')} 
+                  <Image
+                    src="/images/B2_reduction_edited_optimized_.png"
+                    alt={t('footer.logoAlt', 'Arcu de Chelu Logo')}
                     fill
-                    style={{objectFit: "contain"}}
+                    style={{ objectFit: "contain" }}
                     sizes="40px"
                     quality={90}
                   />
@@ -1923,7 +1937,7 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-medium text-white mb-4">{t('footer.quickLinks.title', 'Link Rapidi')}</h4>
               <ul className="space-y-2">
@@ -1934,7 +1948,7 @@ export default function Home() {
                 <li><Link href="#contact" className="text-natural-400 hover:text-white transition-colors">{t('footer.quickLinks.contact', 'Contatti')}</Link></li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-medium text-white mb-4">{t('footer.contact.title', 'Contatti')}</h4>
               <ul className="space-y-2">
@@ -1952,15 +1966,15 @@ export default function Home() {
                 </li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-medium text-white mb-4">{t('footer.newsletter.title', 'Newsletter')}</h4>
               <p className="text-natural-400 mb-4">
                 {t('footer.newsletter.description', 'Iscriviti alla nostra newsletter per ricevere aggiornamenti e offerte speciali.')}
               </p>
               <div className="flex">
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   className="px-4 py-2 w-full bg-natural-700 text-white rounded-l-md focus:outline-none focus:ring-2 focus:ring-bnb-500"
                   placeholder={t('footer.newsletter.placeholder', 'La tua email')}
                 />
@@ -1970,7 +1984,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
+
           <div className="border-t border-natural-700 mt-12 pt-8 text-center text-natural-500">
             <p>{t('footer.copyright', '© {year} Arcu de Chelu B&B. Tutti i diritti riservati.').replace('{year}', new Date().getFullYear().toString())}</p>
           </div>
