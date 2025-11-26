@@ -442,7 +442,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative h-screen bg-natural-900 overflow-hidden">
-        {/* Immagine statica invece del carosello */}
+        {/* Immagine di sfondo */}
         <div className="absolute inset-0">
           <Image
             src="/images/copertina.jpg"
@@ -451,37 +451,56 @@ export default function Home() {
             priority
             sizes="100vw"
             style={{ objectFit: "cover" }}
-            className="opacity-80"
+            className="opacity-80" // L'immagine di sfondo rimane leggermente scura
             quality={85}
           />
         </div>
 
-        <div className="container mx-auto text-center px-4 flex flex-col h-full justify-center">
+        <div className="container mx-auto text-center px-4 flex flex-col h-full justify-center relative z-10">
           <div className="animate-fade-in flex flex-col items-center mb-auto mt-auto">
-            <div className="relative h-96 w-96 mx-auto mb-0" style={{ animation: 'scaleIn 1.5s ease forwards' }}>
+
+            {/* 1. BLOCCO LOGO */}
+            <div className="relative h-96 w-96 mx-auto mb-0 flex items-center justify-center" style={{ animation: 'scaleIn 1.5s ease forwards' }}>
+
+              {/* EFFETTO VETRO / PUNTO LUCE */}
+              {/* 
+                  - bg-white/20: Bianco al 20% di opacità (chiaro e pulito)
+                  - backdrop-blur-md: Sfoca le rocce dietro, togliendo il "rumore" di fondo
+                  - blur-2xl: Sfuma i bordi del cerchio in modo molto morbido
+              */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-white/20 backdrop-blur-md rounded-full blur-2xl -z-10"></div>
+
+              {/* Immagine Logo */}
               <Image
                 src="/images/B2_reduction_edited_optimized_.png"
                 alt="Arcu de Chelu Symbol"
                 fill
                 sizes="(max-width: 768px) 90vw, 384px"
-
                 style={{ objectFit: "contain" }}
                 priority
-                className="opacity-75 drop-shadow-xl"
+                className="relative z-10 drop-shadow-xl opacity-95"
                 quality={90}
               />
             </div>
-            <div className="space-y-2 mt-[-55px]">
-              <h1 className="text-5xl md:text-7xl font-serif font-extralight tracking-widest leading-tight text-white/95 drop-shadow-md">
+
+            {/* 2. BLOCCO TESTO */}
+            <div className="space-y-2 mt-[-55px] relative z-20 flex flex-col items-center">
+
+              {/* Ho rimosso il box sfocato dietro il testo perché "sporcava" l'immagine. 
+                  Ora usiamo un'ombra del testo (drop-shadow) molto più forte per la leggibilità. 
+              */}
+
+              <h1 className="text-5xl md:text-7xl font-serif font-extralight tracking-widest leading-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] text-center">
                 {t('hero.title', 'Arcu de Chelu')}
               </h1>
-              <p className="text-lg md:text-xl font-light tracking-wider italic text-white/90 drop-shadow-sm">
+              <p className="text-lg md:text-xl font-light tracking-wider italic text-white/95 drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)] text-center">
                 {t('hero.subtitle', '— Guest House —')}
               </p>
             </div>
+
           </div>
 
-          <div className="mt-auto mb-12 flex flex-col items-center gap-4">
+          <div className="mt-auto mb-12 flex flex-col items-center gap-4 relative z-20">
             <Link href="#rooms">
               <Button
                 variant="bnb"
