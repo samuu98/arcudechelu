@@ -814,27 +814,40 @@ export default function Home() {
                 {(() => {
                   const [showCanneCalendar, setShowCanneCalendar] = useState(false);
                   return (
-                    <div className="flex flex-col items-center justify-end my-6 h-full">
+                    <div className="flex flex-col items-center justify-end my-6 h-full w-full">
                       <Button
                         variant="bnb"
-                        className="w-full max-w-xs mb-2"
+                        className="w-full mb-4 shadow-sm"
                         onClick={() => setShowCanneCalendar((prev) => !prev)}
                         aria-expanded={showCanneCalendar}
                         aria-controls="canne-calendar-iframe"
                       >
-                        {showCanneCalendar ? 'Nascondi calendario' : 'Verifica disponibilità e prenota'}
+                        {showCanneCalendar ? 'Chiudi calendario' : 'Verifica disponibilità e prenota'}
                       </Button>
-                      {showCanneCalendar && (
-                        <iframe
-                          id="canne-calendar-iframe"
-                          src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173837&lang=IT"
-                          style={{ width: '500px', height: '355px', border: 0 }}
-                          frameBorder={0}
-                          allowTransparency={true}
-                        >
-                          Calendario non disponibile
-                        </iframe>
-                      )}
+
+                      {/* Contenitore stilizzato per l'iframe */}
+                      <div className={`transition-all duration-500 ease-in-out overflow-hidden w-full ${showCanneCalendar ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                        {showCanneCalendar && (
+                          <div className="rounded-lg border border-bnb-200 shadow-inner bg-natural-50 overflow-hidden w-full h-[360px] relative">
+                            {/* Loading placeholder */}
+                            <div className="absolute inset-0 flex items-center justify-center text-natural-400 z-0">
+                              <span className="animate-pulse">Caricamento calendario...</span>
+                            </div>
+                            <iframe
+                              id="canne-calendar-iframe"
+                              src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173837&lang=IT"
+                              className="w-full h-full relative z-10"
+                              style={{ border: 0 }}
+                              frameBorder={0}
+                              allowTransparency={true}
+                            // Questo filtro opzionale riduce leggermente la saturazione se il calendario è troppo colorato
+                            // style={{ filter: 'sepia(0.1)' }} 
+                            >
+                              Calendario non disponibile
+                            </iframe>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   );
                 })()}
@@ -961,27 +974,36 @@ export default function Home() {
                 {(() => {
                   const [showArcuCalendar, setShowArcuCalendar] = useState(false);
                   return (
-                    <div className="flex flex-col items-center justify-end my-6 h-full">
+                    <div className="flex flex-col items-center justify-end my-6 h-full w-full">
                       <Button
                         variant="bnb"
-                        className="w-full max-w-xs mb-2"
+                        className="w-full mb-4 shadow-sm"
                         onClick={() => setShowArcuCalendar((prev) => !prev)}
                         aria-expanded={showArcuCalendar}
                         aria-controls="arcu-calendar-iframe"
                       >
-                        {showArcuCalendar ? 'Nascondi calendario' : 'Verifica disponibilità e prenota'}
+                        {showArcuCalendar ? 'Chiudi calendario' : 'Verifica disponibilità e prenota'}
                       </Button>
-                      {showArcuCalendar && (
-                        <iframe
-                          id="arcu-calendar-iframe"
-                          src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173838&lang=IT"
-                          style={{ width: '500px', height: '355px', border: 0 }}
-                          frameBorder={0}
-                          allowTransparency={true}
-                        >
-                          Tu navegador no soporta iframes
-                        </iframe>
-                      )}
+
+                      <div className={`transition-all duration-500 ease-in-out overflow-hidden w-full ${showArcuCalendar ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                        {showArcuCalendar && (
+                          <div className="rounded-lg border border-bnb-200 shadow-inner bg-natural-50 overflow-hidden w-full h-[360px] relative">
+                            <div className="absolute inset-0 flex items-center justify-center text-natural-400 z-0">
+                              <span className="animate-pulse">Caricamento calendario...</span>
+                            </div>
+                            <iframe
+                              id="arcu-calendar-iframe"
+                              src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173838&lang=IT"
+                              className="w-full h-full relative z-10"
+                              style={{ border: 0 }}
+                              frameBorder={0}
+                              allowTransparency={true}
+                            >
+                              Calendario non disponibile
+                            </iframe>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   );
                 })()}
@@ -1086,27 +1108,36 @@ export default function Home() {
                 {(() => {
                   const [showViaRomaCalendar, setShowViaRomaCalendar] = useState(false);
                   return (
-                    <div className="flex flex-col items-center justify-end my-6 h-full">
+                    <div className="flex flex-col items-center justify-end my-6 h-full w-full">
                       <Button
                         variant="bnb"
-                        className="w-full max-w-xs mb-2"
+                        className="w-full mb-4 shadow-sm"
                         onClick={() => setShowViaRomaCalendar((prev) => !prev)}
                         aria-expanded={showViaRomaCalendar}
                         aria-controls="viaroma-calendar-iframe"
                       >
-                        {showViaRomaCalendar ? 'Nascondi calendario' : 'Verifica disponibilità e prenota'}
+                        {showViaRomaCalendar ? 'Chiudi calendario' : 'Verifica disponibilità e prenota'}
                       </Button>
-                      {showViaRomaCalendar && (
-                        <iframe
-                          id="viaroma-calendar-iframe"
-                          src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173839&lang=IT"
-                          style={{ width: '500px', height: '355px', border: 0 }}
-                          frameBorder={0}
-                          allowTransparency={true}
-                        >
-                          Tu navegador no soporta iframes
-                        </iframe>
-                      )}
+
+                      <div className={`transition-all duration-500 ease-in-out overflow-hidden w-full ${showViaRomaCalendar ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                        {showViaRomaCalendar && (
+                          <div className="rounded-lg border border-bnb-200 shadow-inner bg-natural-50 overflow-hidden w-full h-[360px] relative">
+                            <div className="absolute inset-0 flex items-center justify-center text-natural-400 z-0">
+                              <span className="animate-pulse">Caricamento calendario...</span>
+                            </div>
+                            <iframe
+                              id="viaroma-calendar-iframe"
+                              src="https://www.avaibook.com/widgets_propietarios/loader.php?id=173839&lang=IT"
+                              className="w-full h-full relative z-10"
+                              style={{ border: 0 }}
+                              frameBorder={0}
+                              allowTransparency={true}
+                            >
+                              Calendario non disponibile
+                            </iframe>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   );
                 })()}
