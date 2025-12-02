@@ -41,15 +41,15 @@ export function ImageCarousel({
     }, [currentIndex, onIndexChange]);
 
     return (
-        <div className={`relative ${className}`}>
+        <div className={`relative w-full h-full ${className}`}>
             {/* Main carousel */}
             <div className="relative w-full h-full overflow-hidden">
                 {images.map((img, index) => (
                     <div
                         key={index}
                         className={`absolute inset-0 w-full h-full transition-all duration-1000 transform ${index === currentIndex
-                                ? 'opacity-100 z-10 scale-100'
-                                : 'opacity-0 z-0 scale-105'
+                            ? 'opacity-100 z-10 scale-100'
+                            : 'opacity-0 z-0 scale-105'
                             } optimize-gpu`}
                     >
                         <Image
@@ -114,8 +114,8 @@ export function ImageCarousel({
                             <div
                                 key={i}
                                 className={`relative rounded overflow-hidden shadow-md h-28 transition-all duration-300 cursor-pointer ${idx === currentIndex
-                                        ? 'ring-2 ring-bnb-500 ring-offset-2 transform scale-105'
-                                        : 'hover:opacity-90 hover:shadow-lg hover:transform hover:scale-105'
+                                    ? 'ring-2 ring-bnb-500 ring-offset-2 transform scale-105'
+                                    : 'hover:opacity-90 hover:shadow-lg hover:transform hover:scale-105'
                                     }`}
                                 onClick={() => goTo(idx)}
                             >

@@ -69,7 +69,8 @@ export const rooms: RoomData[] = [
         titleKey: 'rooms.viaRoma.title',
         descriptionKey: 'rooms.viaRoma.description',
         imageKey: 'viaRoma',
-        available: false,
+        calendarId: '173839',
+        available: true,
         features: [
             { iconName: 'Square', label: 'Circa 15 mq' },
             { iconName: 'Bed', label: 'Letto matrimoniale' },
@@ -79,8 +80,6 @@ export const rooms: RoomData[] = [
             { iconName: 'Wifi', label: 'Wi-Fi gratuito' },
             { iconName: 'Coffee', label: 'Kit colazione' },
             { iconName: 'Lock', label: 'Privacy totale' },
-            { iconName: 'Construction', label: 'In costruzione' },
-            { iconName: 'Calendar', label: 'Disponibile da Giugno 2025' },
         ],
     },
 ];
