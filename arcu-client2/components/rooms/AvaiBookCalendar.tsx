@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/locales';
 
 interface AvaiBookCalendarProps {
     calendarId: string;
@@ -13,6 +14,10 @@ interface AvaiBookCalendarProps {
  */
 export function AvaiBookCalendar({ calendarId, roomName }: AvaiBookCalendarProps) {
     const [showCalendar, setShowCalendar] = useState(false);
+    const { t, language } = useLanguage();
+
+    // Map language codes to uppercase format expected by AvaiBook
+    const avaiBookLang = language.toUpperCase();
 
     return (
         <div className="flex flex-col items-center justify-end my-6 h-full w-full">
@@ -23,7 +28,7 @@ export function AvaiBookCalendar({ calendarId, roomName }: AvaiBookCalendarProps
                 aria-expanded={showCalendar}
                 aria-controls={`${roomName}-calendar-iframe`}
             >
-                {showCalendar ? 'Chiudi calendario' : 'Verifica disponibilità e prenota'}
+                {showCalendar ? t('calendar.close', 'Chiudi calendario') : t('calendar.checkAvailability', 'Verifica disponibilità e prenota')}
             </Button>
 
             <div
@@ -37,13 +42,13 @@ export function AvaiBookCalendar({ calendarId, roomName }: AvaiBookCalendarProps
                         </div>
                         <iframe
                             id={`${roomName}-calendar-iframe`}
-                            src={`https://www.avaibook.com/widgets_propietarios/loader.php?id=${calendarId}&lang=IT`}
+                            src={`https://www.avaibook.com/widgets_propietarios/loader.php?id=${calendarId}&lang=${avaiBookLang}`}
                             className="w-full h-full relative z-10"
                             style={{ border: 0 }}
                             frameBorder={0}
                             allowTransparency={true}
                         >
-                            Calendario non disponibile
+                            {t('calendar.notAvailable', 'Calendario non disponibile')}
                         </iframe>
                     </div>
                 )}

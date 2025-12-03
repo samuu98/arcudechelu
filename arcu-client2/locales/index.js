@@ -3,11 +3,17 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import it from './it';
 import en from './en';
+import es from './es';
+import de from './de';
+import fr from './fr';
 
 // Define available languages
 export const languages = {
   it: 'Italiano',
-  en: 'English'
+  en: 'English',
+  es: 'Español',
+  de: 'Deutsch',
+  fr: 'Français'
 };
 
 // Helper function to safely access nested objects with a fallback
@@ -34,14 +40,20 @@ export function LanguageProvider({ children }) {
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language') || 'it';
     setLanguage(savedLanguage);
-    setTranslations(savedLanguage === 'it' ? it : en);
+    loadTranslations(savedLanguage);
   }, []);
+
+  // Helper function to load translations based on language code
+  const loadTranslations = (lang) => {
+    const translationMap = { it, en, es, de, fr };
+    setTranslations(translationMap[lang] || it);
+  };
 
   // Function to change the language
   const changeLanguage = (lang) => {
-    if (lang === 'it' || lang === 'en') {
+    if (languages[lang]) {
       setLanguage(lang);
-      setTranslations(lang === 'it' ? it : en);
+      loadTranslations(lang);
       localStorage.setItem('language', lang);
     }
   };
@@ -71,7 +83,10 @@ export function useLanguage() {
 // Translations
 export const availableTranslations = {
   it,
-  en
+  en,
+  es,
+  de,
+  fr
 };
 
 export default availableTranslations; 

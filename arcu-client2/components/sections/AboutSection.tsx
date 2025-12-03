@@ -42,7 +42,8 @@ export function AboutSection() {
                                     altText={t('about.imageAlt', 'Immagini di Modolo')}
                                     autoSlideInterval={6000}
                                     priority
-                                    onIndexChange={setCurrentModoloImageIndex}
+                                    currentIndex={currentModoloImageIndex}
+                                    setCurrentIndex={setCurrentModoloImageIndex}
                                 />
                             </div>
 
@@ -68,8 +69,8 @@ export function AboutSection() {
                                     <div
                                         key={i}
                                         className={`relative rounded overflow-hidden shadow-md h-28 transition-all duration-300 cursor-pointer ${idx === currentModoloImageIndex
-                                                ? 'ring-2 ring-bnb-500 ring-offset-2 transform scale-105'
-                                                : 'hover:opacity-90 hover:shadow-lg hover:transform hover:scale-105'
+                                            ? 'ring-2 ring-bnb-500 ring-offset-2 transform scale-105'
+                                            : 'hover:opacity-90 hover:shadow-lg hover:transform hover:scale-105'
                                             }`}
                                         onClick={() => setCurrentModoloImageIndex(idx)}
                                     >

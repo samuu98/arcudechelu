@@ -58,7 +58,7 @@ export function RoomCard({ room }: RoomCardProps) {
                                     {IconComponent && (
                                         <IconComponent className="h-3.5 w-3.5 text-bnb-600 flex-shrink-0" />
                                     )}
-                                    <span>{feature.label}</span>
+                                    <span>{t(feature.labelKey)}</span>
                                 </div>
                             );
                         })}

@@ -11,7 +11,7 @@ import { useLanguage } from '@/locales';
  * Hero section component with logo, title, and call-to-action buttons
  */
 export function Hero() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
 
     return (
         <section className="relative h-screen bg-natural-900 overflow-hidden">
@@ -76,7 +76,7 @@ export function Hero() {
                     </Link>
 
                     <a
-                        href="https://bookonline.pro/it/properties/101334?unidades=1&filter_zone=1&referencia_propietario=Prenotazione%2520da%2520sito"
+                        href={`https://bookonline.pro/${language}/properties/101334?unidades=1&filter_zone=1&referencia_propietario=Prenotazione%2520da%2520sito`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="md:hidden animate-slide-in"

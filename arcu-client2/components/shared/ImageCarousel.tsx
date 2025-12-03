@@ -14,6 +14,8 @@ interface ImageCarouselProps {
     className?: string;
     priority?: boolean;
     onIndexChange?: (index: number) => void;
+    currentIndex?: number;
+    setCurrentIndex?: (index: number) => void;
 }
 
 /**
@@ -27,8 +29,20 @@ export function ImageCarousel({
     className = '',
     priority = false,
     onIndexChange,
+    currentIndex: externalIndex,
+    setCurrentIndex: externalSetIndex,
 }: ImageCarouselProps) {
-    const { currentIndex, next, prev, goTo } = useImageCarousel(images.length);
+    const internalCarousel = useImageCarousel(images.length);
+
+    // Use external index if provided, otherwise use internal
+    const currentIndex = externalIndex !== undefined ? externalIndex : internalCarousel.currentIndex;
+    const goTo = externalSetIndex || internalCarousel.goTo;
+    const next = externalSetIndex
+        ? () => externalSetIndex((currentIndex + 1) % images.length)
+        : internalCarousel.next;
+    const prev = externalSetIndex
+        ? () => externalSetIndex((currentIndex - 1 + images.length) % images.length)
+        : internalCarousel.prev;
 
     // Auto-slide if interval is provided
     useAutoSlide(next, autoSlideInterval || 5000, !!autoSlideInterval);

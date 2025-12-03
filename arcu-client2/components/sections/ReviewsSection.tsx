@@ -13,39 +13,40 @@ interface Review {
     guestType: string;
 }
 
-const reviews: Review[] = [
-    {
-        rating: '10/10',
-        text: 'Ordine e pulizia della stanza impeccabili, ha tutto quello che serve, hosts molto gentili, posizione molto carina e tra i letti più comodi che io abbia mai provato.',
-        author: 'Enrico',
-        roomType: 'Appartamento Deluxe',
-        date: 'Luglio 2023',
-        guestType: 'Gruppo'
-    },
-    {
-        rating: '10/10',
-        text: 'Pulizia, ampiezza della stanza, che in realtà è un monolocale con terrazza. Attrezzatura, c\'è tutto quello che devi trovare in un B&B e anche di più; comodità del letto matrimoniale. Infine, una mega colazione dal salato al dolce con ampia scelta per entrambi.',
-        author: 'Pablez',
-        roomType: 'Camera Matrimoniale',
-        date: 'Agosto 2024',
-        guestType: 'Coppia'
-    },
-    {
-        rating: '10/10',
-        text: 'Absolutely amazing stay, the place was lovely and with a lot of Sardinian products and pictures, it felt like staying at home away from home. Breakfast was tasty and full B&B healthy options, and you get to consume it in your room privately.',
-        author: 'Desiree',
-        roomType: 'Appartamento Deluxe',
-        date: 'Luglio 2024',
-        guestType: 'Famiglia'
-    }
-];
-
 /**
  * Reviews section with carousel and Booking.com rating
  */
 export function ReviewsSection() {
     const { t } = useLanguage();
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    // Get reviews from translations
+    const reviews: Review[] = [
+        {
+            rating: t('reviews.review1.rating', '10/10'),
+            text: t('reviews.review1.text', ''),
+            author: t('reviews.review1.author', ''),
+            roomType: t('reviews.review1.roomType', ''),
+            date: t('reviews.review1.date', ''),
+            guestType: t('reviews.review1.guestType', ''),
+        },
+        {
+            rating: t('reviews.review2.rating', '10/10'),
+            text: t('reviews.review2.text', ''),
+            author: t('reviews.review2.author', ''),
+            roomType: t('reviews.review2.roomType', ''),
+            date: t('reviews.review2.date', ''),
+            guestType: t('reviews.review2.guestType', ''),
+        },
+        {
+            rating: t('reviews.review3.rating', '10/10'),
+            text: t('reviews.review3.text', ''),
+            author: t('reviews.review3.author', ''),
+            roomType: t('reviews.review3.roomType', ''),
+            date: t('reviews.review3.date', ''),
+            guestType: t('reviews.review3.guestType', ''),
+        },
+    ];
 
     const nextReview = () => {
         setCurrentIndex((prev) => (prev + 1) % reviews.length);
@@ -68,10 +69,10 @@ export function ReviewsSection() {
             <div className="container mx-auto px-4">
                 {/* Header */}
                 <h2 className="text-3xl md:text-4xl font-serif text-natural-800 mb-3 text-center">
-                    Cosa Dicono di Noi
+                    {t('reviews.title', 'Cosa Dicono di Noi')}
                 </h2>
                 <p className="text-center text-natural-600 mb-6">
-                    Le opinioni dei nostri ospiti sono la nostra migliore pubblicità.
+                    {t('reviews.subtitle', 'Le opinioni dei nostri ospiti sono la nostra migliore pubblicità.')}
                 </p>
 
                 {/* Rating Badge */}
@@ -80,7 +81,7 @@ export function ReviewsSection() {
                         <Star className="h-5 w-5 fill-white" />
                         <span className="font-bold text-lg">9.5 / 10</span>
                     </div>
-                    <span className="text-natural-600">• Oltre 80 recensioni verificate</span>
+                    <span className="text-natural-600">• {t('reviews.ratingBadge', 'Oltre 80 recensioni verificate')}</span>
                 </div>
 
                 {/* Reviews Carousel */}
@@ -154,7 +155,7 @@ export function ReviewsSection() {
                             rel="noopener noreferrer"
                             className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded flex items-center gap-2 transition-colors"
                         >
-                            Leggi tutte le recensioni su Booking.com
+                            {t('reviews.ctaButton', 'Leggi tutte le recensioni su Booking.com')}
                             <ChevronRight className="h-5 w-5" />
                         </a>
                     </div>

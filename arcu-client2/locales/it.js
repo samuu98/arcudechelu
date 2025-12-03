@@ -9,14 +9,14 @@ export const it = {
     bookNow: "Prenota Ora",
     menu: "Menu",
   },
-  
+
   // Hero Section
   hero: {
     title: "Arcu de Chelu",
     subtitle: "— Guest House —",
     cta: "Scopri le Nostre Camere",
   },
-  
+
   // About Section
   about: {
     pretitle: "Benvenuti a",
@@ -27,7 +27,7 @@ export const it = {
     description1: "Modolo è un affascinante borgo immerso nella splendida campagna sarda. Situato a pochi chilometri da Bosa, offre una fuga tranquilla e autentica. Uliveti, vigneti e agrumeti adornano la campagna, creando un paesaggio che dona serenità.",
     description2: "La vicinanza alla costa occidentale permette di godere di un mare unico nel suo genere, dove puoi trovare spiagge immacolate e calette mozzafiato. Questo piccolo borgo è il luogo ideale per scoprire l'autentica bellezza naturale della Sardegna.",
     cta: "Scopri di più su di noi",
-    
+
     // Features
     features: {
       location: "Posizione strategica",
@@ -40,25 +40,25 @@ export const it = {
       nature: "Immerso nella natura",
     },
   },
-  
+
   // Rooms Section
   rooms: {
     title: "Le Nostre Camere",
     subtitle: "Le nostre camere sono pensate per offrire il massimo comfort durante il vostro soggiorno.",
     roomInfo: "Le camere degli ospiti sono situate in un piano dedicato, garantendo una maggiore privacy e tranquillità. Gli host non vivono nello stesso piano, ma saranno sempre a vostra disposizione per assicurarsi che il vostro soggiorno sia perfetto in ogni dettaglio.",
-    
+
     // Room 1: Canne Al Vento
     canneAlVento: {
       title: "Canne Al Vento",
       description: "Il vostro rifugio romantico con terrazzo panoramico mozzafiato sulla valle. Questa spaziosa camera indipendente unisce privacy totale e autonomia: letto matrimoniale, letto singolo, bagno privato e angolo cottura completamente attrezzato. Perfetta per coppie in cerca di romanticismo o piccole famiglie che vogliono sentirsi a casa, con la libertà di preparare i propri pasti godendo di tramonti indimenticabili.",
     },
-    
+
     // Room 2: Arcu de Chelu
     arcuDeChelu: {
       title: "Arcu de Chelu",
       description: "La suite esclusiva ideale per famiglie e gruppi di amici. Due eleganti camere con balcone panoramico, zona pranzo attrezzata e bagno privato: tutto riservato solo a voi, mai condiviso con estranei. Scegliete una o entrambe le camere secondo le vostre esigenze (2-5 persone), godendo di privacy assoluta e della massima flessibilità per un soggiorno autentico nel cuore di Modolo.",
     },
-    
+
     // Room 3: Via Roma (Coming Soon)
     viaRoma: {
       title: "Via Roma",
@@ -68,37 +68,44 @@ export const it = {
       description: "Camera matrimoniale deluxe perfetta per chi cerca comfort e praticità. Con circa 15 mq di spazio curato nei minimi dettagli, offre un bagno privato moderno, climatizzazione, Smart TV e una suggestiva vista sul borgo. Ideale per coppie che desiderano un soggiorno confortevole a un prezzo conveniente, senza rinunciare alla qualità.",
     },
   },
-  
+
   // Services Section
   services: {
     title: "I Nostri Servizi",
     subtitle: "Offriamo un'ampia gamma di servizi per rendere il vostro soggiorno indimenticabile, combinando comfort moderni con l'autentica ospitalità sarda.",
-    
+
     // Service 1: Breakfast
     breakfast: {
       title: "Breakfast Welcome Kit",
       description: "Vi diamo il benvenuto con un pratico kit colazione che troverete ad attendervi in camera: caffè, tè, tisane, biscotti, cornetti confezionati, marmellata e fette biscottate. Insieme a bollitore e stoviglie, avrete tutto per una colazione in autonomia e senza orari. Il kit è il nostro modo di accogliervi, perfetto per i primi momenti del vostro soggiorno in totale libertà.",
     },
-    
+
     // Service 2: Summer Bag
     summerBag: {
       title: "Summer Bag",
       description: "Teli da spiaggia soffici e colorati per sdraiarti comodamente sulla sabbia. E non dimenticare l'ombrellone leggero e facile da montare, per ripararti dal sole quando ne hai bisogno. Una borsa frigo per tenere al fresco panini e bevande. Con questa pratica borsa, avrai il minimo indispensabile per goderti una giornata perfetta al mare.",
     },
-    
+
     // Service 3: WiFi
     wifi: {
       title: "Free WiFi",
-      description: "Ti offriamo un servizio di WiFi gratuito per rendere il tuo soggiorno ancora più confortevole e connesso. Con il nostro veloce accesso a Internet, potrai rimanere in contatto con amici e familiari, condividere i momenti speciali del tuo viaggio sui social media o lavorare comodamente, se necessario. Siamo felici di offrirti questo servizio aggiuntivo per assicurarti un soggiorno piacevole e senza interruzioni.",
+      description: "Ti offriamo un servizio di WiFi gratuito per rendere il tuo soggiorno più confortevole e connesso. Con il nostro veloce accesso a Internet, potrai rimanere in contatto con amici e familiari, condividere i momenti migliori del tuo viaggio sui social media o lavorare comodamente, se necessario. Siamo felici di offrirti questo servizio aggiuntivo per assicurarti un soggiorno piacevole e senza interruzioni.",
+    },
+
+    // Service 4: Cyclist Services
+    cyclists: {
+      title: "Servizi per Ciclisti",
+      description: "Il nostro B&B è una tappa ideale per i ciclisti che esplorano la Sardegna. Offriamo un garage sicuro per le biciclette, un'area di parcheggio dedicata e una selezione di attrezzi per piccole riparazioni e manutenzione. La posizione strategica permette di accedere facilmente a numerosi percorsi cicloturistici che attraversano paesaggi mozzafiato dalla montagna al mare.",
+      additionalInfo: "In particolare, i ciclisti apprezzeranno la nostra posizione strategica tra montagne e mare, con facile accesso a percorsi panoramici che offrono viste spettacolari della costa occidentale sarda. Dopo una giornata in sella, potrete rilassarvi nella tranquillità del nostro B&B.",
     },
   },
-  
+
   // Gallery Section
   gallery: {
     title: "La Nostra Galleria",
     subtitle: "Scopri la bellezza di Arcu de Chelu attraverso le immagini della nostra struttura e dei dintorni.",
     cta: "Visualizza Tutte le Foto",
-    
+
     // Image alt texts
     imageAlt: {
       external: "Vista esterna",
@@ -109,26 +116,26 @@ export const it = {
       garden: "Giardino",
     },
   },
-  
+
   // Testimonials Section
   testimonials: {
     title: "Cosa Dicono di Noi",
     subtitle: "Le opinioni dei nostri ospiti sono la nostra migliore pubblicità.",
-    
+
     // Testimonial 1
     testimonial1: {
       quote: "Un soggiorno meraviglioso in un posto incantevole. Le camere sono curate nei minimi dettagli e la colazione è superba. I proprietari sono gentilissimi e sempre disponibili.",
       author: "Laura M.",
       location: "Milano, Italia",
     },
-    
+
     // Testimonial 2
     testimonial2: {
       quote: "Arcu de Chelu è un angolo di paradiso. La posizione è strategica per visitare le spiagge più belle della zona. Torneremo sicuramente la prossima estate!",
       author: "Marco P.",
       location: "Torino, Italia",
     },
-    
+
     // Testimonial 3
     testimonial3: {
       quote: "Un'esperienza indimenticabile. La struttura è bellissima, immersa nella natura. La cena tipica sarda è stata il momento più bello del nostro soggiorno.",
@@ -136,12 +143,50 @@ export const it = {
       location: "Berlino, Germania",
     },
   },
-  
+
+  // Reviews Section
+  reviews: {
+    title: "Cosa Dicono di Noi",
+    subtitle: "Le opinioni dei nostri ospiti sono la nostra migliore pubblicità.",
+    ratingBadge: "Oltre 80 recensioni verificate",
+    ctaButton: "Leggi tutte le recensioni su Booking.com",
+
+    // Review 1
+    review1: {
+      rating: "10/10",
+      text: "Ordine e pulizia della stanza impeccabili, ha tutto quello che serve, hosts molto gentili, posizione molto carina e tra i letti più comodi che io abbia mai provato.",
+      author: "Enrico",
+      roomType: "Appartamento Deluxe",
+      date: "Luglio 2023",
+      guestType: "Gruppo",
+    },
+
+    // Review 2
+    review2: {
+      rating: "10/10",
+      text: "Pulizia, ampiezza della stanza, che in realtà è un monolocale con terrazza. Attrezzatura, c'è tutto quello che devi trovare in un B&B e anche di più; comodità del letto matrimoniale. Infine, una mega colazione dal salato al dolce con ampia scelta per entrambi.",
+      author: "Pablez",
+      roomType: "Camera Matrimoniale",
+      date: "Agosto 2024",
+      guestType: "Coppia",
+    },
+
+    // Review 3
+    review3: {
+      rating: "10/10",
+      text: "Absolutely amazing stay, the place was lovely and with a lot of Sardinian products and pictures, it felt like staying at home away from home. Breakfast was tasty and full B&B healthy options, and you get to consume it in your room privately.",
+      author: "Desiree",
+      roomType: "Appartamento Deluxe",
+      date: "Luglio 2024",
+      guestType: "Famiglia",
+    },
+  },
+
   // Contact Section
   contact: {
     title: "Contattaci",
     subtitle: "Siamo a vostra disposizione per qualsiasi informazione o per prenotare il vostro soggiorno. Contattateci tramite i seguenti mezzi o compilando il modulo.",
-    
+
     // Contact Info
     address: {
       title: "Indirizzo",
@@ -156,7 +201,7 @@ export const it = {
       title: "Email",
       address: "info@arcudechelubnb.com",
     },
-    
+
     // Contact Form
     form: {
       title: "Inviaci un Messaggio",
@@ -171,7 +216,7 @@ export const it = {
       submit: "Invia Messaggio",
     },
   },
-  
+
   // Footer
   footer: {
     description: "Un B&B esclusivo nel cuore della Sardegna, dove tradizione e comfort si incontrano.",
@@ -189,6 +234,41 @@ export const it = {
   language: {
     it: "Italiano",
     en: "English",
+    es: "Español",
+    de: "Deutsch",
+    fr: "Français",
+  },
+
+  // Room Features
+  roomFeatures: {
+    area27: "Circa 27 mq",
+    area50: "Circa 50 mq",
+    area15: "Circa 15 mq",
+    doubleBed: "Letto matrimoniale",
+    singleBed: "Letto singolo",
+    doubleBeds: "Letti matrimoniali",
+    singleBeds: "Letti singoli",
+    twoRooms: "2 camere separate",
+    panoramicTerrace: "Terrazzo panoramico",
+    panoramicBalconies: "Balconi panoramici",
+    privateBathroom: "Bagno privato",
+    exclusiveBathroom: "Bagno ad uso esclusivo",
+    kitchenette: "Angolo cottura attrezzato",
+    kitchenArea: "Angolo cottura",
+    airConditioning: "Aria condizionata",
+    smartTv: "Smart TV",
+    freeWifi: "Wi-Fi gratuito",
+    diningArea: "Zona pranzo",
+    breakfastKit: "Kit colazione",
+    totalPrivacy: "Privacy totale",
+    capacity: "1-4 persone",
+  },
+
+  // Calendar
+  calendar: {
+    close: "Chiudi calendario",
+    checkAvailability: "Verifica disponibilità e prenota",
+    notAvailable: "Calendario non disponibile",
   },
 };
 

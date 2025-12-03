@@ -11,7 +11,7 @@ import { useLanguage } from '@/locales';
  * Header component with logo, navigation, and language switcher
  */
 export function Header() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
 
     return (
         <header className="fixed w-full bg-white/80 backdrop-blur-sm z-50 shadow-sm transition-all duration-300">
@@ -78,7 +78,7 @@ export function Header() {
                         <LanguageSwitcher />
                     </div>
                     <a
-                        href="https://bookonline.pro/it/properties/101334?unidades=1&filter_zone=1&referencia_propietario=Prenotazione%2520da%2520sito"
+                        href={`https://bookonline.pro/${language}/properties/101334?unidades=1&filter_zone=1&referencia_propietario=Prenotazione%2520da%2520sito`}
                         target="_blank"
                         rel="noopener noreferrer"
                     >
