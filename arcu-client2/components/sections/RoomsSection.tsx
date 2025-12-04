@@ -4,7 +4,7 @@ import React from 'react';
 import { useLanguage } from '@/locales';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { RoomCard } from '@/components/rooms/RoomCard';
-import { rooms } from '@/lib/data/rooms';
+import { siteConfig } from '@/config';
 
 /**
  * Rooms section with room cards
@@ -24,7 +24,7 @@ export function RoomsSection() {
                 />
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {rooms.map((room) => (
+                    {siteConfig.rooms.map((room) => (
                         <RoomCard key={room.id} room={room} />
                     ))}
                 </div>

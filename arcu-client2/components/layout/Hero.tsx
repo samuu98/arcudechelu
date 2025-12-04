@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/locales';
+import { siteConfig } from '@/config';
 
 /**
  * Hero section component with logo, title, and call-to-action buttons
@@ -13,13 +14,16 @@ import { useLanguage } from '@/locales';
 export function Hero() {
     const { t, language } = useLanguage();
 
+    // Get booking URL from site config
+    const bookingUrl = siteConfig.booking.urlPattern.replace('{language}', language);
+
     return (
         <section className="relative h-screen bg-natural-900 overflow-hidden">
             {/* Immagine di sfondo */}
             <div className="absolute inset-0">
                 <Image
-                    src="/images/copertina.jpg"
-                    alt={t('hero.imageAlt', 'Arcu de Chelu B&B')}
+                    src={siteConfig.heroImage}
+                    alt={t('hero.imageAlt', `${siteConfig.name} B&B`)}
                     fill
                     priority
                     sizes="100vw"
@@ -76,7 +80,7 @@ export function Hero() {
                     </Link>
 
                     <a
-                        href={`https://bookonline.pro/${language}/properties/101334?unidades=1&filter_zone=1&referencia_propietario=Prenotazione%2520da%2520sito`}
+                        href={bookingUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="md:hidden animate-slide-in"

@@ -3,15 +3,7 @@
 import React, { useState } from 'react';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/locales';
-
-interface Review {
-    rating: string;
-    text: string;
-    author: string;
-    roomType: string;
-    date: string;
-    guestType: string;
-}
+import { siteConfig } from '@/config';
 
 /**
  * Reviews section with carousel and Booking.com rating
@@ -20,33 +12,8 @@ export function ReviewsSection() {
     const { t } = useLanguage();
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Get reviews from translations
-    const reviews: Review[] = [
-        {
-            rating: t('reviews.review1.rating', '10/10'),
-            text: t('reviews.review1.text', ''),
-            author: t('reviews.review1.author', ''),
-            roomType: t('reviews.review1.roomType', ''),
-            date: t('reviews.review1.date', ''),
-            guestType: t('reviews.review1.guestType', ''),
-        },
-        {
-            rating: t('reviews.review2.rating', '10/10'),
-            text: t('reviews.review2.text', ''),
-            author: t('reviews.review2.author', ''),
-            roomType: t('reviews.review2.roomType', ''),
-            date: t('reviews.review2.date', ''),
-            guestType: t('reviews.review2.guestType', ''),
-        },
-        {
-            rating: t('reviews.review3.rating', '10/10'),
-            text: t('reviews.review3.text', ''),
-            author: t('reviews.review3.author', ''),
-            roomType: t('reviews.review3.roomType', ''),
-            date: t('reviews.review3.date', ''),
-            guestType: t('reviews.review3.guestType', ''),
-        },
-    ];
+    // Get reviews from siteConfig
+    const reviews = siteConfig.reviews;
 
     const nextReview = () => {
         setCurrentIndex((prev) => (prev + 1) % reviews.length);
@@ -91,28 +58,22 @@ export function ReviewsSection() {
                             <div key={idx} className="bg-white rounded-lg shadow-md p-6">
                                 {/* Stars */}
                                 <div className="flex gap-1 mb-3">
-                                    {[...Array(5)].map((_, i) => (
+                                    {[...Array(review.rating)].map((_, i) => (
                                         <Star key={i} className="h-4 w-4 fill-blue-500 text-blue-500" />
                                     ))}
                                 </div>
 
-                                {/* Rating */}
-                                <div className="text-2xl font-bold text-natural-800 mb-3">
-                                    {review.rating}
-                                </div>
-
                                 {/* Review Text */}
                                 <p className="text-natural-600 italic mb-6 text-sm leading-relaxed">
-                                    "{review.text}"
+                                    "{review.comment}"
                                 </p>
 
                                 {/* Author Info */}
                                 <div className="border-t pt-4">
-                                    <div className="font-semibold text-natural-800">{review.author}</div>
-                                    <div className="text-sm text-natural-500">
-                                        {review.roomType} • {review.date}
-                                    </div>
-                                    <div className="text-sm text-natural-400 mt-1">{review.guestType}</div>
+                                    <div className="font-semibold text-natural-800">{review.name}</div>
+                                    {review.date && (
+                                        <div className="text-sm text-natural-500">{review.date}</div>
+                                    )}
                                 </div>
                             </div>
                         ))}

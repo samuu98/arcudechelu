@@ -6,8 +6,7 @@ import { useLanguage } from '@/locales';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { ImageCarousel } from '@/components/shared/ImageCarousel';
 import { FeatureList } from '@/components/shared/FeatureList';
-import { modoloImages } from '@/lib/data/images';
-import { aboutFeatures } from '@/lib/data/features';
+import { siteConfig } from '@/config';
 import * as Icons from 'lucide-react';
 
 /**
@@ -16,6 +15,10 @@ import * as Icons from 'lucide-react';
 export function AboutSection() {
     const { t } = useLanguage();
     const [currentModoloImageIndex, setCurrentModoloImageIndex] = useState(0);
+
+    // Get data from siteConfig
+    const modoloImages = siteConfig.images.modolo;
+    const aboutFeatures = siteConfig.features;
 
     // Convert features with translation
     const features = aboutFeatures.map(f => ({

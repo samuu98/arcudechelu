@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useLanguage } from '@/locales';
 import { ImageCarousel } from '@/components/shared/ImageCarousel';
 import { SectionHeader } from '@/components/shared/SectionHeader';
-import { galleryCarouselImages } from '@/lib/data/images';
+import { siteConfig } from '@/config';
 
 /**
  * Gallery section with image carousel
@@ -13,6 +13,9 @@ import { galleryCarouselImages } from '@/lib/data/images';
 export function GallerySection() {
     const { t } = useLanguage();
     const [currentIndex, setCurrentIndex] = React.useState(0);
+
+    // Get gallery images from siteConfig
+    const galleryImages = siteConfig.images.gallery;
 
     return (
         <section id="gallery" className="py-16 md:py-24 bg-natural-50">
@@ -26,7 +29,7 @@ export function GallerySection() {
                     <div className="relative rounded-lg overflow-hidden shadow-xl bg-white p-2">
                         <div className="h-[500px] relative rounded overflow-hidden">
                             <ImageCarousel
-                                images={galleryCarouselImages}
+                                images={galleryImages}
                                 altText={t('gallery.imageAlt', 'Galleria')}
                                 autoSlideInterval={7000}
                                 currentIndex={currentIndex}
@@ -36,7 +39,7 @@ export function GallerySection() {
 
                         {/* Thumbnails */}
                         <div className="grid grid-cols-6 gap-2 mt-2">
-                            {galleryCarouselImages.map((img, i) => (
+                            {galleryImages.map((img, i) => (
                                 <div
                                     key={i}
                                     className={`relative rounded overflow-hidden shadow-sm h-16 transition-all duration-300 cursor-pointer ${i === currentIndex

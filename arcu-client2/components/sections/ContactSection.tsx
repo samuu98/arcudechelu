@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useLanguage } from '@/locales';
+import { siteConfig } from '@/config';
 
 /**
  * Contact section with contact information and form
@@ -56,10 +57,10 @@ export function ContactSection() {
                                 <div>
                                     <h4 className="font-semibold text-natural-800 mb-1">Email</h4>
                                     <a
-                                        href="mailto:info@arcudechelu.com"
+                                        href={`mailto:${siteConfig.contact.email}`}
                                         className="text-bnb-600 hover:text-bnb-700 transition-colors"
                                     >
-                                        info@arcudechelu.com
+                                        {siteConfig.contact.email}
                                     </a>
                                 </div>
                             </div>
@@ -72,10 +73,10 @@ export function ContactSection() {
                                 <div>
                                     <h4 className="font-semibold text-natural-800 mb-1">Telefono</h4>
                                     <a
-                                        href="tel:+393401234567"
+                                        href={`tel:${siteConfig.contact.phone}`}
                                         className="text-bnb-600 hover:text-bnb-700 transition-colors"
                                     >
-                                        +39 340 123 4567
+                                        {siteConfig.contact.phoneDisplay}
                                     </a>
                                 </div>
                             </div>
@@ -88,9 +89,7 @@ export function ContactSection() {
                                 <div>
                                     <h4 className="font-semibold text-natural-800 mb-1">Indirizzo</h4>
                                     <p className="text-natural-600">
-                                        Via Roma, 123<br />
-                                        08010 Modolo (NU)<br />
-                                        Sardegna, Italia
+                                        {siteConfig.contact.address}
                                     </p>
                                 </div>
                             </div>

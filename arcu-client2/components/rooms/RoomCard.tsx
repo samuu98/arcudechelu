@@ -5,11 +5,10 @@ import * as Icons from 'lucide-react';
 import { useLanguage } from '@/locales';
 import { ImageCarousel } from '@/components/shared/ImageCarousel';
 import { AvaiBookCalendar } from './AvaiBookCalendar';
-import { RoomData } from '@/lib/data/rooms';
-import { canneAlVentoImages, arcuDeChechuImages, viaRomaImages } from '@/lib/data/images';
+import { siteConfig } from '@/config';
 
 interface RoomCardProps {
-    room: RoomData;
+    room: typeof siteConfig.rooms[number];
 }
 
 /**
@@ -18,14 +17,8 @@ interface RoomCardProps {
 export function RoomCard({ room }: RoomCardProps) {
     const { t } = useLanguage();
 
-    // Map image keys to actual image arrays
-    const imageMap = {
-        canneAlVento: canneAlVentoImages,
-        arcuDeChelu: arcuDeChechuImages,
-        viaRoma: viaRomaImages,
-    };
-
-    const images = imageMap[room.imageKey];
+    // Get images from siteConfig based on room's imageKey
+    const images = siteConfig.images.rooms[room.imageKey] || [];
 
     return (
         <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 room-card">
