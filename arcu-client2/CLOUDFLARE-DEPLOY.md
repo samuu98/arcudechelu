@@ -1,37 +1,21 @@
-# 🚀 Configurazione Cloudflare Pages - AGGIORNATA
+# 🚀 Deploy Definitivo su Cloudflare Pages
 
-## ⚠️ CONFIGURAZIONE CORRETTA
+## ✅ CONFIGURAZIONE FINALE (Semplice e Funzionante)
 
-### Build Settings (IMPORTANTE!)
+### Build Settings
+
 ```
 Framework preset: Next.js
-Build command: npx @cloudflare/next-on-pages
-Build output directory: .vercel/output/static
-Root directory: (lascia vuoto)
+Build command: npm run build:sito2
+Build output directory: out
+Root directory: (vuoto)
 ```
 
-### Environment Variables (CRITICHE!)
+### Environment Variables
 
-**Per tutti i siti, aggiungi SEMPRE**:
-```
-NODE_VERSION = 20.18.0
-```
-
-**Poi aggiungi la variabile specifica del sito**:
-
-#### Casa Menica (sito2)
 ```
 NEXT_PUBLIC_SITE = sito2
-```
-
-#### Casa Sisina (sito3)  
-```
-NEXT_PUBLIC_SITE = sito3
-```
-
-#### Arcu de Chelu
-```
-NEXT_PUBLIC_SITE = arcudechelu
+NODE_VERSION = 20
 ```
 
 ---
@@ -41,46 +25,55 @@ NEXT_PUBLIC_SITE = arcudechelu
 ### 1. Commit e Push
 ```bash
 git add .
-git commit -m "fix: Remove packageManager for Cloudflare compatibility"
+git commit -m "fix: Remove yarn and cloudflare adapter for standard npm build"
 git push
 ```
 
-### 2. Cloudflare Pages Setup
-1. Dashboard → Workers & Pages → Create → Pages
-2. Connect to Git → Seleziona repository
-3. Project name: `casamenica` (o altro)
-4. Build command: `npx @cloudflare/next-on-pages`
-5. Build output: `.vercel/output/static`
+### 2. Configurazione Cloudflare
 
-### 3. Environment Variables
-Ve su **Settings → Environment Variables** e aggiungi:
-- `NODE_VERSION` = `20.18.0` ✅ IMPORTANTE!
-- `NEXT_PUBLIC_SITE` = `sito2` (o quello specifico)
+**Settings → Builds & deployments → Configure build**
 
-### 4. Deploy
-Click **Save and Deploy**
+- Build command: `npm run build:sito2`
+- Build output: `out`
+- Framework: Next.js
 
----
+**Environment variables**:
+- `NEXT_PUBLIC_SITE` = `sito2`
+- `NODE_VERSION` = `20`
 
-## ✅ Checklist Pre-Deploy
+### 3. Deploy
 
-- [ ] `packageManager` rimosso da package.json
-- [ ] Codice pushato su Git  
-- [ ] `NODE_VERSION=20.18.0` impostato
-- [ ] `NEXT_PUBLIC_SITE` impostato correttamente
-- [ ] Build command: `npx @cloudflare/next-on-pages`
-- [ ] Output directory: `.vercel/output/static`
+**Retry deployment**
 
 ---
 
-## 🔧 Troubleshooting
+## 🎯 Per tutti e 3 i siti
 
-**Errore "No Next.js version detected"**:
-- Assicurati che `next` sia in `dependencies` nel package.json ✅
-- Rimuovi `packageManager` da package.json ✅
+| Sito | Progetto | Build Command | NEXT_PUBLIC_SITE |
+|------|----------|---------------|------------------|
+| Arcu de Chelu | arcudechelu | `npm run build:arcudechelu` | arcudechelu |
+| Casa Menica | casamenica | `npm run build:sito2` | sito2 |
+| Casa Sisina | casasisina | `npm run build:sito3` | sito3 |
 
-**Engine warnings**:
-- Usa `NODE_VERSION=20.18.0` o superiore ✅
+**Tutti usano**:
+- Output: `out`
+- NODE_VERSION: `20`
+- Package manager: npm (automatico)
 
-**Build cache errors**:
-- Normale con l'adapter, verrà gestito automaticamente ✅
+---
+
+## ✨ Come Funziona
+
+1. Next.js genera HTML statico in `out/`
+2. Cloudflare Pages serve i file statici
+3. Nessun adapter o configurazione complessa necessaria
+4. Deploy super veloci e affidabili
+
+---
+
+## 🔧 Note
+
+- ✅ Rimosso `@cloudflare/next-on-pages` (deprecated e problematico)
+- ✅ Rimosso `yarn.lock` (usa solo npm)
+- ✅ `next.config.js` già configurato con `output: 'export'`
+- ✅ Immagini configurate con `unoptimized: true`
