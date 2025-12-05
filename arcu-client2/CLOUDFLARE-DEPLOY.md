@@ -1,10 +1,8 @@
-# 🚀 Deploy Casa Menica su Cloudflare Pages
+# 🚀 Configurazione Cloudflare Pages - AGGIORNATA
 
-## Configurazione Build
+## ⚠️ CONFIGURAZIONE CORRETTA
 
-Quando crei il progetto su Cloudflare Pages, usa queste impostazioni:
-
-### Build Settings
+### Build Settings (IMPORTANTE!)
 ```
 Framework preset: Next.js
 Build command: npx @cloudflare/next-on-pages
@@ -12,29 +10,77 @@ Build output directory: .vercel/output/static
 Root directory: (lascia vuoto)
 ```
 
-### Environment Variables
-Aggiungi nelle impostazioni del progetto:
+### Environment Variables (CRITICHE!)
+
+**Per tutti i siti, aggiungi SEMPRE**:
+```
+NODE_VERSION = 20.18.0
+```
+
+**Poi aggiungi la variabile specifica del sito**:
+
+#### Casa Menica (sito2)
 ```
 NEXT_PUBLIC_SITE = sito2
-NODE_VERSION = 18
 ```
 
-### Deployment
-1. Vai su Cloudflare Dashboard
-2. Workers & Pages → Create application → Pages
-3. Connect to Git → Seleziona questo repository
-4. Usa le impostazioni sopra
-5. Deploy!
+#### Casa Sisina (sito3)  
+```
+NEXT_PUBLIC_SITE = sito3
+```
 
-Il sito sarà disponibile su: `casamenica.pages.dev`
+#### Arcu de Chelu
+```
+NEXT_PUBLIC_SITE = arcudechelu
+```
 
-## Domini Personalizzati
-Per aggiungere un dominio custom:
-1. Vai nel progetto → Custom domains
-2. Add custom domain
-3. Segui le istruzioni per configurare i DNS
+---
 
-## Note
-- Ogni push su Git triggera un rebuild automatico
-- Preview deployments sono disponibili per ogni branch
-- Puoi fare rollback a versioni precedenti in qualsiasi momento
+## 📝 Passi Deployment
+
+### 1. Commit e Push
+```bash
+git add .
+git commit -m "fix: Remove packageManager for Cloudflare compatibility"
+git push
+```
+
+### 2. Cloudflare Pages Setup
+1. Dashboard → Workers & Pages → Create → Pages
+2. Connect to Git → Seleziona repository
+3. Project name: `casamenica` (o altro)
+4. Build command: `npx @cloudflare/next-on-pages`
+5. Build output: `.vercel/output/static`
+
+### 3. Environment Variables
+Ve su **Settings → Environment Variables** e aggiungi:
+- `NODE_VERSION` = `20.18.0` ✅ IMPORTANTE!
+- `NEXT_PUBLIC_SITE` = `sito2` (o quello specifico)
+
+### 4. Deploy
+Click **Save and Deploy**
+
+---
+
+## ✅ Checklist Pre-Deploy
+
+- [ ] `packageManager` rimosso da package.json
+- [ ] Codice pushato su Git  
+- [ ] `NODE_VERSION=20.18.0` impostato
+- [ ] `NEXT_PUBLIC_SITE` impostato correttamente
+- [ ] Build command: `npx @cloudflare/next-on-pages`
+- [ ] Output directory: `.vercel/output/static`
+
+---
+
+## 🔧 Troubleshooting
+
+**Errore "No Next.js version detected"**:
+- Assicurati che `next` sia in `dependencies` nel package.json ✅
+- Rimuovi `packageManager` da package.json ✅
+
+**Engine warnings**:
+- Usa `NODE_VERSION=20.18.0` o superiore ✅
+
+**Build cache errors**:
+- Normale con l'adapter, verrà gestito automaticamente ✅
