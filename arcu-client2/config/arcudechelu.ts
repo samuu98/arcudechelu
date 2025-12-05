@@ -4,6 +4,8 @@ export const arcudechelu: SiteConfig = {
     name: "Arcu de Chelu",
     domain: "arcudechelu.com",
     description: "B&B nel cuore della Sardegna, in un contesto tranquillo e ricco di tradizioni.",
+    logo: "/images/B2_reduction_optimized_.png",
+    tagline: "Guest House",
 
     theme: {
         colors: {

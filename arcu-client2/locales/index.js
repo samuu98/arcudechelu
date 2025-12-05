@@ -1,11 +1,28 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from 'react';
-import it from './it';
-import en from './en';
-import es from './es';
-import de from './de';
-import fr from './fr';
+
+// Get active site from environment variable
+const ACTIVE_SITE = process.env.NEXT_PUBLIC_SITE || 'arcudechelu';
+
+// Dynamically import translations based on active site
+let it, en, es, de, fr;
+
+if (ACTIVE_SITE === 'sito2') {
+  // Import sito2 translations
+  it = require('./sito2/it').default;
+  en = require('./sito2/en').default;
+  es = require('./sito2/es').default;
+  de = require('./sito2/de').default;
+  fr = require('./sito2/fr').default;
+} else {
+  // Default: import arcudechelu translations (also used for sito3 until its translations are created)
+  it = require('./it').default;
+  en = require('./en').default;
+  es = require('./es').default;
+  de = require('./de').default;
+  fr = require('./fr').default;
+}
 
 // Define available languages
 export const languages = {
@@ -89,4 +106,4 @@ export const availableTranslations = {
   fr
 };
 
-export default availableTranslations; 
+export default availableTranslations;

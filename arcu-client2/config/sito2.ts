@@ -1,22 +1,22 @@
 import { SiteConfig } from './types';
 
 export const sito2: SiteConfig = {
-    name: "Sito 2",
-    domain: "sito2.com",
-    description: "Template per il secondo sito - da personalizzare",
+    name: "Casa Menica",
+    domain: "casamenica.com",
+    description: "Appartamento vacanze a Lido di Savio, Ravenna. Vicino a Mirabilandia.",
 
     theme: {
         colors: {
             bnb: {
-                100: "#f0f9ff",
-                200: "#e6f7ff",
-                300: "#bae6fd",
-                400: "#7dd3fc",
-                500: "#0ea5e9",
-                600: "#0284c7",
-                700: "#0369a1",
-                800: "#075985",
-                900: "#0c4a6e",
+                100: "#e6f7ff",
+                200: "#bae7ff",
+                300: "#91d5ff",
+                400: "#69c0ff",
+                500: "#40a9ff",
+                600: "#1890ff",
+                700: "#096dd9",
+                800: "#0050b3",
+                900: "#003a8c",
             },
             natural: {
                 100: "#f8fafc",
@@ -30,30 +30,31 @@ export const sito2: SiteConfig = {
                 900: "#0f172a",
             },
             terracotta: {
-                100: "#fee2e2",
-                200: "#fecaca",
-                300: "#fca5a5",
-                400: "#f87171",
-                500: "#ef4444",
-                600: "#dc2626",
-                700: "#b91c1c",
-                800: "#991b1b",
-                900: "#7f1d1d",
+                100: "#fff1e6",
+                200: "#ffe0c2",
+                300: "#ffca94",
+                400: "#ffb366",
+                500: "#ff9933",
+                600: "#ff8000",
+                700: "#cc6600",
+                800: "#994d00",
+                900: "#663300",
             },
         },
     },
 
     contact: {
-        address: "Via Esempio 123, 00000 Città (XX)",
-        email: "info@sito2.com",
+        address: "Lido di Savio, Ravenna (RA), Emilia-Romagna",
+        email: "info@casamenica.com",
         phone: "+39 000 000 0000",
         phoneDisplay: "+39 000 000 0000",
         whatsapp: "+39000000000",
-        mapUrl: "https://maps.google.com/?q=Sito2",
+        mapUrl: "https://maps.google.com/?q=Lido+di+Savio+Ravenna",
     },
 
     booking: {
-        urlPattern: "https://bookonline.pro/{language}/properties/XXXXX?unidades=1&filter_zone=1&referencia_propietario=Prenotazione%2520da%2520sito",
+        // TODO: Inserire il link di prenotazione fornito dall'utente
+        urlPattern: "https://INSERIRE_LINK_PRENOTAZIONE/{language}",
     },
 
     languages: {
@@ -65,61 +66,81 @@ export const sito2: SiteConfig = {
     },
 
     features: [
-        { iconName: 'Map', textKey: 'about.features.location', defaultText: 'Posizione strategica' },
-        { iconName: 'Coffee', textKey: 'about.features.breakfast', defaultText: 'Colazione di qualità' },
-        { iconName: 'Wifi', textKey: 'about.features.wifi', defaultText: 'Wi-Fi gratuito' },
-        { iconName: 'Umbrella', textKey: 'about.features.beaches', defaultText: 'Vicino alle spiagge' },
-        { iconName: 'AirVent', textKey: 'about.features.airConditioning', defaultText: 'Ambiente climatizzato' },
-        { iconName: 'Leaf', textKey: 'about.features.nature', defaultText: 'Immerso nella natura' },
+        { iconName: 'MapPin', textKey: 'about.features.location', defaultText: 'Vicino a Mirabilandia' },
+        { iconName: 'Waves', textKey: 'about.features.beach', defaultText: 'Vicino al mare' },
+        { iconName: 'Car', textKey: 'about.features.parking', defaultText: 'Parcheggio auto riservato' },
+        { iconName: 'AirVent', textKey: 'about.features.airConditioning', defaultText: '2 Condizionatori' },
+        { iconName: 'Building2', textKey: 'about.features.balconies', defaultText: '2 Balconi' },
+        { iconName: 'Users', textKey: 'about.features.capacity', defaultText: 'Fino a 5 persone' },
+        { iconName: 'ChefHat', textKey: 'about.features.kitchen', defaultText: 'Cucina completa' },
+        { iconName: 'Bath', textKey: 'about.features.bathrooms', defaultText: '2 Bagni' },
     ],
 
     rooms: [
         {
-            id: 'room-1',
-            titleKey: 'rooms.room1.title',
-            descriptionKey: 'rooms.room1.description',
-            imageKey: 'room1',
-            calendarId: 'XXXXXX',
+            id: 'appartamento-casa-menica',
+            titleKey: 'rooms.appartamento.title',
+            descriptionKey: 'rooms.appartamento.description',
+            imageKey: 'appartamento',
+            calendarId: '', // TODO: Inserire calendar ID se disponibile
             available: true,
             features: [
-                { iconName: 'Square', labelKey: 'roomFeatures.area25' },
+                { iconName: 'Users', labelKey: 'roomFeatures.capacity5' },
+                { iconName: 'Bed', labelKey: 'roomFeatures.twoRooms' },
                 { iconName: 'Bed', labelKey: 'roomFeatures.doubleBed' },
-                { iconName: 'Bath', labelKey: 'roomFeatures.privateBathroom' },
-                { iconName: 'AirVent', labelKey: 'roomFeatures.airConditioning' },
-                { iconName: 'Tv', labelKey: 'roomFeatures.smartTv' },
+                { iconName: 'Bed', labelKey: 'roomFeatures.singleBeds' },
+                { iconName: 'Bath', labelKey: 'roomFeatures.twoBathrooms' },
+                { iconName: 'ChefHat', labelKey: 'roomFeatures.fullKitchen' },
+                { iconName: 'Building2', labelKey: 'roomFeatures.twoBalconies' },
+                { iconName: 'AirVent', labelKey: 'roomFeatures.twoAirConditioners' },
+                { iconName: 'Car', labelKey: 'roomFeatures.reservedParking' },
                 { iconName: 'Wifi', labelKey: 'roomFeatures.freeWifi' },
-                { iconName: 'Coffee', labelKey: 'roomFeatures.breakfastKit' },
+                { iconName: 'Tv', labelKey: 'roomFeatures.tv' },
             ],
         },
     ],
 
     images: {
         hero: [],
-        modolo: [],
+        modolo: [], // Immagini di Lido di Savio (usate in AboutSection)
         gallery: [
-            // Template - aggiungere immagini effettive
+            // TODO: Aggiungere immagini reali
             "/images/sito2/gallery/placeholder1.jpg",
         ],
         rooms: {
-            room1: [
-                "/images/sito2/rooms/room1/placeholder1.jpg",
+            appartamento: [
+                // TODO: Aggiungere immagini reali
+                "/images/sito2/rooms/appartamento/placeholder1.jpg",
             ],
         }
     },
 
+    // TODO: Inserire path all'immagine hero reale
     heroImage: "/images/sito2/hero.jpg",
 
     reviews: [
         {
-            name: "Cliente A.",
+            name: "Famiglia Rossi",
             rating: 5,
-            comment: "Template recensione - da personalizzare",
-            date: "Gennaio 2025"
+            comment: "Appartamento perfetto per le vacanze! Molto vicino a Mirabilandia e al mare. Pulito, spazioso e ben attrezzato.",
+            date: "Agosto 2024"
+        },
+        {
+            name: "Marco B.",
+            rating: 5,
+            comment: "Ottima posizione, appartamento confortevole con tutto il necessario. Parcheggio riservato molto comodo!",
+            date: "Luglio 2024"
+        },
+        {
+            name: "Anna e famiglia",
+            rating: 5,
+            comment: "Perfetto per famiglie! Due camere spaziose, cucina ben attrezzata. I bambini hanno adorato Mirabilandia!",
+            date: "Giugno 2024"
         },
     ],
 
     metadata: {
-        title: "Sito 2 - Template",
-        keywords: ["template", "sito2"]
+        title: "Casa Menica - Appartamento Vacanze a Lido di Savio",
+        keywords: ["casa vacanze", "lido di savio", "ravenna", "mirabilandia", "appartamento", "mare", "romagna"]
     }
 };

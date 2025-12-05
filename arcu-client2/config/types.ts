@@ -17,6 +17,8 @@ export interface SiteConfig {
     name: string;
     domain: string;
     description: string;
+    logo?: string;  // Path to logo image
+    tagline?: string;  // Tagline/subtitle for header (e.g., "Guest House")
 
     theme: {
         colors: {

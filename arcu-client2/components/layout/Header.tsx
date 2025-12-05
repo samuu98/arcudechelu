@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { useLanguage } from '@/locales';
+import { siteConfig } from '@/config';
 
 /**
  * Header component with logo, navigation, and language switcher
@@ -19,21 +20,25 @@ export function Header() {
             <div className="container mx-auto flex items-center justify-between py-3 md:py-4 px-4">
                 <div className="text-2xl font-semibold text-bnb-700">
                     <Link href="/" className="flex items-center">
-                        <div className="relative h-10 w-10 mr-2">
-                            <Image
-                                src="/images/B2_reduction_optimized_.png"
-                                alt="Arcu de Chelu Logo"
-                                fill
-                                sizes="40px"
-                                style={{ objectFit: 'contain' }}
-                                priority
-                                quality={90}
-                            />
-                        </div>
-                        <span className="font-serif italic">Arcu de Chelu</span>
-                        <span className="text-sm ml-2 text-natural-600 font-normal hidden sm:inline-block">
-                            <i>Guest House</i>
-                        </span>
+                        {siteConfig.logo && (
+                            <div className="relative h-10 w-10 mr-2">
+                                <Image
+                                    src={siteConfig.logo}
+                                    alt={`${siteConfig.name} Logo`}
+                                    fill
+                                    sizes="40px"
+                                    style={{ objectFit: 'contain' }}
+                                    priority
+                                    quality={90}
+                                />
+                            </div>
+                        )}
+                        <span className="font-serif italic">{siteConfig.name}</span>
+                        {siteConfig.tagline && (
+                            <span className="text-sm ml-2 text-natural-600 font-normal hidden sm:inline-block">
+                                <i>{siteConfig.tagline}</i>
+                            </span>
+                        )}
                     </Link>
                 </div>
 
@@ -78,7 +83,7 @@ export function Header() {
                         <LanguageSwitcher />
                     </div>
                     <a
-                        href={`https://bookonline.pro/${language}/properties/101334?unidades=1&filter_zone=1&referencia_propietario=Prenotazione%2520da%2520sito`}
+                        href={siteConfig.booking.urlPattern.replace('{language}', language)}
                         target="_blank"
                         rel="noopener noreferrer"
                     >

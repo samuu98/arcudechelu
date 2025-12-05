@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { MapPin, Phone, Mail, Facebook, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/locales';
+import { siteConfig } from '@/config';
 
 /**
  * Footer component with links, contact info, and newsletter
@@ -20,25 +21,24 @@ export function Footer() {
                     {/* Company Info */}
                     <div>
                         <h4 className="text-xl font-serif text-white mb-4">
-                            {t('footer.title', 'Arcu de Chelu')}
+                            {siteConfig.name}
                         </h4>
-                        <div className="flex items-center mb-4">
-                            <div className="relative h-10 w-10 mr-2">
-                                <Image
-                                    src="/images/B2_reduction_edited_optimized_.png"
-                                    alt={t('footer.logoAlt', 'Arcu de Chelu Logo')}
-                                    fill
-                                    style={{ objectFit: 'contain' }}
-                                    sizes="40px"
-                                    quality={90}
-                                />
+                        {siteConfig.logo && (
+                            <div className="flex items-center mb-4">
+                                <div className="relative h-10 w-10 mr-2">
+                                    <Image
+                                        src={siteConfig.logo}
+                                        alt={`${siteConfig.name} Logo`}
+                                        fill
+                                        style={{ objectFit: 'contain' }}
+                                        sizes="40px"
+                                        quality={90}
+                                    />
+                                </div>
                             </div>
-                        </div>
+                        )}
                         <p className="text-natural-400 mb-6">
-                            {t(
-                                'footer.description',
-                                'B&B nel cuore della Sardegna, in un contesto tranquillo e ricco di tradizioni. Offriamo camere confortevoli e servizi di qualità per un soggiorno indimenticabile.'
-                            )}
+                            {siteConfig.description}
                         </p>
                         <div className="flex space-x-4">
                             <a
@@ -114,22 +114,19 @@ export function Footer() {
                             <li className="flex items-start">
                                 <MapPin className="h-5 w-5 text-bnb-500 mr-2" />
                                 <span className="text-natural-400">
-                                    {t('footer.contact.address', 'Via Roma 42, 09090 Modolo (OR)')}
+                                    {siteConfig.contact.address}
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <Phone className="h-5 w-5 text-bnb-500 mr-2" />
                                 <span className="text-natural-400">
-                                    {t(
-                                        'footer.contact.phone',
-                                        '+39 347 240 55 80 / +39 340 895 1010'
-                                    )}
+                                    {siteConfig.contact.phoneDisplay || siteConfig.contact.phone}
                                 </span>
                             </li>
                             <li className="flex items-start">
                                 <Mail className="h-5 w-5 text-bnb-500 mr-2" />
                                 <span className="text-natural-400">
-                                    {t('footer.contact.email', 'arcudechelubnb@gmail.com')}
+                                    {siteConfig.contact.email}
                                 </span>
                             </li>
                         </ul>
@@ -162,10 +159,7 @@ export function Footer() {
                 {/* Copyright */}
                 <div className="border-t border-natural-700 mt-12 pt-8 text-center text-natural-500">
                     <p>
-                        {t(
-                            'footer.copyright',
-                            '© {year} Arcu de Chelu B&B. Tutti i diritti riservati.'
-                        ).replace('{year}', new Date().getFullYear().toString())}
+                        © {new Date().getFullYear()} {siteConfig.name}. {t('footer.rights', 'Tutti i diritti riservati.')}
                     </p>
                 </div>
             </div>
