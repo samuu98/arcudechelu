@@ -15,8 +15,15 @@ if (ACTIVE_SITE === 'sito2') {
   es = require('./sito2/es').default;
   de = require('./sito2/de').default;
   fr = require('./sito2/fr').default;
+} else if (ACTIVE_SITE === 'sito3') {
+  // Import sito3 translations
+  it = require('./sito3/it').default;
+  en = require('./sito3/en').default;
+  es = require('./sito3/es').default;
+  de = require('./sito3/de').default;
+  fr = require('./sito3/fr').default;
 } else {
-  // Default: import arcudechelu translations (also used for sito3 until its translations are created)
+  // Default: import arcudechelu translations
   it = require('./it').default;
   en = require('./en').default;
   es = require('./es').default;

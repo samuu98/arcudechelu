@@ -44,22 +44,24 @@ export function Hero() {
                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-white/20 backdrop-blur-md rounded-full blur-2xl -z-10"></div>
 
                         {/* Immagine Logo */}
-                        <Image
-                            src="/images/B2_reduction_edited_optimized_.png"
-                            alt="Arcu de Chelu Symbol"
-                            fill
-                            sizes="(max-width: 768px) 90vw, 384px"
-                            style={{ objectFit: 'contain' }}
-                            priority
-                            className="relative z-10 drop-shadow-xl opacity-95"
-                            quality={90}
-                        />
+                        {siteConfig.logo && (
+                            <Image
+                                src={siteConfig.logo}
+                                alt={`${siteConfig.name} Symbol`}
+                                fill
+                                sizes="(max-width: 768px) 90vw, 384px"
+                                style={{ objectFit: 'contain' }}
+                                priority
+                                className="relative z-10 drop-shadow-xl opacity-95"
+                                quality={90}
+                            />
+                        )}
                     </div>
 
                     {/* BLOCCO TESTO */}
                     <div className="space-y-2 mt-[-55px] relative z-20 flex flex-col items-center">
                         <h1 className="text-5xl md:text-7xl font-serif font-extralight tracking-widest leading-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] text-center">
-                            {t('hero.title', 'Arcu de Chelu')}
+                            {t('hero.title', siteConfig.name)}
                         </h1>
                         <p className="text-lg md:text-xl font-light tracking-wider italic text-white/95 drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)] text-center">
                             {t('hero.subtitle', '— Guest House —')}
